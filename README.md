@@ -5,7 +5,7 @@
 每位學員選一個題目，完成 **Mini Data Pipeline**：
 
 ```
-CSV → pandas 清洗 → SQLite (raw/cleaned/analyzed) → SQL 查詢 → LLM 分析 → FastAPI → Streamlit
+CSV → pandas 清洗 → SQLite (raw/cleaned/analyzed) → SQL Query → (LLM 分析) → FastAPI → Streamlit
 ```
 
 ## 快速開始

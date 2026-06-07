@@ -1,8 +1,47 @@
-flowchart LR
-    A[Raw Data] --> B[extract.py]
-    B --> C[transform.py]
-    C --> D[load.py]
-    D --> E[llm_analyze.py]
-    E --> F[processed_reviews.csv]
-    E --> G[report.md]
-    F --> H[Streamlit app.py]
+flowchart TD
+    subgraph "Section 1：Extract"
+        A[CSV 原始資料] -->|pd.read_csv| B[pandas DataFrame]
+        B -->|df.to_sql| C[(SQLite: raw 表)]
+    end
+
+    subgraph "Section 2：Transform"
+        C -->|pd.read_sql| D[pandas 清洗]
+        D -->|dropna / 型別轉換 / 新增欄位| E[cleaned DataFrame]
+        E -->|df.to_sql| F[(SQLite: cleaned 表)]
+    end
+
+    subgraph "Section 3：SQL 統計分析"
+        F -->|SQL GROUP BY / ORDER BY| G[統計結果]
+        G --> H[data/processed/*.csv]
+    end
+
+    subgraph "Section 4：LLM 加值分析"
+        F -->|pd.read_sql| I[取出文字欄位]
+        I -->|LLM API 或 fallback| J[情緒/分類/摘要]
+        J -->|df.to_sql| K[(SQLite: analyzed 表)]
+    end
+
+    subgraph "Section 5：驗證"
+        C -.- L{跨表查詢}
+        F -.- L
+        K -.- L
+        L --> M[三表筆數一致 ✓]
+    end
+
+    subgraph "Section 6：產出報告"
+        K --> N[output/report.md]
+        H --> N
+    end
+
+    subgraph "選做：API + Dashboard"
+        C -.-> O[FastAPI api.py]
+        F -.-> O
+        K -.-> O
+        O -.-> P[Streamlit app.py]
+    end
+
+    style C fill:#e3f2fd
+    style F fill:#e8f5e9
+    style K fill:#fff3e0
+    style O fill:#f3e5f5
+    style P fill:#f3e5f5

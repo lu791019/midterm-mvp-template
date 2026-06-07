@@ -23,6 +23,72 @@ cd midterm-mvp-template
 # 3. 照著 Notebook 檔案做
 ```
 
+## Pipeline 流程
+
+Notebook 會帶你走完以下 6 個 Section，每個 Section 對應 pipeline 的一個階段：
+
+```mermaid
+flowchart TD
+    subgraph "Section 1：Extract"
+        A[CSV 原始資料] -->|pd.read_csv| B[pandas DataFrame]
+        B -->|df.to_sql| C[(SQLite: raw 表)]
+    end
+
+    subgraph "Section 2：Transform"
+        C -->|pd.read_sql| D[pandas 清洗]
+        D -->|dropna / 型別轉換 / 新增欄位| E[cleaned DataFrame]
+        E -->|df.to_sql| F[(SQLite: cleaned 表)]
+    end
+
+    subgraph "Section 3：SQL 統計分析"
+        F -->|SQL GROUP BY / ORDER BY| G[統計結果]
+        G --> H[data/processed/*.csv]
+    end
+
+    subgraph "Section 4：LLM 加值分析"
+        F -->|pd.read_sql| I[取出文字欄位]
+        I -->|LLM API 或 fallback| J[情緒/分類/摘要]
+        J -->|df.to_sql| K[(SQLite: analyzed 表)]
+    end
+
+    subgraph "Section 5：驗證"
+        C -.- L{跨表查詢}
+        F -.- L
+        K -.- L
+        L --> M[三表筆數一致 ✓]
+    end
+
+    subgraph "Section 6：產出報告"
+        K --> N[output/report.md]
+        H --> N
+    end
+
+    subgraph "選做：API + Dashboard"
+        C -.-> O[FastAPI api.py]
+        F -.-> O
+        K -.-> O
+        O -.-> P[Streamlit app.py]
+    end
+
+    style C fill:#e3f2fd
+    style F fill:#e8f5e9
+    style K fill:#fff3e0
+    style O fill:#f3e5f5
+    style P fill:#f3e5f5
+```
+
+| Section | 做什麼 | 產出 |
+|---------|--------|------|
+| 1. Extract | 讀 CSV → 寫入 SQLite `raw` 表 | `pipeline.db` 的 raw 表 |
+| 2. Transform | 從 raw 表讀出 → pandas 清洗 → 寫入 `cleaned` 表 | cleaned 表 |
+| 3. SQL 統計 | 從 cleaned 表用 SQL 查詢統計 | `data/processed/*.csv` |
+| 4. LLM 分析 | 從 cleaned 表讀文字 → LLM 分析 → 寫入 `analyzed` 表 | analyzed 表 |
+| 5. 驗證 | 跨表查詢確認三表一致（data lineage） | 驗證通過 ✓ |
+| 6. 報告 | 整合統計 + LLM 結果 → 生成顧問報告 | `output/report.md` |
+| 選做 | FastAPI 提供 API → Streamlit 顯示 Dashboard | API + Dashboard |
+
+> 完整流程圖 Mermaid 原始檔：[docs/pipeline.mmd](docs/pipeline.mmd)
+
 ## Repo 結構
 
 ```
@@ -105,33 +171,6 @@ midterm-mvp-template/
 | 8 | 不動產房價趨勢分析 | 2,000 筆台灣實價登錄 | 區域分析建議書 | [requirements_spec.md](data/raw/topic_8/requirements_spec.md) |
 
 > 資料來源詳情見 [docs/data_sources.md](docs/data_sources.md)
-
-## Pipeline 流程
-
-```
-Section 1：Extract
-  → 讀 CSV → 寫入 SQLite raw 表
-
-Section 2：Transform
-  → 從 raw 表讀出 → pandas 清洗 → 寫入 cleaned 表
-
-Section 3：SQL 統計分析
-  → 從 cleaned 表查詢（GROUP BY, ORDER BY）
-
-Section 4：LLM 加值分析
-  → 從 cleaned 表讀文字 → LLM 分析 → 寫入 analyzed 表
-
-Section 5：驗證
-  → 跨表查詢確認三表一致（data lineage）
-
-Section 6：產出報告
-  → output/report.md
-
-選做：FastAPI + Streamlit
-  → api.py 提供 API → app.py 讀 API 顯示 Dashboard
-```
-
-> 流程圖見 [docs/pipeline.mmd](docs/pipeline.mmd)
 
 ## 每人最低完成標準
 

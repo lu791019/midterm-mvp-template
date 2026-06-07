@@ -53,7 +53,7 @@ midterm-mvp-template/
 | 必交 | 說明 |
 |---|---|
 | `docs/requirements_spec.md` | 題目、使用者、資料來源、MVP scope、成功指標 |
-| `data/processed/*` | 至少一份處理後資料 |
+| `processed/*` | 至少一份處理後資料 |
 | `output/report.md` | LLM 分析結果、摘要、分類或顧問建議 |
 | `docs/upgrade_plan.md` | 後續如何升級成 GitHub / Docker / Airflow / GCP 版本 |
 | demo 素材 | 截圖、Notebook output、Streamlit 畫面或 1 分鐘口頭 demo |

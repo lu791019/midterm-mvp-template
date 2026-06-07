@@ -259,8 +259,15 @@ midterm-mvp-template/
 │   └── docker-compose.yml           Docker Compose 設定
 │
 └── _instructor/                 ← 📂 講師用（學員不需要看）
-    ├── midterm_workshop_proposal.md  工作坊企劃書 v4.0
-    └── midterm_workshop_slides.md    簡報原稿
+    ├── midterm_workshop_proposal.md  工作坊企劃書
+    ├── midterm_workshop_slides.md    簡報原稿
+    └── solutions/                    每題 pipeline 完整答案
+        ├── topic_1_solution.ipynb
+        ├── topic_2_solution.ipynb
+        ├── topic_3_solution.ipynb
+        ├── topic_4_solution.ipynb
+        ├── topic_5_solution.ipynb
+        └── topic_6_solution.ipynb
 ```
 
 ## 你的題目

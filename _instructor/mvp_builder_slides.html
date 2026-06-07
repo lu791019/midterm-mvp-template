@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM × DE MVP Builder 實戰營</title>
+<meta name="description" content="LLM × DE MVP Builder 實戰營">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ========== CSS CUSTOM PROPERTIES ========== */
+:root {
+  /* WARM palette (Daydream Dex 設計系統) */
+  --midnight: #FBFAF7;        /* 暖白底（原 var name 保留以最小改動） */
+  --deep-purple: #F4F1EB;     /* 卡片暖底 */
+  --electric-blue: #5391FF;   /* 主藍 accent */
+  --vivid-purple: #2F6FE0;    /* 深藍 hover */
+  --neon-purple: #D97706;     /* 暖橘點綴 */
+  --cyan: #B45309;            /* 深暖橘（取代亮青） */
+  --amber: #F59E0B;           /* 保留琥珀 */
+  --rose: #EAA792;            /* 暖玫瑰（柔化） */
+  --text-primary: #1F1B16;    /* 主墨色（咖啡黑） */
+  --text-secondary: #3D3A33;  /* 次墨色 */
+  --text-muted: #6B6557;      /* 提示文字 */
+
+  --title-size: clamp(2.25rem, 7.5vw, 6rem);
+  --h2-size: clamp(1.875rem, 5.25vw, 3.75rem);
+  --h3-size: clamp(1.5rem, 3.75vw, 2.625rem);
+  --body-size: clamp(1.125rem, 2.25vw, 1.6875rem);
+  --small-size: clamp(0.975rem, 1.5vw, 1.3125rem);
+
+  --font-zh: 'Noto Sans TC', 'PingFang TC', sans-serif;
+  --font-en: 'Noto Serif TC', 'Source Han Serif TC', serif;
+  --font-display: 'Zen Maru Gothic', 'Noto Sans TC', sans-serif;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease;
+  --transition-slow: 0.8s ease;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: var(--midnight);
+}
+
+body {
+  font-family: var(--font-zh);
+  color: var(--text-primary);
+  background: var(--midnight);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ========== SLIDE BASE ========== */
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 5vw;
+}
+
+.slide-inner {
+  max-width: 1200px;
+  width: 100%;
+  z-index: 2;
+  position: relative;
+}
+
+/* ========== ANIMATED GRID BACKGROUND ========== */
+.slide::before {
+  content: '';
+  position: absolute;
+  inset: -60px;
+  background-image:
+    linear-gradient(rgba(217,119,6,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217,119,6,0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridMove 20s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 30%, rgba(217,119,6,0.06), transparent),
+    radial-gradient(ellipse 500px 300px at 80% 70%, rgba(180,83,9,0.05), transparent);
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(60px, 60px); }
+}
+
+/* Data flow lines */
+.data-flow {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, var(--cyan), transparent);
+  opacity: 0.15;
+  z-index: 0;
+  animation: dataFlowDown var(--duration, 8s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  pointer-events: none;
+}
+
+@keyframes dataFlowDown {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ========== TYPOGRAPHY ========== */
+.slide-title {
+  font-size: var(--title-size);
+  font-weight: 900;
+  line-height: 1.15;
+  font-family: var(--font-zh);
+}
+
+h2 {
+  font-size: var(--h2-size);
+  font-weight: 900;
+  margin-bottom: 1.25rem;
+  line-height: 1.2;
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, var(--electric-blue), var(--neon-purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+h3 {
+  font-size: var(--h3-size);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--cyan);
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+p, li, td, th {
+  font-size: var(--body-size);
+}
+
+.small-text {
+  font-size: var(--small-size);
+}
+
+.mono {
+  font-family: var(--font-en);
+}
+
+/* ========== PART DIVIDER ========== */
+.slide-part {
+  background: linear-gradient(135deg, var(--deep-purple), var(--midnight));
+}
+
+.slide-part h2 {
+  font-size: var(--title-size);
+  text-align: center;
+}
+
+.slide-part .part-number {
+  font-family: var(--font-en);
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 700;
+  opacity: 0.08;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  background: linear-gradient(135deg, var(--electric-blue), var(--neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== TABLES ========== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.5rem 0;
+}
+
+th, td {
+  padding: 0.65rem 0.9rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(217,119,6,0.18);
+  font-size: var(--body-size);
+  line-height: 1.55;
+}
+
+th {
+  color: var(--cyan);
+  font-weight: 700;
+  background: linear-gradient(180deg, rgba(217,119,6,0.14), rgba(217,119,6,0.08));
+  white-space: nowrap;
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid rgba(217,119,6,0.35);
+}
+
+tbody tr:nth-child(even) td,
+table tr:nth-child(even) td {
+  background: rgba(217,119,6,0.035);
+}
+
+table tr:hover td {
+  background: rgba(245,158,11,0.10);
+  transition: background 0.2s ease;
+}
+
+/* ========== CARDS ========== */
+.card {
+  background: rgba(255,253,247,0.92);
+  border: 1px solid rgba(217,119,6,0.22);
+  border-radius: 14px;
+  padding: 1.25rem;
+  position: relative;
+  transition: var(--transition-normal);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(180,83,9,0.06);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 13px;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, var(--neon-purple), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(217,119,6,0.18);
+}
+
+/* ========== GRID LAYOUTS ========== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+/* ========== BLOCKQUOTE ========== */
+blockquote {
+  border-left: 4px solid var(--neon-purple);
+  padding: 0.65rem 1.1rem;
+  margin: 0.75rem 0;
+  background: linear-gradient(90deg, rgba(217,119,6,0.08), rgba(217,119,6,0.02));
+  border-radius: 0 10px 10px 0;
+  font-size: var(--body-size);
+  font-family: var(--font-en);
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+blockquote strong {
+  font-style: normal;
+  color: var(--cyan);
+  font-family: var(--font-zh);
+}
+
+/* ========== BADGE ========== */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  font-size: var(--small-size);
+  font-weight: 500;
+  background: rgba(83,145,255,0.18);
+  border: 1px solid rgba(83,145,255,0.30);
+  color: var(--electric-blue);
+}
+
+/* ========== LIST STYLES ========== */
+ul, ol {
+  padding-left: 1.5rem;
+  margin: 0.4rem 0;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+li::marker {
+  color: var(--neon-purple);
+}
+
+/* ========== REVEAL ANIMATIONS ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ========== PROGRESS BAR ========== */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--electric-blue), var(--vivid-purple), var(--neon-purple), var(--cyan));
+  z-index: 1000;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+/* ========== SLIDE COUNTER ========== */
+#slide-counter {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--font-en);
+  font-size: var(--small-size);
+  color: var(--text-muted);
+  z-index: 1000;
+  background: rgba(255,255,255,0.85);
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(83,145,255,0.18);
+  backdrop-filter: blur(8px);
+}
+
+/* ========== COVER SLIDE ========== */
+.slide-cover {
+  text-align: center;
+  background: radial-gradient(ellipse at center, rgba(245,158,11,0.18), rgba(217,119,6,0.06) 35%, var(--midnight) 75%);
+}
+
+.cover-title {
+  font-size: var(--title-size);
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--electric-blue), var(--neon-purple), var(--cyan));
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+  margin-bottom: 0.75rem;
+}
+
+.cover-subtitle {
+  font-size: var(--h2-size);
+  color: var(--cyan);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  background: none;
+  -webkit-text-fill-color: var(--cyan);
+}
+
+.cover-speaker {
+  font-size: var(--h3-size);
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+@keyframes titleGlow {
+  0% { filter: drop-shadow(0 0 20px rgba(83,145,255,0.30)); }
+  100% { filter: drop-shadow(0 0 40px rgba(217,119,6,0.45)); }
+}
+
+/* ========== POLL SLIDE ========== */
+.poll-option {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(83,145,255,0.25);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin: 0.75rem 0;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-normal);
+  font-size: var(--body-size);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.poll-option:hover {
+  border-color: var(--vivid-purple);
+  transform: translateX(4px);
+}
+
+.poll-option .fill-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(83,145,255,0.22), rgba(168,85,247,0.15));
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.poll-option.voted .fill-bar {
+  width: var(--fill, 40%);
+}
+
+.poll-option .poll-num {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  color: var(--vivid-purple);
+  z-index: 1;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.poll-option .poll-text {
+  z-index: 1;
+}
+
+.poll-option .poll-pct {
+  margin-left: auto;
+  font-family: var(--font-en);
+  font-weight: 600;
+  color: var(--cyan);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.5s;
+  z-index: 1;
+}
+
+.poll-option.voted .poll-pct { opacity: 1; }
+
+/* ========== TIMELINE ========== */
+.timeline {
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--electric-blue), var(--vivid-purple), var(--neon-purple), var(--cyan));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 1.25rem;
+  padding-left: 0.5rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--vivid-purple);
+  border: 2px solid var(--midnight);
+  box-shadow: 0 0 12px rgba(83,145,255,0.45);
+}
+
+.timeline-item:last-child::before {
+  background: var(--cyan);
+  box-shadow: 0 0 16px rgba(180,83,9,0.55);
+  width: 14px;
+  height: 14px;
+  left: calc(-2rem - 1px);
+}
+
+.timeline-role {
+  font-weight: 700;
+  font-size: var(--body-size);
+  color: var(--text-primary);
+}
+
+.timeline-company {
+  font-size: var(--small-size);
+  color: var(--text-secondary);
+}
+
+/* ========== UPGRADE PATH ========== */
+.upgrade-path {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.upgrade-step {
+  text-align: center;
+  padding: 1rem;
+  min-width: 140px;
+}
+
+.upgrade-step .step-label {
+  font-size: var(--small-size);
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.upgrade-step .step-tech {
+  font-size: var(--body-size);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.upgrade-arrow {
+  font-size: 1.5rem;
+  color: var(--vivid-purple);
+  animation: pulseArrow 2s ease-in-out infinite;
+}
+
+@keyframes pulseArrow {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50% { opacity: 1; transform: translateX(4px); }
+}
+
+/* ========== WARM SLIDE ========== */
+.slide-warm {
+  --accent-1: var(--amber);
+  --accent-2: var(--rose);
+}
+
+.slide-warm h2 {
+  background: linear-gradient(135deg, var(--amber), var(--rose));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.slide-warm h3 {
+  color: var(--amber);
+}
+
+.slide-warm blockquote {
+  border-left-color: var(--rose);
+  background: rgba(244,114,182,0.06);
+}
+
+.slide-warm li::marker {
+  color: var(--amber);
+}
+
+.slide-warm .card {
+  border-color: rgba(245,158,11,0.25);
+}
+
+.slide-warm .card:hover {
+  box-shadow: 0 8px 32px rgba(244,114,182,0.15);
+}
+
+.slide-warm .card::before {
+  background: linear-gradient(135deg, transparent, var(--rose), transparent);
+}
+
+.slide-warm::after {
+  background:
+    radial-gradient(ellipse 600px 400px at 20% 30%, rgba(245,158,11,0.06), transparent),
+    radial-gradient(ellipse 500px 300px at 80% 70%, rgba(244,114,182,0.06), transparent) !important;
+}
+
+/* ========== DISCOUNT CODE ========== */
+.discount-code {
+  font-family: var(--font-en);
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(135deg, var(--electric-blue), var(--vivid-purple), var(--neon-purple), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulseBig 2s ease-in-out infinite;
+  letter-spacing: 0.1em;
+}
+
+@keyframes pulseBig {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(99,102,241,0.4)); }
+  50% { transform: scale(1.04); filter: drop-shadow(0 0 40px rgba(168,85,247,0.6)); }
+}
+
+.discount-desc {
+  text-align: center;
+  font-size: var(--h3-size);
+  color: var(--cyan);
+  margin-top: 0.5rem;
+}
+
+/* ========== SALARY COUNTER ========== */
+.salary-number {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: var(--h3-size);
+  color: var(--cyan);
+  display: inline-block;
+  min-width: 2.5ch;
+  text-align: right;
+}
+
+/* ========== PYRAMID ========== */
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 1rem 0;
+}
+
+.pyramid-level {
+  text-align: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  position: relative;
+  font-size: var(--small-size);
+}
+
+.pyramid-level:nth-child(1) {
+  width: 55%;
+  background: rgba(168,85,247,0.15);
+  border: 1px solid rgba(168,85,247,0.3);
+}
+
+.pyramid-level:nth-child(2) {
+  width: 70%;
+  background: rgba(99,102,241,0.12);
+  border: 1px solid rgba(83,145,255,0.30);
+}
+
+.pyramid-level:nth-child(3) {
+  width: 85%;
+  background: rgba(59,130,246,0.1);
+  border: 1px solid rgba(59,130,246,0.3);
+}
+
+.pyramid-marker {
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+/* ========== DATA PIPELINE FLOW ========== */
+.pipeline-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+  font-size: var(--small-size);
+  margin: 0.75rem 0;
+}
+
+.pipeline-node {
+  background: rgba(99,102,241,0.12);
+  border: 1px solid rgba(83,145,255,0.30);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+.pipeline-arrow {
+  color: var(--vivid-purple);
+  font-weight: 600;
+}
+
+/* ========== CTA BUTTON ========== */
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  font-size: var(--body-size);
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--vivid-purple), var(--neon-purple));
+  text-decoration: none;
+  transition: var(--transition-normal);
+  border: none;
+  cursor: pointer;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(168,85,247,0.4);
+}
+
+/* ========== TECH TREE ========== */
+.tech-tree {
+  font-size: var(--small-size);
+  line-height: 1.8;
+}
+
+.tech-tree .tree-label {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+.tech-tree .tree-item {
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.tech-tree .tree-item::before {
+  content: '\251C\2500';
+  position: absolute;
+  left: 0;
+  color: var(--vivid-purple);
+  opacity: 0.5;
+}
+
+.tech-tree .tree-item.tree-last::before {
+  content: '\2514\2500';
+}
+
+/* ========== SURVIVAL TIPS (green) ========== */
+.slide-survival { --accent-1: #10b981; --accent-2: #06b6d4; }
+.slide-survival h2 { background: linear-gradient(135deg, #10b981, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.slide-survival h3 { color: #10b981; }
+.slide-survival blockquote { border-left-color: #10b981; background: rgba(16,185,129,0.06); }
+.slide-survival li::marker { color: #10b981; }
+.slide-survival .card { border-color: rgba(16,185,129,0.25); }
+.slide-survival .card:hover { box-shadow: 0 8px 32px rgba(16,185,129,0.15); }
+.slide-survival .card::before { background: linear-gradient(135deg, transparent, #10b981, transparent); }
+.slide-survival::after { background: radial-gradient(ellipse 600px 400px at 20% 30%, rgba(16,185,129,0.06), transparent), radial-gradient(ellipse 500px 300px at 80% 70%, rgba(6,182,212,0.06), transparent) !important; }
+
+/* ========== UTILITY ========== */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-height: 700px) {
+  .slide { padding: 2rem 4vw; }
+  h2 { margin-bottom: 0.75rem; }
+  .card { padding: 0.75rem; }
+  th, td { padding: 0.35rem 0.6rem; }
+  .timeline-item { margin-bottom: 0.75rem; }
+}
+
+@media (max-height: 600px) {
+  .slide { padding: 1.5rem 3vw; }
+  h2 { margin-bottom: 0.5rem; }
+  .grid-2, .grid-3, .grid-4 { gap: 0.5rem; }
+  blockquote { padding: 0.3rem 0.75rem; margin: 0.5rem 0; }
+}
+
+@media (max-height: 500px) {
+  .slide { padding: 1rem 3vw; }
+  ul, ol { margin: 0.25rem 0; }
+  li { margin-bottom: 0.1rem; }
+}
+
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .upgrade-path { flex-direction: column; }
+  .upgrade-arrow { transform: rotate(90deg); }
+}
+
+/* ========== PREFERS REDUCED MOTION ========== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .slide::before { animation: none; }
+  .data-flow { animation: none; display: none; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+  .cover-title { animation: none; }
+  .discount-code { animation: none; }
+  .upgrade-arrow { animation: none; opacity: 0.6; }
+}
+
+/* ========== ACCESSIBILITY ========== */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* ========== DENSE SLIDE (tables with lots of content) ========== */
+.slide-dense {
+  overflow-y: auto;
+}
+.slide-dense .slide-inner {
+  max-width: 1400px;
+  max-height: calc(100vh - 4rem);
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(217,119,6,0.4) transparent;
+}
+.slide-dense .slide-inner::-webkit-scrollbar { width: 8px; }
+.slide-dense .slide-inner::-webkit-scrollbar-thumb { background: rgba(217,119,6,0.35); border-radius: 4px; }
+.slide-dense .slide-inner::-webkit-scrollbar-track { background: transparent; }
+
+/* ========== COLLAPSIBLE TABLES (details/summary) ========== */
+details.collapse {
+  background: rgba(255,253,247,0.92);
+  border: 1px solid rgba(217,119,6,0.22);
+  border-radius: 14px;
+  padding: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(180,83,9,0.06);
+}
+details.collapse > summary {
+  cursor: pointer;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--small-size);
+  color: var(--cyan);
+  background: linear-gradient(180deg, rgba(217,119,6,0.10), rgba(217,119,6,0.04));
+  border-bottom: 1px solid transparent;
+  list-style: none;
+  display: flex; align-items: center; gap: 0.6rem;
+  transition: background 0.2s ease;
+}
+details.collapse > summary::-webkit-details-marker { display: none; }
+details.collapse > summary::before {
+  content: '▶'; display: inline-block; font-size: 0.85em;
+  color: var(--neon-purple); transition: transform 0.25s ease;
+}
+details.collapse[open] > summary::before { transform: rotate(90deg); }
+details.collapse[open] > summary {
+  border-bottom: 1px solid rgba(217,119,6,0.25);
+  background: linear-gradient(180deg, rgba(217,119,6,0.16), rgba(217,119,6,0.08));
+}
+details.collapse > summary:hover { background: rgba(245,158,11,0.18); }
+details.collapse > .collapse-body { padding: 0.5rem 1.2rem 1rem; }
+details.collapse > .collapse-body table { margin-top: 0.25rem; }
+details.collapse > summary .collapse-hint {
+  margin-left: auto;
+  font-family: var(--font-zh); font-weight: 400;
+  font-size: 0.85em; color: var(--text-muted);
+}
+
+/* ========== ETL 三步卡 (slide-de-intro) ========== */
+.etl-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 0.5rem;
+  align-items: stretch;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.etl-step {
+  background: rgba(255,253,247,0.95);
+  border: 1px solid rgba(217,119,6,0.28);
+  border-top: 5px solid var(--neon-purple);
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(180,83,9,0.08);
+  transition: var(--transition-normal);
+}
+.etl-step:hover { transform: translateY(-3px); box-shadow: 0 8px 22px rgba(217,119,6,0.18); }
+.etl-e { border-top-color: var(--electric-blue); }
+.etl-t { border-top-color: var(--neon-purple); }
+.etl-l { border-top-color: var(--cyan); }
+.etl-icon { font-size: 2rem; line-height: 1; margin-bottom: 0.3rem; }
+.etl-letter {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--body-size); color: var(--text-primary); margin-bottom: 0.2rem;
+}
+.etl-zh { font-size: var(--small-size); color: var(--cyan); font-weight: 600; margin-bottom: 0.4rem; }
+.etl-desc { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.5; }
+.etl-arrow {
+  align-self: center; font-size: 1.6rem; color: var(--neon-purple); font-weight: 700; opacity: 0.7;
+}
+
+/* ========== ETL vs ELT 對照 ========== */
+.etl-vs {
+  background: rgba(255,253,247,0.92);
+  border: 1px solid rgba(217,119,6,0.22);
+  border-radius: 14px;
+  padding: 0.85rem 1.2rem;
+  margin: 0.5rem auto;
+  max-width: 1100px;
+  box-shadow: 0 2px 12px rgba(180,83,9,0.06);
+}
+.etl-vs-row {
+  display: grid;
+  grid-template-columns: 100px 130px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed rgba(217,119,6,0.20);
+}
+.etl-vs-row:last-of-type { border-bottom: none; }
+.etl-vs-label {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--body-size); color: var(--text-primary);
+  display: flex; align-items: center; gap: 0.45rem;
+}
+.etl-vs-tag {
+  display: inline-block;
+  font-family: var(--font-zh); font-weight: 500;
+  font-size: 0.72em;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+}
+.etl-vs-old { background: rgba(107,101,87,0.18); color: var(--text-muted); }
+.etl-vs-new { background: linear-gradient(135deg, var(--electric-blue), var(--neon-purple)); color: #fff; }
+.etl-vs-flow { font-family: var(--font-display); font-size: var(--body-size); display: flex; align-items: center; gap: 0.3rem; }
+.etl-pill {
+  display: inline-block;
+  font-family: var(--font-display); font-weight: 700;
+  width: 1.7em; height: 1.7em; line-height: 1.7em;
+  text-align: center;
+  border-radius: 50%;
+  color: #fff;
+}
+.pill-e { background: var(--electric-blue); }
+.pill-t { background: var(--neon-purple); }
+.pill-l { background: var(--cyan); }
+.etl-vs-note { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.5; }
+@media (max-width: 760px) {
+  .etl-vs-row { grid-template-columns: 1fr; gap: 0.3rem; }
+}
+
+/* ========== Pipeline 流程圖 (餐飲 POS 範例) ========== */
+.pipeline-flow {
+  display: flex; flex-wrap: wrap; align-items: stretch; justify-content: center;
+  gap: 0.4rem; max-width: 1200px; margin: 0 auto;
+}
+.pipe-node {
+  background: rgba(255,253,247,0.95);
+  border: 1px solid rgba(217,119,6,0.30);
+  border-left: 4px solid var(--neon-purple);
+  border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+  min-width: 150px;
+  flex: 1 1 0;
+  box-shadow: 0 2px 8px rgba(180,83,9,0.06);
+}
+.pipe-e     { border-left-color: var(--electric-blue); }
+.pipe-store { border-left-color: var(--vivid-purple); }
+.pipe-t     { border-left-color: var(--neon-purple); }
+.pipe-l     { border-left-color: var(--cyan); }
+.pipe-label {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: var(--small-size); color: var(--cyan); margin-bottom: 0.15rem;
+}
+.pipe-name { font-size: var(--small-size); color: var(--text-primary); line-height: 1.4; }
+.pipe-arrow {
+  align-self: center; font-size: 1.4rem; color: var(--neon-purple); font-weight: 700; opacity: 0.8;
+}
+@media (max-width: 900px) {
+  .etl-row { grid-template-columns: 1fr; }
+  .etl-arrow { transform: rotate(90deg); padding: 0.2rem 0; }
+  .pipe-arrow { transform: rotate(90deg); width: 100%; text-align: center; padding: 0.1rem 0; }
+}
+.slide-dense h2 {
+  font-size: clamp(1.75rem, 4.4vw, 2.75rem);
+  margin-bottom: 0.6rem;
+}
+.slide-dense h3 {
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  margin-bottom: 0.5rem;
+}
+.slide-dense table {
+  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+}
+.slide-dense th, .slide-dense td {
+  padding: 0.55rem 0.75rem;
+  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
+  line-height: 1.5;
+  vertical-align: top;
+}
+.slide-dense .small-text {
+  font-size: clamp(0.9rem, 1.35vw, 1.15rem);
+}
+.slide-dense blockquote {
+  font-size: clamp(1rem, 1.45vw, 1.3rem);
+  padding: 0.55rem 1rem;
+  margin: 0.55rem 0;
+}
+.slide-dense .card {
+  padding: 1rem 1.2rem;
+}
+
+/* ========== IMAGE LIGHTBOX ========== */
+.zoomable {
+  cursor: zoom-in;
+  transition: transform var(--transition-fast);
+}
+.zoomable:hover {
+  transform: scale(1.03);
+}
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+  backdrop-filter: blur(8px);
+}
+#lightbox.active {
+  display: flex;
+}
+#lightbox img {
+  max-width: 95vw;
+  max-height: 95vh;
+  border-radius: 12px;
+  box-shadow: 0 16px 64px rgba(0,0,0,0.6);
+  animation: lightboxIn 0.3s ease;
+}
+#lightbox .close-hint {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: rgba(255,255,255,0.7);
+  font-size: var(--small-size);
+}
+@keyframes lightboxIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+
+/* ========== PRINT (PDF 匯出) ========== */
+@page {
+  size: 1280px 720px;
+  margin: 0;
+}
+@media print {
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 1280px !important;
+    background: var(--midnight) !important;
+    overflow: visible !important;
+  }
+  #progress-bar, #slide-counter, #lightbox { display: none !important; }
+
+  /* slide：min-height 720，但允許自然撐高（避免內容被切）*/
+  .slide {
+    width: 1280px !important;
+    min-height: 720px !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 30px 56px !important;
+    page-break-before: always !important;
+    page-break-after: auto !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+  .slide:first-of-type { page-break-before: auto !important; }
+  .slide-cover { justify-content: center !important; }
+  .slide-dense { justify-content: flex-start !important; padding-top: 28px !important; }
+
+  /* slide-inner：完全展開，不限高 */
+  .slide-inner {
+    max-height: none !important;
+    overflow: visible !important;
+    max-width: 1180px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  /* 動畫展開，details 全開 */
+  .reveal { opacity: 1 !important; transform: none !important; }
+  details.collapse[open], details.collapse {
+    border: 1px solid rgba(217,119,6,0.30) !important;
+  }
+  details.collapse > .collapse-body { display: block !important; }
+  details.collapse > summary { background: linear-gradient(180deg, rgba(217,119,6,0.16), rgba(217,119,6,0.08)) !important; }
+  details.collapse > summary::before { transform: rotate(90deg) !important; }
+
+  /* 連結保留 */
+  a { color: var(--cyan) !important; text-decoration: underline !important; }
+  .data-flow { display: none !important; }
+
+  /* 防元素跨頁被切（只保護「不能切的小區塊」，table / details / card 允許跨頁）*/
+  .qa-row, .callout, .dex-take, blockquote,
+  .axis-card, .layer-card, .etl-step, .pipe-node, .find-dex-section,
+  .bimodal-chart, .flow-node, h2, h3 {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* 表格行不切割 */
+  tr, td, th {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  /* 大型容器可跨頁 */
+  table, details.collapse, .card, pre, .three-axis, .three-layer, .etl-row, .pipeline-flow, .qa-list {
+    page-break-inside: auto !important;
+    break-inside: auto !important;
+  }
+
+  /* 強制覆寫 responsive media query — 印 PDF 時保持桌面排版 */
+  .etl-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr auto 1fr !important;
+    gap: 0.5rem !important;
+  }
+  .three-axis {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr auto 1fr !important;
+    gap: 0.6rem !important;
+  }
+  .qa-row {
+    display: grid !important;
+    grid-template-columns: 360px 1fr !important;
+    gap: 1rem !important;
+  }
+  .pipeline-flow {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  .etl-arrow, .pipe-arrow, .axis-plus, .layer-arrow {
+    transform: none !important;
+    padding: 0 !important;
+    width: auto !important;
+  }
+  .qa-q {
+    border-right: 1px dashed rgba(217,119,6,0.30) !important;
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
+    padding-right: 0.8rem !important;
+  }
+  .etl-vs-row {
+    display: grid !important;
+    grid-template-columns: 100px 130px 1fr !important;
+    gap: 0.8rem !important;
+  }
+  .three-layer {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="slide-nav" aria-label="Slide navigation">
+    <a href="#slide-1" class="nav-dot" aria-label="Slide 1"></a>
+    <a href="#slide-2" class="nav-dot" aria-label="Slide 2"></a>
+    <a href="#slide-3" class="nav-dot" aria-label="Slide 3"></a>
+    <a href="#slide-4" class="nav-dot" aria-label="Slide 4"></a>
+    <a href="#slide-5" class="nav-dot" aria-label="Slide 5"></a>
+    <a href="#slide-6" class="nav-dot" aria-label="Slide 6"></a>
+    <a href="#slide-7" class="nav-dot" aria-label="Slide 7"></a>
+    <a href="#slide-8" class="nav-dot" aria-label="Slide 8"></a>
+    <a href="#slide-9" class="nav-dot" aria-label="Slide 9"></a>
+    <a href="#slide-10" class="nav-dot" aria-label="Slide 10"></a>
+    <a href="#slide-11" class="nav-dot" aria-label="Slide 11"></a>
+    <a href="#slide-12" class="nav-dot" aria-label="Slide 12"></a>
+    <a href="#slide-13" class="nav-dot" aria-label="Slide 13"></a>
+    <a href="#slide-14" class="nav-dot" aria-label="Slide 14"></a>
+    <a href="#slide-15" class="nav-dot" aria-label="Slide 15"></a>
+    <a href="#slide-16" class="nav-dot" aria-label="Slide 16"></a>
+    <a href="#slide-17" class="nav-dot" aria-label="Slide 17"></a>
+    <a href="#slide-18" class="nav-dot" aria-label="Slide 18"></a>
+    <a href="#slide-19" class="nav-dot" aria-label="Slide 19"></a>
+    <a href="#slide-20" class="nav-dot" aria-label="Slide 20"></a>
+    <a href="#slide-21" class="nav-dot" aria-label="Slide 21"></a>
+    <a href="#slide-22" class="nav-dot" aria-label="Slide 22"></a>
+    <a href="#slide-23" class="nav-dot" aria-label="Slide 23"></a>
+    <a href="#slide-24" class="nav-dot" aria-label="Slide 24"></a>
+    <a href="#slide-25" class="nav-dot" aria-label="Slide 25"></a>
+</nav>
+
+<section class="slide slide-cover" id="slide-1" aria-label="封面">
+
+  <div class="data-flow" style="left:10%; height:120vh; --duration:7s; --delay:0s;"></div>
+  <div class="data-flow" style="left:25%; height:100vh; --duration:9s; --delay:2s;"></div>
+  <div class="data-flow" style="left:60%; height:110vh; --duration:6s; --delay:1s;"></div>
+  <div class="data-flow" style="left:85%; height:95vh; --duration:11s; --delay:3s;"></div>
+  <div class="slide-inner">
+
+    <h1 class="cover-title reveal-up" style="font-size:var(--title-size); font-weight:900; line-height:1.15;">
+      LLM × DE<br>
+      <span style="color:var(--electric-blue);">MVP Builder</span> 實戰營
+    </h1>
+    <p class="reveal-up" style="font-size:var(--h3-size); margin-top:1.5rem; color:var(--text-secondary);">
+      上次你畫了流程圖，今天把它做出來
+    </p>
+    <div class="reveal-up" style="margin-top:2.5rem; display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; font-size:var(--small-size); color:var(--text-muted);">
+      <span>⏱ 10:00-16:00</span>
+      <span>👥 13 人 × 3 組</span>
+      <span>🎯 個人實作 + 閃電秀</span>
+      <span>👨‍🏫 Dex</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-2" aria-label="今日目標">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">今日目標</h2>
+    <div class="reveal-up" style="margin-top:2rem;">
+      <p style="font-size:var(--h3-size); font-weight:700; text-align:center;">每人完成一條 Mini Data Pipeline</p>
+      <div style="background:var(--deep-purple); border-radius:1rem; padding:2rem; margin:2rem 0; font-family:monospace; font-size:var(--body-size); text-align:center; letter-spacing:0.05em;">
+        CSV → pandas → <span style="color:var(--electric-blue); font-weight:700;">SQLite</span> (raw/cleaned/analyzed) → <span style="color:var(--electric-blue); font-weight:700;">SQL</span> → <span style="color:var(--neon-purple); font-weight:700;">LLM</span> → 報告
+      </div>
+    </div>
+    <div class="reveal-up" style="display:grid; grid-template-columns: repeat(4, 1fr); gap:1rem; margin-top:1.5rem;">
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.5rem;">🗄️</div>
+        <div style="font-weight:700;">pipeline.db</div>
+        <div style="font-size:var(--small-size); color:var(--text-muted);">SQLite 三表</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.5rem;">📊</div>
+        <div style="font-weight:700;">CSV 統計</div>
+        <div style="font-size:var(--small-size); color:var(--text-muted);">processed/</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.5rem;">📄</div>
+        <div style="font-weight:700;">分析報告</div>
+        <div style="font-size:var(--small-size); color:var(--text-muted);">report.md</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.5rem;">💼</div>
+        <div style="font-weight:700;">GitHub Repo</div>
+        <div style="font-size:var(--small-size); color:var(--text-muted);">作品集</div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; font-weight:700; color:var(--neon-purple);">這不是練習題，是放進履歷的第一條 Data Pipeline</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-3" aria-label="三段旅程">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">從期初到期末</h2>
+    <div class="reveal-up" style="margin-top:2rem; display:flex; flex-direction:column; gap:1rem; align-items:center;">
+      <div style="background:var(--deep-purple); padding:1.5rem 3rem; border-radius:1rem; text-align:center; opacity:0.6;">
+        <div style="font-weight:700;">期初活動</div>
+        <div style="color:var(--text-muted);">紙筆畫流程圖 → 概念理解</div>
+        <div style="font-size:var(--small-size); color:var(--text-muted);">✅ 已完成</div>
+      </div>
+      <div style="font-size:2rem;">↓</div>
+      <div style="background:var(--electric-blue); color:white; padding:1.5rem 3rem; border-radius:1rem; text-align:center; box-shadow:0 4px 20px rgba(83,145,255,0.3);">
+        <div style="font-weight:900; font-size:var(--h3-size);">期中 MVP Builder（今天）</div>
+        <div>個人寫程式跑 pipeline → 可跑的 MVP 作品</div>
+      </div>
+      <div style="font-size:2rem;">↓</div>
+      <div style="background:var(--deep-purple); padding:1.5rem 3rem; border-radius:1rem; text-align:center; opacity:0.6;">
+        <div style="font-weight:700;">期末團專</div>
+        <div style="color:var(--text-muted);">團隊整合完整系統 → 可部署的系統</div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; color:var(--neon-purple); font-weight:700;">今天做的東西，期末會回來用。不要做完就丟。</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-4" aria-label="Pipeline 架構圖">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Pipeline 架構圖</h2>
+    <div class="reveal-up" style="margin-top:1.5rem; background:var(--deep-purple); border-radius:1rem; padding:2rem; font-family:monospace; font-size:var(--small-size); line-height:2; white-space:pre; overflow-x:auto;">
+┌─────────────┐     ┌──────────────┐     ┌────────────────────────┐
+│  CSV 資料   │────▶│ pandas 清洗  │────▶│  SQLite 資料庫         │
+│ (2000 筆)   │     │ (Transform)  │     │  ├── raw 表（原始）    │
+└─────────────┘     └──────────────┘     │  ├── cleaned 表（清洗）│
+                                          │  └── analyzed 表（AI） │
+                                          └────────┬───────────────┘
+                                                   │
+                              ┌─────────────┐      │      ┌──────────────┐
+                              │ SQL 查詢    │◀─────┤      │ LLM 分析     │
+                              │ (統計分析)  │      └─────▶│ (分類/摘要)  │
+                              └──────┬──────┘             └──────┬───────┘
+                                     │                           │
+                                     ▼                           ▼
+                              processed/*.csv              report.md</div>
+    <div class="reveal-up" style="display:flex; gap:1rem; margin-top:1rem; justify-content:center;">
+      <span style="background:var(--electric-blue); color:white; padding:0.3rem 1rem; border-radius:2rem; font-size:var(--small-size);">必做：CSV → SQLite → SQL → LLM → 報告</span>
+      <span style="background:var(--deep-purple); padding:0.3rem 1rem; border-radius:2rem; font-size:var(--small-size);">選做：FastAPI + Streamlit</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-5" aria-label="時間表">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">半天時間表</h2>
+    <table class="reveal-up" style="width:100%; margin-top:1.5rem; border-collapse:collapse; font-size:var(--small-size);">
+      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.8rem;">時段</th><th>分鐘</th><th>做什麼</th></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">10:00-10:40</td><td>40</td><td>開場 + Pipeline Demo + 選題</td></tr>
+      <tr><td style="padding:0.4rem; color:var(--text-muted);">10:40-10:45</td><td>5</td><td style="color:var(--text-muted);">休息</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">10:45-11:05</td><td>20</td><td>ETL 講解</td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.6rem; font-weight:700;">11:05-11:55</td><td>50</td><td>🔧 實作 1：ETL</td></tr>
+      <tr><td style="padding:0.4rem; color:var(--text-muted);">12:00-13:30</td><td>90</td><td style="color:var(--text-muted);">午休</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">13:30-13:50</td><td>20</td><td>LLM 講解</td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.6rem; font-weight:700;">13:50-14:40</td><td>50</td><td>🔧 實作 2：LLM 分析</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">14:45-15:00</td><td>15</td><td>打包講解</td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.6rem; font-weight:700;">15:00-15:15</td><td>15</td><td>🔧 實作 3：打包</td></tr>
+      <tr style="background:var(--electric-blue); color:white;"><td style="padding:0.6rem; font-weight:900;">15:15-16:00</td><td>45</td><td>🎤 閃電秀：每人 3 分鐘</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-6" aria-label="活動規則">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">活動規則</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+      <div style="background:var(--deep-purple); padding:2rem; border-radius:1rem;">
+        <h3 style="color:var(--electric-blue); margin-bottom:1rem;">✅ 可以做</h3>
+        <ul style="list-style:none; font-size:var(--body-size); line-height:2;">
+          <li>✅ 用 ChatGPT / Claude 生成語法</li>
+          <li>✅ 用 AI debug 錯誤</li>
+          <li>✅ 用 LLM API 做分類/摘要</li>
+          <li>✅ 同組互相討論 debug</li>
+        </ul>
+      </div>
+      <div style="background:var(--deep-purple); padding:2rem; border-radius:1rem;">
+        <h3 style="color:var(--neon-purple); margin-bottom:1rem;">⚠️ 注意</h3>
+        <ul style="list-style:none; font-size:var(--body-size); line-height:2;">
+          <li>⚠️ 不要貼上不了解的程式碼</li>
+          <li>⚠️ Demo 時要能說明 pipeline</li>
+          <li>✅ 做不完沒關係，帶走繼續</li>
+          <li>✅ 完成到哪就 Demo 到哪</li>
+        </ul>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:2rem; font-size:var(--h3-size); font-weight:700;">AI 是你的工具，不是你的替身</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-7" aria-label="6 個題目">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">選一個題目</h2>
+    <table class="reveal-up" style="width:100%; margin-top:1.5rem; border-collapse:collapse; font-size:var(--small-size);">
+      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.7rem;">#</th><th>題目</th><th>資料</th><th>LLM</th><th>適合誰</th></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">1</td><td>零售 POS 銷售分析</td><td>2,000 筆交易</td><td>品類分類</td><td>銷售排行</td></tr>
+      <tr><td style="padding:0.6rem; font-weight:700;">2</td><td>B2C 電商競品比價</td><td>2,000 筆跨平台價格</td><td>書籍分類</td><td>價格比較</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">3</td><td>音樂串流趨勢分析</td><td>2,000 筆 Spotify</td><td>曲風分類</td><td>串流分析</td></tr>
+      <tr><td style="padding:0.6rem; font-weight:700;">4</td><td>叫車服務交通熱點</td><td>2,000 筆 NYC 計程車</td><td>區域分類</td><td>地理分析 <span style="color:var(--neon-purple);">★</span></td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem; font-weight:700;">5</td><td>求職媒合薪資洞察</td><td>2,000 筆職缺薪資</td><td>職位分類</td><td>薪資行情</td></tr>
+      <tr><td style="padding:0.6rem; font-weight:700;">6</td><td>不動產房價趨勢</td><td>2,000 筆實價登錄</td><td>區域分類</td><td>房價分析 <span style="color:var(--neon-purple);">★</span></td></tr>
+    </table>
+    <p class="reveal-up" style="text-align:center; margin-top:1rem; color:var(--text-muted);">★ = 較有挑戰（merge 兩表 / 民國年轉換）</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-8" aria-label="題目情境">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">你扮演的角色</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem; font-size:var(--small-size);">
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem;"><strong>題 1</strong> 零售集團資料顧問<br><span style="color:var(--text-muted);">老闆想知道哪些商品最暢銷</span></div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem;"><strong>題 2</strong> 電商平台資料顧問<br><span style="color:var(--text-muted);">老闆想知道跨平台價差</span></div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem;"><strong>題 3</strong> 音樂串流資料顧問<br><span style="color:var(--text-muted);">產品經理想知道哪首歌最紅</span></div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem;"><strong>題 4</strong> 叫車公司資料顧問<br><span style="color:var(--text-muted);">營運主管想知道叫車熱點</span></div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem;"><strong>題 5</strong> 求職平台資料顧問<br><span style="color:var(--text-muted);">產品經理想知道薪資行情</span></div>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem;"><strong>題 6</strong> 不動產資料顧問<br><span style="color:var(--text-muted);">業務主管想知道各區房價</span></div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1rem; color:var(--text-muted);">詳細需求見 requirements_spec.md</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-9" aria-label="Repo 導覽">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Repo 導覽</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:2rem; border-radius:1rem; margin-top:1.5rem; font-family:monospace; font-size:var(--small-size); line-height:1.8; white-space:pre;">data/raw/topic_1/
+├── requirements_spec.md      ← 先讀（需求）
+├── orders.csv                ← 你的資料（2,000 筆）
+├── pipeline_starter.ipynb    ← 打開這個（Notebook）
+├── api.py                    ← 選做（FastAPI）
+├── app.py                    ← 選做（Streamlit）
+├── processed/                ← 跑完產出
+└── output/                   ← 跑完產出</div>
+    <p class="reveal-up" style="text-align:center; margin-top:1rem; font-weight:700;">你的東西都在 topic_{N}/ 裡，不會跟別人混在一起</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-10" aria-label="Notebook 使用">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Notebook 怎麼用</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem;">
+      <div style="background:#E8F5E9; padding:1.5rem; border-radius:1rem; border-left:4px solid #4CAF50;">
+        <div style="font-weight:900; font-size:1.2rem;">🟢 簡單</div>
+        <div>有相關程式碼可參考</div>
+        <div style="color:var(--text-muted);">取消註解、改欄位名</div>
+      </div>
+      <div style="background:#FFF3E0; padding:1.5rem; border-radius:1rem; border-left:4px solid #FF9800;">
+        <div style="font-weight:900; font-size:1.2rem;">🟡 中等</div>
+        <div>有別的情境範例</div>
+        <div style="color:var(--text-muted);">看範例，翻譯到你的欄位</div>
+      </div>
+      <div style="background:#FFEBEE; padding:1.5rem; border-radius:1rem; border-left:4px solid #F44336;">
+        <div style="font-weight:900; font-size:1.2rem;">🔴 較難</div>
+        <div>有骨架，填關鍵處</div>
+        <div style="color:var(--text-muted);">填入 SQL / 欄位名</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; border-left:4px solid var(--text-muted);">
+        <div style="font-weight:900; font-size:1.2rem;">⬜ 不需要改</div>
+        <div>直接跑</div>
+        <div style="color:var(--text-muted);">Shift + Enter</div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; font-weight:700;">循序漸進：前面手把手 → 後面放手</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-11" aria-label="Extract">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Section 1：Extract</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:2rem; border-radius:1rem; margin-top:1.5rem; font-family:monospace; font-size:var(--body-size); text-align:center;">
+      CSV 檔案 → <span style="color:var(--electric-blue);">pd.read_csv()</span> → DataFrame → <span style="color:var(--electric-blue);">df.to_sql()</span> → SQLite <strong>raw 表</strong>
+    </div>
+    <div class="reveal-up" style="margin-top:2rem;">
+      <h3>為什麼寫入資料庫？</h3>
+      <ul style="font-size:var(--body-size); line-height:2; margin-top:0.5rem;">
+        <li>真實 DE 工作中，資料不會一直是 CSV</li>
+        <li>寫入 DB → 可 SQL 查詢 → 可被 API 存取</li>
+        <li>今天用 SQLite（零安裝），後續升級到 MySQL / BigQuery</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-12" aria-label="Transform">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Section 2：Transform</h2>
+    <table class="reveal-up" style="width:100%; margin-top:1.5rem; border-collapse:collapse; font-size:var(--small-size);">
+      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.7rem;">問題</th><th>怎麼處理</th><th>pandas</th></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem;">缺漏值</td><td>刪掉或填值</td><td><code>df.dropna()</code></td></tr>
+      <tr><td style="padding:0.6rem;">型別錯</td><td>字串轉數字</td><td><code>pd.to_numeric()</code></td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.6rem;">日期字串</td><td>轉 datetime</td><td><code>pd.to_datetime()</code></td></tr>
+      <tr><td style="padding:0.6rem;">異常值</td><td>過濾掉</td><td><code>df = df[df["col"] > 0]</code></td></tr>
+    </table>
+    <div class="reveal-up" style="margin-top:1.5rem;">
+      <h3>各題的清洗難點</h3>
+      <div style="font-size:var(--small-size); color:var(--text-muted); margin-top:0.5rem;">
+        題 4：merge 兩張表（最難） ｜ 題 6：民國年轉西元年（最難）
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-13" aria-label="SQLite 三表">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">SQLite 三表設計</h2>
+    <div class="reveal-up" style="display:flex; gap:1.5rem; margin-top:2rem; justify-content:center;">
+      <div style="background:#E3F2FD; padding:1.5rem; border-radius:1rem; text-align:center; flex:1;">
+        <div style="font-weight:900; font-size:1.3rem; color:#1565C0;">raw 表</div>
+        <div>原始資料</div>
+        <div style="color:var(--text-muted);">2000 筆</div>
+        <div style="color:var(--text-muted);">有缺漏值</div>
+      </div>
+      <div style="font-size:2rem; align-self:center;">→</div>
+      <div style="background:#E8F5E9; padding:1.5rem; border-radius:1rem; text-align:center; flex:1;">
+        <div style="font-weight:900; font-size:1.3rem; color:#2E7D32;">cleaned 表</div>
+        <div>清洗後</div>
+        <div style="color:var(--text-muted);">~1950 筆</div>
+        <div style="color:var(--text-muted);">型別正確</div>
+      </div>
+      <div style="font-size:2rem; align-self:center;">→</div>
+      <div style="background:#FFF3E0; padding:1.5rem; border-radius:1rem; text-align:center; flex:1;">
+        <div style="font-weight:900; font-size:1.3rem; color:#E65100;">analyzed 表</div>
+        <div>AI 分析後</div>
+        <div style="color:var(--text-muted);">50 筆</div>
+        <div style="color:var(--text-muted);">有 AI 標籤</div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; font-weight:700;">Data Lineage：追蹤資料從哪來、經過什麼處理</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-14" aria-label="實作 1">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--neon-purple); font-size:var(--title-size);">🔧 實作 1 開始</h2>
+    <div class="reveal-up" style="margin-top:2rem; font-size:var(--h3-size); text-align:center;">
+      <p>Section 1-3（50 分鐘）</p>
+      <div style="margin-top:1.5rem; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;">
+        <p>✅ Section 1：讀 CSV → 寫入 SQLite raw 表</p>
+        <p>✅ Section 2：清洗 → 寫入 cleaned 表</p>
+        <p>✅ Section 3：SQL 查詢統計</p>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:2rem; color:var(--text-muted); font-size:var(--body-size);">
+      前 4 格有相關程式碼 ｜ 卡太久就跳過先建表 ｜ 問同組 → 問 AI → 舉手
+    </p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-15" aria-label="LLM 加值">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Section 4：LLM 加值</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem;">
+        <h3>手動方式</h3>
+        <p style="color:var(--text-muted);">開 ChatGPT → 貼一筆 → 看回應 → 再貼...</p>
+        <p style="color:var(--neon-purple); font-weight:700;">❌ 不 scale</p>
+      </div>
+      <div style="background:var(--electric-blue); color:white; padding:1.5rem; border-radius:1rem;">
+        <h3>自動化（今天做的）</h3>
+        <p>寫程式 → 呼叫 API → 批次 2000 筆 → 存回 DB</p>
+        <p style="font-weight:700;">✅ 這就是 DE</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-16" aria-label="Prompt 技巧">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Prompt 設計技巧</h2>
+    <div class="reveal-up" style="margin-top:2rem; font-size:var(--body-size);">
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; margin-bottom:1rem;">
+        <strong>1. 給明確標籤</strong>
+        <div style="color:var(--neon-purple);">❌ 「請分析」 → ✅ 「分類為：家飾/禮品/餐具/季節商品/文具/其他」</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; margin-bottom:1rem;">
+        <strong>2. 要求 JSON 回傳</strong>
+        <div style="font-family:monospace;">✅ {"category": "...", "insight": "..."}</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem;">
+        <strong>3. 加上「不確定就選最接近的」</strong>
+        <div style="color:var(--text-muted);">避免 LLM 拒答</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-17" aria-label="API vs Fallback">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">API vs Fallback</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+      <div style="background:var(--electric-blue); color:white; padding:2rem; border-radius:1rem;">
+        <h3>有 API Key</h3>
+        <p style="font-family:monospace; margin-top:1rem;">llm_analyze(text, api_key)</p>
+        <p style="margin-top:0.5rem;">呼叫 GPT-4o-mini</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:2rem; border-radius:1rem;">
+        <h3>沒有 API Key</h3>
+        <p style="font-family:monospace; margin-top:1rem;">llm_analyze(text, None)</p>
+        <p style="margin-top:0.5rem;">用關鍵字規則判斷</p>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:2rem; font-weight:700; font-size:var(--h3-size);">兩個都能完成。沒 Key 不影響完成度。</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-18" aria-label="實作 2">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--neon-purple); font-size:var(--title-size);">🔧 實作 2 開始</h2>
+    <div class="reveal-up" style="margin-top:2rem; font-size:var(--h3-size); text-align:center;">
+      <p>Section 4-6（50 分鐘）</p>
+      <div style="margin-top:1.5rem; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;">
+        <p>✅ Section 4：LLM 分析 → 寫入 analyzed 表</p>
+        <p>✅ Section 5：跨表驗證</p>
+        <p>✅ Section 6：產出 report.md</p>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:2rem; color:var(--text-muted);">
+      先跑 1 筆測試 → 再跑批次 ｜ API 太慢就用 fallback
+    </p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-19" aria-label="打包教學">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">打包教學</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; margin-top:2rem;">
+      <div style="background:var(--deep-purple); padding:2rem; border-radius:1rem;">
+        <h3>1. 填 README</h3>
+        <p style="color:var(--text-muted); margin-top:0.5rem;">用 docs/README_TEMPLATE.md 模板</p>
+        <p style="margin-top:0.5rem;">題目 → 流程 → 產出 → 學到什麼</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:2rem; border-radius:1rem;">
+        <h3>2. 填升級計畫</h3>
+        <p style="color:var(--text-muted); margin-top:0.5rem;">docs/upgrade_plan.md</p>
+        <p style="margin-top:0.5rem;">Docker → Airflow → GCP</p>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; font-weight:700;">填完 = 你的作品集說明文件</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-20" aria-label="完成標準">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">最低完成標準</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:2rem; border-radius:1rem; margin-top:2rem; font-size:var(--h3-size);">
+      <p>☐ 跑完 Notebook Section 1-6</p>
+      <p>☐ pipeline.db 有 raw / cleaned / analyzed 三表</p>
+      <p>☐ processed/ 有統計 CSV</p>
+      <p>☐ output/report.md 有報告</p>
+      <p>☐ 填完 upgrade_plan.md</p>
+      <p>☐ 能用 3 分鐘講清楚</p>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; font-weight:700; color:var(--neon-purple);">全部打勾 = MVP 完成</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-21" aria-label="閃電秀">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">🎤 閃電秀</h2>
+    <div class="reveal-up" style="margin-top:2rem;">
+      <p style="text-align:center; font-size:var(--h3-size); font-weight:700;">每人 3 分鐘，嚴格計時</p>
+      <table style="width:100%; margin-top:1.5rem; border-collapse:collapse; font-size:var(--body-size);">
+        <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.7rem;">時間</th><th>講什麼</th></tr>
+        <tr style="background:var(--deep-purple);"><td style="padding:0.5rem;">0:00-0:30</td><td>題目解決什麼問題</td></tr>
+        <tr><td style="padding:0.5rem;">0:30-1:00</td><td>資料從哪來、怎麼清</td></tr>
+        <tr style="background:var(--deep-purple);"><td style="padding:0.5rem;">1:00-1:30</td><td>LLM 做了什麼</td></tr>
+        <tr><td style="padding:0.5rem;">1:30-2:00</td><td>show output</td></tr>
+        <tr style="background:var(--deep-purple);"><td style="padding:0.5rem;">2:00-2:30</td><td>下一步怎麼升級</td></tr>
+        <tr><td style="padding:0.5rem;">2:30-3:00</td><td>快問快答</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-22" aria-label="選做預告">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">選做：Section 8-10</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; margin-top:2rem;">
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2rem;">⚡</div>
+        <h3>FastAPI</h3>
+        <p style="color:var(--text-muted);">分析結果變 API</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2rem;">📊</div>
+        <h3>Dashboard</h3>
+        <p style="color:var(--text-muted);">ipywidgets 互動圖表</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2rem;">🏠</div>
+        <h3>本地部署</h3>
+        <p style="color:var(--text-muted);">回家跑 Streamlit</p>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1.5rem; color:var(--text-muted);">今天做不完帶走回家做</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-23" aria-label="升級路線">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">後續升級路線</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:2rem; border-radius:1rem; margin-top:1.5rem; font-size:var(--body-size); line-height:2.2;">
+      <table style="width:100%; border-collapse:collapse;">
+        <tr><td style="padding:0.4rem;">Colab Notebook</td><td style="text-align:center;">→</td><td>EP01 拆成 ETL 架構</td></tr>
+        <tr><td style="padding:0.4rem;">SQLite</td><td style="text-align:center;">→</td><td>MySQL / BigQuery</td></tr>
+        <tr><td style="padding:0.4rem;">手動跑 pipeline</td><td style="text-align:center;">→</td><td>Airflow DAG 排程</td></tr>
+        <tr><td style="padding:0.4rem;">本地 Streamlit</td><td style="text-align:center;">→</td><td>Docker 容器化</td></tr>
+        <tr><td style="padding:0.4rem;">本地開發</td><td style="text-align:center;">→</td><td>GCP 雲端部署</td></tr>
+        <tr><td style="padding:0.4rem; font-weight:700;">個人 MVP</td><td style="text-align:center; font-weight:700;">→</td><td style="font-weight:700;">期末團隊完整系統</td></tr>
+      </table>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1rem; font-weight:700;">同一個專案，每學一個新技術就升級一次</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-24" aria-label="帶走什麼">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue);">你會帶走什麼</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem;">
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2.5rem;">🗄️</div>
+        <h3>pipeline.db</h3>
+        <p style="color:var(--text-muted);">你能建 ETL pipeline</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2.5rem;">📄</div>
+        <h3>report.md</h3>
+        <p style="color:var(--text-muted);">你能用 AI 做分析</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2.5rem;">💻</div>
+        <h3>GitHub Repo</h3>
+        <p style="color:var(--text-muted);">你會作品集打包</p>
+      </div>
+      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; text-align:center;">
+        <div style="font-size:2.5rem;">🎤</div>
+        <h3>3 min Demo</h3>
+        <p style="color:var(--text-muted);">你能講清楚你做的</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-25" aria-label="結尾">
+
+  <div class="slide-inner">
+
+    <h2 class="reveal-up" style="color:var(--electric-blue); font-size:var(--h2-size);">三件事帶走</h2>
+    <div class="reveal-up" style="margin-top:2rem; font-size:var(--h3-size); line-height:2.5; text-align:center;">
+      <p><strong>1.</strong> Notebook + pipeline.db + 報告（不要做完就丟）</p>
+      <p><strong>2.</strong> 課後 push 到你的 GitHub</p>
+      <p><strong>3.</strong> 後續課程會回來升級這個專案</p>
+    </div>
+    <div class="reveal-up" style="margin-top:3rem; text-align:center;">
+      <p style="font-size:var(--title-size); font-weight:900; color:var(--neon-purple);">
+        「這是你履歷上的<br>第一條 Data Pipeline。」
+      </p>
+      <p style="margin-top:2rem; font-size:var(--h3-size); color:var(--text-muted);">── Q&A ──</p>
+    </div>
+  </div>
+</section>
+<script>
+(function() {
+  'use strict';
+
+  // ========== SLIDE MANAGEMENT ==========
+  var slides = document.querySelectorAll('.slide');
+  var totalSlides = slides.length;
+  var progressBar = document.getElementById('progress-bar');
+  var currentSlideEl = document.getElementById('current-slide');
+  var totalSlidesEl = document.getElementById('total-slides');
+  var currentIndex = 0;
+
+  totalSlidesEl.textContent = totalSlides;
+
+  function updateUI() {
+    var pct = ((currentIndex + 1) / totalSlides) * 100;
+    progressBar.style.width = pct + '%';
+    currentSlideEl.textContent = currentIndex + 1;
+  }
+
+  function goToSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= totalSlides) index = totalSlides - 1;
+    currentIndex = index;
+    slides[index].scrollIntoView({ behavior: 'smooth' });
+    updateUI();
+  }
+
+  // ========== KEYBOARD NAVIGATION ==========
+  document.addEventListener('keydown', function(e) {
+    switch(e.key) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+      case ' ':
+      case 'PageDown':
+        e.preventDefault();
+        goToSlide(currentIndex + 1);
+        break;
+      case 'ArrowUp':
+      case 'ArrowLeft':
+      case 'PageUp':
+        e.preventDefault();
+        goToSlide(currentIndex - 1);
+        break;
+      case 'Home':
+        e.preventDefault();
+        goToSlide(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        goToSlide(totalSlides - 1);
+        break;
+    }
+  });
+
+  // ========== WHEEL NAVIGATION (DEBOUNCED) ==========
+  var wheelTimeout = null;
+  document.addEventListener('wheel', function(e) {
+    if (wheelTimeout) return;
+    wheelTimeout = setTimeout(function() { wheelTimeout = null; }, 800);
+    if (e.deltaY > 30) {
+      goToSlide(currentIndex + 1);
+    } else if (e.deltaY < -30) {
+      goToSlide(currentIndex - 1);
+    }
+  }, { passive: true });
+
+  // ========== TOUCH SWIPE ==========
+  var touchStartY = 0;
+  var touchStartX = 0;
+  document.addEventListener('touchstart', function(e) {
+    touchStartY = e.changedTouches[0].screenY;
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    var dy = touchStartY - e.changedTouches[0].screenY;
+    var dx = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(dy) > Math.abs(dx) && Math.abs(dy) > 50) {
+      if (dy > 0) goToSlide(currentIndex + 1);
+      else goToSlide(currentIndex - 1);
+    }
+  }, { passive: true });
+
+  // ========== SCROLL OBSERVER (sync currentIndex) ==========
+  var scrollObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+        var idx = Array.prototype.indexOf.call(slides, entry.target);
+        if (idx !== -1) {
+          currentIndex = idx;
+          updateUI();
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  slides.forEach(function(slide) { scrollObserver.observe(slide); });
+
+  // ========== REVEAL ANIMATIONS ==========
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ========== POLL INTERACTION ==========
+  document.querySelectorAll('.poll-option').forEach(function(opt) {
+    function handleVote() {
+      document.querySelectorAll('.poll-option').forEach(function(o) {
+        o.classList.add('voted');
+        o.querySelector('.fill-bar').style.setProperty('width', o.dataset.fill + '%');
+      });
+      opt.style.borderColor = 'var(--vivid-purple)';
+      opt.style.background = 'rgba(217,119,6,0.06)';
+    }
+    opt.addEventListener('click', handleVote);
+    opt.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleVote();
+      }
+    });
+  });
+
+  // ========== SALARY COUNTER ANIMATION ==========
+  var salaryNumbers = document.querySelectorAll('.salary-number');
+  var salaryObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var el = entry.target;
+        var target = parseInt(el.dataset.target, 10);
+        if (!target || el.dataset.animated) return;
+        el.dataset.animated = 'true';
+        var current = 0;
+        var step = Math.max(1, Math.floor(target / 40));
+        var interval = setInterval(function() {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+          }
+          el.textContent = current;
+        }, 30);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  salaryNumbers.forEach(function(el) { salaryObserver.observe(el); });
+
+  // ========== IMAGE LIGHTBOX ==========
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('img.zoomable').forEach(function(img) {
+    img.addEventListener('click', function(e) {
+      e.stopPropagation();
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt || '';
+      lightbox.classList.add('active');
+    });
+  });
+  if (lightbox) {
+    lightbox.addEventListener('click', function() { lightbox.classList.remove('active'); });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+      }
+    });
+  }
+
+  // ========== INITIAL STATE ==========
+  updateUI();
+})();
+</script>
+</body>
+</html>

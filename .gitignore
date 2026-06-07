@@ -5,8 +5,8 @@ __pycache__/
 .DS_Store
 *.db
 
-# 保留目錄結構，忽略產出內容
-data/processed/*
-!data/processed/.gitkeep
-output/*
-!output/.gitkeep
+# 每題的產出（跑完自動產生，不推 GitHub）
+data/raw/topic_*/processed/*
+!data/raw/topic_*/processed/.gitkeep
+data/raw/topic_*/output/*
+!data/raw/topic_*/output/.gitkeep

@@ -64,18 +64,20 @@ cd midterm-mvp-template
 Notebook 跑完後，你的成果會出現在：
 
 ```
-📂 專案根目錄/
-├── 🗄️ pipeline.db              ← 你的 SQLite 資料庫（自動產生）
-│   ├── raw_xxx 表                  原始資料
-│   ├── cleaned_xxx 表              清洗後資料
-│   └── analyzed_xxx 表             LLM 分析結果
+📂 data/raw/topic_1/              ← 你的題目資料夾
+├── 🗄️ pipeline.db               ← SQLite 資料庫（自動產生）
+│   ├── raw_orders 表                原始資料
+│   ├── cleaned_orders 表            清洗後資料
+│   └── analyzed_orders 表           LLM 分析結果
 │
-├── 📂 data/processed/           ← 統計結果 CSV（自動產生）
-│   └── (依題目不同)
+├── 📂 processed/                 ← 統計結果 CSV（自動產生）
+│   └── product_stats.csv 等
 │
-└── 📂 output/                   ← 顧問報告（自動產生）
+└── 📂 output/                    ← 顧問報告（自動產生）
     └── report.md
 ```
+
+> 💡 所有產出都在**你自己的題目資料夾**裡，不會跟別人的混在一起。
 
 ### Step 5：選做 — FastAPI + Streamlit
 
@@ -222,7 +224,9 @@ midterm-mvp-template/
 │   │   ├── orders.csv               2,000 筆零售交易紀錄（品項/數量/金額/客戶/國家）
 │   │   ├── pipeline_starter.ipynb           📓 Notebook（從這裡開始做！）
 │   │   ├── api.py                   ⭐ 選做：FastAPI API
-│   │   └── app.py                   ⭐ 選做：Streamlit Dashboard
+│   │   ├── app.py                   ⭐ 選做：Streamlit Dashboard
+│   │   ├── processed/               📂 你的統計結果（跑完自動產生）
+│   │   └── output/                  📂 你的報告（跑完自動產生）
 │   ├── topic_2/                 ← 題目 2：B2C 電商競品比價
 │   │   ├── requirements_spec.md
 │   │   └── products.csv             2,000 筆跨平台商品價格（Amazon × Flipkart）
@@ -240,8 +244,6 @@ midterm-mvp-template/
 │       ├── requirements_spec.md
 │       └── real_estate.csv          2,000 筆台灣實價登錄（34 欄）
 │
-├── data/processed/              ← 📂 你的清洗結果會存在這（跑完自動產生）
-├── output/                      ← 📂 你的報告會存在這（跑完自動產生）
 │
 ├── docs/                        ← 📂 參考文件（不需要改，需要時查閱）
 │   ├── topic_catalog.md             6 題總覽：每題的 MVP 問題/資料/ETL/LLM 規格
@@ -279,8 +281,8 @@ midterm-mvp-template/
 ## 每人最低完成標準
 
 - [ ] 跑完 `pipeline_starter.ipynb` 的 Section 1-6
-- [ ] `pipeline.db` 有 raw / cleaned / analyzed 三張表
-- [ ] `data/processed/` 有統計結果 CSV
+- [ ] 題目資料夾裡的 `pipeline.db` 有 raw / cleaned / analyzed 三張表
+- [ ] `processed/` 有統計結果 CSV
 - [ ] `output/report.md` 有 LLM 分析報告
 - [ ] 能用 3 分鐘說明：題目、資料、pipeline、output
 - [ ] 填完 [docs/upgrade_plan.md](docs/upgrade_plan.md)

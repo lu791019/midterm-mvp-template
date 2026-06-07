@@ -2,7 +2,7 @@
 
 > TibaMe 雲端資料工程師養成班 — 期中 MVP 工作坊 Starter Repo
 
-每位學員選一個題目，在半天內完成一條 **Mini Data Pipeline**：
+每位學員選一個題目，完成 **Mini Data Pipeline**：
 
 ```
 CSV → pandas 清洗 → SQLite (raw/cleaned/analyzed) → SQL 查詢 → LLM 分析 → FastAPI → Streamlit
@@ -20,7 +20,7 @@ cd midterm-mvp-template
 #    → 用 Colab：上傳 data/raw/topic_1/pipeline.ipynb
 #    → 用本地：jupyter notebook data/raw/topic_1/pipeline.ipynb
 
-# 3. 照著 Notebook 一格一格跑
+# 3. 照著 Notebook 檔案做
 ```
 
 ## Repo 結構
@@ -150,7 +150,7 @@ Section 6：產出報告
 |------|---------|
 | 用 ChatGPT/Claude 生成 pandas/SQL 草稿 | ✅ 允許 |
 | 用 AI debug 錯誤訊息 | ✅ 允許 |
-| 用 LLM API 做分類/摘要 | ✅ 鼓勵 |
+| 用 LLM API 做分類/摘要 | ✅ 允許 |
 | 完全貼上不了解的程式碼 | ⚠️ 不建議（Demo 時要能說明） |
 
 > 可直接用的 prompt 模板見 [docs/ai_prompts.md](docs/ai_prompts.md)
@@ -161,12 +161,11 @@ Section 6：產出報告
 
 | 階段 | 升級內容 |
 |------|---------|
-| EP01 | 回顧 MVP → 拆成正式 ETL 架構 |
+| 後續課程 | 回顧你的 MVP → 拆成正式 ETL 架構 |
 | Docker | 容器化 pipeline（模板在 [_advanced/](\_advanced/)） |
-| Airflow | run_pipeline 改成 DAG |
+| Airflow | run_pipeline 改成 Airflow 的程式碼流程(DAG) |
 | MySQL / BigQuery | CSV 換成資料庫 |
-| GCP | 部署到 Cloud Run |
-| 期末團專 | 擴充為團隊完整系統 |
+| GCP | 部署到雲端 |
 
 > 升級計畫模板：[docs/upgrade_plan.md](docs/upgrade_plan.md)
 > 模組化腳本參考：[_advanced/src/](_advanced/src/)
@@ -182,4 +181,4 @@ Section 6：產出報告
 | [docs/repo_format.md](docs/repo_format.md) | Repo 資料夾結構、最小交付標準、題目切換方式 | 想了解 repo 設計時 |
 | [docs/tech_decision.md](docs/tech_decision.md) | 工具選型理由（為什麼 SQLite/pandas/Colab） | 想知道為什麼這樣選時 |
 | [docs/pipeline.mmd](docs/pipeline.mmd) | Pipeline 流程圖（Mermaid） | 想看整體架構時 |
-| [docs/upgrade_plan.md](docs/upgrade_plan.md) | 後續升級計畫模板 | **你要填的！** 打包時 |
+| [docs/upgrade_plan.md](docs/upgrade_plan.md) | 後續升級計畫模板 | **學員需要填的！**  |

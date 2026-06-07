@@ -17,8 +17,8 @@ cd midterm-mvp-template
 
 # 2. 選你的題目（1-8），打開對應的 Notebook
 #    例如選題目 1：
-#    → 用 Colab：上傳 data/raw/topic_1/pipeline.ipynb
-#    → 用本地：jupyter notebook data/raw/topic_1/pipeline.ipynb
+#    → 用 Colab：上傳 data/raw/topic_1/pipeline_starter.ipynb
+#    → 用本地：jupyter notebook data/raw/topic_1/pipeline_starter.ipynb
 
 # 3. 照著 Notebook 一格一格跑
 ```
@@ -30,7 +30,7 @@ cd midterm-mvp-template
 ### Step 1：選題
 
 到下方「[你的題目](#你的題目)」表格，選一個你有興趣的題目（1-8）。
-假設你選了 **題目 1（餐飲連鎖 POS 庫存優化）**。
+假設你選了 **題目 1（零售 POS 銷售分析）**。
 
 ### Step 2：看需求
 
@@ -52,12 +52,12 @@ cd midterm-mvp-template
 ```
 📂 data/raw/topic_1/
 ├── 📄 requirements_spec.md    ← Step 2 讀過了
-├── 📊 reviews.csv             ← 你的原始資料（2,000 筆）
-└── 📓 pipeline.ipynb          ← 打開這個！照著一格一格跑
+├── 📊 orders.csv              ← 你的原始資料（2,000 筆交易紀錄）
+└── 📓 pipeline_starter.ipynb  ← 打開這個！照著一格一格跑
 ```
 
-**用 Google Colab 開**：到 [colab.google](https://colab.research.google.com/) → 上傳 → 選 `pipeline.ipynb`
-**用本地開**：`jupyter notebook data/raw/topic_1/pipeline.ipynb`
+**用 Google Colab 開**：到 [colab.google](https://colab.research.google.com/) → 上傳 → 選 `pipeline_starter.ipynb`
+**用本地開**：`jupyter notebook data/raw/topic_1/pipeline_starter.ipynb`
 
 ### Step 4：跑完後，產出在哪裡
 
@@ -66,12 +66,12 @@ Notebook 跑完後，你的成果會出現在：
 ```
 📂 專案根目錄/
 ├── 🗄️ pipeline.db              ← 你的 SQLite 資料庫（自動產生）
-│   ├── raw_reviews 表              原始資料
-│   ├── cleaned_reviews 表          清洗後資料
-│   └── analyzed_reviews 表         LLM 分析結果
+│   ├── raw_xxx 表                  原始資料
+│   ├── cleaned_xxx 表              清洗後資料
+│   └── analyzed_xxx 表             LLM 分析結果
 │
 ├── 📂 data/processed/           ← 統計結果 CSV（自動產生）
-│   └── restaurant_stats.csv
+│   └── (依題目不同)
 │
 └── 📂 output/                   ← 顧問報告（自動產生）
     └── report.md
@@ -93,11 +93,11 @@ Notebook 跑完後，你的成果會出現在：
 `api.py` 用 FastAPI 把資料庫裡的結果**包裝成 API endpoint**，讓別人（或前端）可以透過網址取得你的分析：
 
 ```
-GET /stats      → 回傳各餐廳評分統計（從 cleaned 表查詢）
+GET /health     → 確認 API 和資料庫正常運作
+GET /stats/...  → 回傳統計結果（從 cleaned 表查詢）
 GET /analyzed   → 回傳 LLM 分析結果（從 analyzed 表查詢）
 GET /summary    → 回傳 pipeline 三表的摘要統計
 GET /report     → 回傳 output/report.md 的報告內容
-GET /health     → 確認 API 和資料庫正常運作
 ```
 
 這就是真實資料工程的做法：**資料存在資料庫 → API 提供存取 → 前端呈現**，而不是直接傳 CSV 給別人。
@@ -220,7 +220,7 @@ midterm-mvp-template/
 │   ├── topic_1/                 ← 題目 1：零售 POS 銷售分析
 │   │   ├── requirements_spec.md     需求規格書（情境/角色/資料/MVP scope）
 │   │   ├── orders.csv               2,000 筆零售交易紀錄（品項/數量/金額/客戶/國家）
-│   │   ├── pipeline.ipynb           📓 Notebook（從這裡開始做！）
+│   │   ├── pipeline_starter.ipynb           📓 Notebook（從這裡開始做！）
 │   │   ├── api.py                   ⭐ 選做：FastAPI API
 │   │   └── app.py                   ⭐ 選做：Streamlit Dashboard
 │   ├── topic_2/                 ← 題目 2：B2C 電商競品比價
@@ -263,7 +263,7 @@ midterm-mvp-template/
 
 ## 你的題目
 
-選一個，打開該資料夾的 `requirements_spec.md` 看需求，然後跑 `pipeline.ipynb`：
+選一個，打開該資料夾的 `requirements_spec.md` 看需求，然後跑 `pipeline_starter.ipynb`：
 
 | # | 題目 | 資料 | 數值欄 | LLM 做什麼 | 詳細需求 |
 |---|------|------|--------|-----------|---------|
@@ -278,7 +278,7 @@ midterm-mvp-template/
 
 ## 每人最低完成標準
 
-- [ ] 跑完 `pipeline.ipynb` 的 Section 1-6
+- [ ] 跑完 `pipeline_starter.ipynb` 的 Section 1-6
 - [ ] `pipeline.db` 有 raw / cleaned / analyzed 三張表
 - [ ] `data/processed/` 有統計結果 CSV
 - [ ] `output/report.md` 有 LLM 分析報告

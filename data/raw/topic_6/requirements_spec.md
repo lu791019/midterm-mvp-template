@@ -1,62 +1,66 @@
-# 題目 6：求職媒合職缺洞察
+# 題目 8：不動產房價趨勢分析
 
 ## 情境
 
-你是一家求職媒合平台的資料顧問。產品經理說：「我想知道資料領域的薪資行情、不同經驗等級差多少、遠端 vs 進辦公室的薪資差異、哪些職稱最搶手，這樣我們可以幫求職者做職涯建議。」
+你是一家不動產業者的資料顧問。業務主管說：「我想知道各縣市的房價差異、哪些區域交易最熱、什麼類型的房子最好賣，這樣我們可以跟買方說清楚市場狀況。」
 
 ## 你的角色
 
-人資科技資料顧問
+不動產資料顧問
 
 ## 使用者
 
-求職媒合平台產品經理——用分析結果設計「薪資參考」和「職涯建議」功能。
+不動產業務主管——用分析結果製作區域市場報告，提供給買方參考。
 
 ## 資料來源
 
 | 檔案 | 筆數 | 說明 | 來源 |
 |------|------|------|------|
-| `jobs.csv` | 2,000 | 資料領域職缺與薪資（2020-2024，全球） | [Kaggle: Jobs and Salaries in Data Field 2024](https://www.kaggle.com/datasets/murilozangari/jobs-and-salaries-in-data-field-2024) |
+| `real_estate.csv` | 2,000 | 台灣實價登錄（合併台北/新北/台中/高雄/桃園/新竹） | [內政部實價登錄](https://plvr.land.moi.gov.tw/DownloadOpenData) + [政府資料開放平臺](https://data.gov.tw/dataset/25119) |
 
-### 欄位說明
+### 主要欄位（共 33 欄，列出關鍵欄位）
 
 | 欄位 | 型別 | 說明 |
 |------|------|------|
-| `work_year` | int | 年份（2020-2024） |
-| `experience_level` | str | 經驗等級（Entry-level / Mid-level / Senior / Executive） |
-| `employment_type` | str | 雇用類型（Full-time / Part-time / Contract / Freelance） |
-| `job_title` | str | 職稱（Data Engineer / Data Scientist / ML Engineer 等） |
-| `salary` | int | 原始幣別薪資 |
-| `salary_currency` | str | 薪資幣別 |
-| `salary_in_usd` | int | 換算成 USD 的年薪 |
-| `employee_residence` | str | 員工居住國 |
-| `work_setting` | str | 工作模式（Remote / In-person / Hybrid） |
-| `company_location` | str | 公司所在國 |
-| `company_size` | str | 公司規模（S / M / L） |
-| `job_category` | str | 職位類別（Data Engineering / Data Science / ML 等） |
+| `縣市` | str | 縣市名稱 |
+| `鄉鎮市區` | str | 區域 |
+| `交易標的` | str | 交易類型 |
+| `交易年月日` | str | 民國年格式（如 1130101 = 113 年 1 月 1 日） |
+| `建物型態` | str | 住宅大樓/公寓/透天 等 |
+| `總樓層數` | str | 總樓層 |
+| `建物移轉總面積平方公尺` | float | 面積（平方公尺） |
+| `總價元` | int | 成交總價 |
+| `單價元平方公尺` | float | 每平方公尺單價 |
+| `建築完成年月` | str | 建築完成時間（民國年） |
 
 ## 今日 MVP Scope
 
 ### ETL（pandas 清洗 + 統計）
 
-- 統計：各 job_category 平均薪資、各 experience_level 薪資分佈
-- 交叉分析：Remote vs In-person 薪資差異、公司規模 vs 薪資
-- 趨勢：2020-2024 各年份薪資變化
-- 職稱排行：最常見的 Top 20 職稱、最高薪的 Top 20 職稱
-- 產出 `data/processed/salary_stats.csv`
+- **民國年轉西元年**：`交易年月日` 和 `建築完成年月` 需轉換
+- 面積轉坪（1 坪 = 3.30579 平方公尺）
+- 計算屋齡
+- 統計：各縣市均價、各區域交易量 Top 10、建物型態分佈
+- 過濾異常值（總價為 0、面積為 0）
+- 產出 `data/processed/real_estate_stats.csv`
 
 ### LLM（AI 加值分析）
 
-- 對各 job_category 的統計結果，生成**薪資洞察**：「Data Engineer 的平均薪資、成長趨勢、競爭力分析」
-- 生成**職涯建議**：「如果你是 Entry-level 想進 Data Engineering，應該瞄準什麼樣的公司和地區？」
-- 跨維度摘要：「Remote 工作是否薪資較低？什麼類型的職位 Remote 比例最高？」
+- 對各縣市的統計結果，生成**區域分析建議書**：「台北市大安區的特色、價格帶、適合什麼樣的買方」
+- 生成**買方提醒**：「這個區域要注意什麼？資料中看到什麼限制？」
+- 跨區域比較摘要：「新北 vs 桃園，同樣預算可以買到什麼？」
 
 ## 預期產出
 
-- `data/processed/salary_stats.csv`：薪資 × 職稱 × 經驗 × 模式 統計
-- `output/report.md`：薪資分析 + 職涯建議報告
+- `data/processed/real_estate_stats.csv`：區域 × 型態統計（含坪數、屋齡）
+- `output/report.md`：區域分析建議書 + 買方提醒
 
 ## 成功指標
 
-- 能說出「Data Engineer vs Data Scientist 的薪資差異，以及 Remote 是否影響薪資」
-- 職涯建議具體、有數據支撐
+- 能說出「均價最高和最低的 3 個區域，以及它們的主要建物型態」
+- 區域分析建議對買方有參考價值（不是只列數字）
+
+## 注意事項
+
+- 日期格式為**民國年**，務必轉換，否則統計會出錯
+- 中文欄位名稱，pandas 操作時注意引用方式

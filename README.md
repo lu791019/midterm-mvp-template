@@ -228,20 +228,20 @@ midterm-mvp-template/
 │   │   ├── processed/               📂 你的統計結果（跑完自動產生）
 │   │   └── output/                  📂 你的報告（跑完自動產生）
 │   ├── topic_2/                 ← 題目 2：B2C 電商競品比價
-│   │   ├── requirements_spec.md
-│   │   └── products.csv             2,000 筆跨平台商品價格（Amazon × Flipkart）
-│   ├── topic_4/                 ← 題目 4：音樂串流趨勢分析
-│   │   ├── requirements_spec.md
-│   │   └── tracks.csv               2,000 筆 Spotify 歌曲（29 欄跨平台數據）
-│   ├── topic_5/                 ← 題目 5：叫車服務交通熱點
-│   │   ├── requirements_spec.md
+│   │   ├── requirements_spec.md / pipeline_starter.ipynb / api.py / app.py
+│   │   └── products.csv             2,000 筆跨平台商品價格
+│   ├── topic_3/                 ← 題目 3：音樂串流趨勢分析
+│   │   ├── requirements_spec.md / pipeline_starter.ipynb / api.py / app.py
+│   │   └── tracks.csv               2,000 筆 Spotify 歌曲（29 欄）
+│   ├── topic_4/                 ← 題目 4：叫車服務交通熱點
+│   │   ├── requirements_spec.md / pipeline_starter.ipynb / api.py / app.py
 │   │   ├── trips.csv                2,000 筆 NYC 計程車行程（19 欄）
 │   │   └── taxi_zone_lookup.csv     區域碼 → 地名對照表
-│   ├── topic_6/                 ← 題目 6：求職媒合薪資洞察
-│   │   ├── requirements_spec.md
+│   ├── topic_5/                 ← 題目 5：求職媒合薪資洞察
+│   │   ├── requirements_spec.md / pipeline_starter.ipynb / api.py / app.py
 │   │   └── jobs.csv                 2,000 筆資料領域職缺與薪資（12 欄）
-│   └── topic_8/                 ← 題目 8：不動產房價趨勢分析
-│       ├── requirements_spec.md
+│   └── topic_6/                 ← 題目 6：不動產房價趨勢分析
+│       ├── requirements_spec.md / pipeline_starter.ipynb / api.py / app.py
 │       └── real_estate.csv          2,000 筆台灣實價登錄（34 欄）
 │
 │
@@ -269,12 +269,12 @@ midterm-mvp-template/
 
 | # | 題目 | 資料 | 數值欄 | LLM 做什麼 | 詳細需求 |
 |---|------|------|--------|-----------|---------|
-| 1 | 零售 POS 銷售分析 | 2,000 筆交易（品項/數量/金額/客戶/國家） | 6 | 品類分類 + 客戶洞察 + 庫存建議 | [requirements_spec.md](data/raw/topic_1/requirements_spec.md) |
-| 2 | B2C 電商競品比價 | 2,000 筆跨平台商品價格 | 5 | 競品摘要 + 定價建議 | [requirements_spec.md](data/raw/topic_2/requirements_spec.md) |
-| 4 | 音樂串流趨勢分析 | 2,000 筆 Spotify 歌曲（29 欄跨平台） | 12 | 聽眾洞察 + 推薦文案 | [requirements_spec.md](data/raw/topic_4/requirements_spec.md) |
-| 5 | 叫車服務交通熱點 | 2,000 筆 NYC 計程車行程 | 16 | 交通模式解讀 + 調度建議 | [requirements_spec.md](data/raw/topic_5/requirements_spec.md) |
-| 6 | 求職媒合薪資洞察 | 2,000 筆資料領域職缺與薪資 | 3 | 薪資洞察 + 職涯建議 | [requirements_spec.md](data/raw/topic_6/requirements_spec.md) |
-| 8 | 不動產房價趨勢 | 2,000 筆台灣實價登錄（34 欄） | 17 | 區域分析建議書 | [requirements_spec.md](data/raw/topic_8/requirements_spec.md) |
+| 1 | 零售 POS 銷售分析 | 2,000 筆交易（品項/數量/金額/客戶/國家） | 6 | 品類分類 + 客戶洞察 | [requirements_spec.md](data/raw/topic_1/requirements_spec.md) |
+| 2 | B2C 電商競品比價 | 2,000 筆跨平台商品價格 | 5 | 書籍分類 + 定價建議 | [requirements_spec.md](data/raw/topic_2/requirements_spec.md) |
+| 3 | 音樂串流趨勢分析 | 2,000 筆 Spotify 歌曲（29 欄） | 12 | 曲風分類 + 推薦文案 | [requirements_spec.md](data/raw/topic_3/requirements_spec.md) |
+| 4 | 叫車服務交通熱點 | 2,000 筆 NYC 計程車行程 | 16 | 區域分類 + 調度建議 | [requirements_spec.md](data/raw/topic_4/requirements_spec.md) |
+| 5 | 求職媒合薪資洞察 | 2,000 筆資料領域職缺與薪資 | 3 | 職位分類 + 職涯建議 | [requirements_spec.md](data/raw/topic_5/requirements_spec.md) |
+| 6 | 不動產房價趨勢 | 2,000 筆台灣實價登錄（34 欄） | 17 | 區域分析建議書 | [requirements_spec.md](data/raw/topic_6/requirements_spec.md) |
 
 > 資料來源詳情見 [docs/data_sources.md](docs/data_sources.md)
 

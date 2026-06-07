@@ -1,68 +1,62 @@
-# 題目 5：叫車服務交通熱點分析
+# 題目 6：求職媒合職缺洞察
 
 ## 情境
 
-你是一家叫車服務公司的資料顧問。營運主管說：「我想知道哪些時段、哪些地區叫車需求最高，這樣我們可以提前調度司機。還想知道有沒有什麼營運模式值得注意的。」
+你是一家求職媒合平台的資料顧問。產品經理說：「我想知道資料領域的薪資行情、不同經驗等級差多少、遠端 vs 進辦公室的薪資差異、哪些職稱最搶手，這樣我們可以幫求職者做職涯建議。」
 
 ## 你的角色
 
-交通服務資料顧問
+人資科技資料顧問
 
 ## 使用者
 
-叫車服務營運主管——每天看調度報告，決定司機排班和熱點部署。
+求職媒合平台產品經理——用分析結果設計「薪資參考」和「職涯建議」功能。
 
 ## 資料來源
 
 | 檔案 | 筆數 | 說明 | 來源 |
 |------|------|------|------|
-| `trips.csv` | 2,000 | 紐約市黃色計程車行程（2024 年 1 月取樣） | [NYC TLC Trip Record Data](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)（官方公開資料） |
-| `taxi_zone_lookup.csv` | 265 | 區域碼 → 地名對照表 | 同上 |
+| `jobs.csv` | 2,000 | 資料領域職缺與薪資（2020-2024，全球） | [Kaggle: Jobs and Salaries in Data Field 2024](https://www.kaggle.com/datasets/murilozangari/jobs-and-salaries-in-data-field-2024) |
 
-### trips.csv 主要欄位
+### 欄位說明
 
 | 欄位 | 型別 | 說明 |
 |------|------|------|
-| `tpep_pickup_datetime` | datetime | 上車時間 |
-| `tpep_dropoff_datetime` | datetime | 下車時間 |
-| `passenger_count` | float | 乘客數 |
-| `trip_distance` | float | 行程距離（英里） |
-| `PULocationID` | int | 上車區域碼（需對照 taxi_zone_lookup） |
-| `DOLocationID` | int | 下車區域碼 |
-| `fare_amount` | float | 車資 |
-| `tip_amount` | float | 小費 |
-| `total_amount` | float | 總金額 |
-
-### taxi_zone_lookup.csv 欄位
-
-| 欄位 | 說明 |
-|------|------|
-| `LocationID` | 區域碼（對應 PU/DOLocationID） |
-| `Borough` | 行政區（Manhattan, Brooklyn 等） |
-| `Zone` | 地區名稱 |
+| `work_year` | int | 年份（2020-2024） |
+| `experience_level` | str | 經驗等級（Entry-level / Mid-level / Senior / Executive） |
+| `employment_type` | str | 雇用類型（Full-time / Part-time / Contract / Freelance） |
+| `job_title` | str | 職稱（Data Engineer / Data Scientist / ML Engineer 等） |
+| `salary` | int | 原始幣別薪資 |
+| `salary_currency` | str | 薪資幣別 |
+| `salary_in_usd` | int | 換算成 USD 的年薪 |
+| `employee_residence` | str | 員工居住國 |
+| `work_setting` | str | 工作模式（Remote / In-person / Hybrid） |
+| `company_location` | str | 公司所在國 |
+| `company_size` | str | 公司規模（S / M / L） |
+| `job_category` | str | 職位類別（Data Engineering / Data Science / ML 等） |
 
 ## 今日 MVP Scope
 
 ### ETL（pandas 清洗 + 統計）
 
-- 合併 trips + taxi_zone_lookup，把 LocationID 轉成地名
-- 提取小時、星期幾
-- 統計：上車熱點 Top 10、尖峰時段分佈、各行政區平均車資
-- 計算行程時間（下車-上車）
-- 產出 `data/processed/traffic_stats.csv`
+- 統計：各 job_category 平均薪資、各 experience_level 薪資分佈
+- 交叉分析：Remote vs In-person 薪資差異、公司規模 vs 薪資
+- 趨勢：2020-2024 各年份薪資變化
+- 職稱排行：最常見的 Top 20 職稱、最高薪的 Top 20 職稱
+- 產出 `data/processed/salary_stats.csv`
 
 ### LLM（AI 加值分析）
 
-- 對熱點區域 + 時段組合，生成**交通模式解讀**：為什麼這個地方在這個時段最忙？
-- 生成**司機調度建議**：應該在幾點、在哪裡多部署司機？
-- 分析小費模式：哪些區域/時段小費比率高？
+- 對各 job_category 的統計結果，生成**薪資洞察**：「Data Engineer 的平均薪資、成長趨勢、競爭力分析」
+- 生成**職涯建議**：「如果你是 Entry-level 想進 Data Engineering，應該瞄準什麼樣的公司和地區？」
+- 跨維度摘要：「Remote 工作是否薪資較低？什麼類型的職位 Remote 比例最高？」
 
 ## 預期產出
 
-- `data/processed/traffic_stats.csv`：區域 × 時段統計
-- `output/report.md`：交通模式分析 + 調度建議
+- `data/processed/salary_stats.csv`：薪資 × 職稱 × 經驗 × 模式 統計
+- `output/report.md`：薪資分析 + 職涯建議報告
 
 ## 成功指標
 
-- 能說出「上車量最高的 3 個區域和 3 個尖峰時段」
-- 調度建議有邏輯（不是空話）
+- 能說出「Data Engineer vs Data Scientist 的薪資差異，以及 Remote 是否影響薪資」
+- 職涯建議具體、有數據支撐

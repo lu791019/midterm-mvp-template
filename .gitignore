@@ -3,6 +3,10 @@ __pycache__/
 *.pyc
 .env
 .DS_Store
-data/processed/
-output/
 *.db
+
+# 保留目錄結構，忽略產出內容
+data/processed/*
+!data/processed/.gitkeep
+output/*
+!output/.gitkeep

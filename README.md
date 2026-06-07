@@ -140,13 +140,7 @@ midterm-mvp-template/
 │   ├── pipeline.mmd                 Pipeline 流程圖（Mermaid 格式）
 │   └── upgrade_plan.md              📝 後續升級計畫模板（你要填的！）
 │
-├── _advanced/                   ← 📂 進階升級用（期中不需要看）
-│   ├── src/                         模組化 Python 腳本版本（EP01 後從 Notebook 拆出）
-│   │   ├── extract.py
-│   │   ├── transform.py
-│   │   ├── load.py
-│   │   ├── llm_analyze.py
-│   │   └── run_pipeline.py
+├── _advanced/                   ← 📂 進階升級用（期中不需要看，後續課程會用到）
 │   ├── Dockerfile                   Docker 容器化模板
 │   └── docker-compose.yml           Docker Compose 設定
 │
@@ -207,7 +201,6 @@ midterm-mvp-template/
 | GCP | 部署到雲端 |
 
 > 升級計畫模板：[docs/upgrade_plan.md](docs/upgrade_plan.md)
-> 模組化腳本參考：[_advanced/src/](_advanced/src/)
 > Docker 模板參考：[_advanced/Dockerfile](_advanced/Dockerfile)
 
 ## 文件索引

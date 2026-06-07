@@ -11,7 +11,7 @@ CSV → pandas 清洗 → SQLite (raw/cleaned/analyzed) → SQL 查詢 → LLM �
 ## 快速開始
 
 ```bash
-# 1. Clone
+# 1. Clone（或下載 ZIP 解壓縮）
 git clone https://github.com/lu791019/midterm-mvp-template.git
 cd midterm-mvp-template
 
@@ -20,8 +20,103 @@ cd midterm-mvp-template
 #    → 用 Colab：上傳 data/raw/topic_1/pipeline.ipynb
 #    → 用本地：jupyter notebook data/raw/topic_1/pipeline.ipynb
 
-# 3. 照著 Notebook 檔案做
+# 3. 照著 Notebook 一格一格跑
 ```
+
+## 詳細步驟導覽
+
+> 第一次用不知道去哪找東西？照下面走一遍。
+
+### Step 1：選題
+
+到下方「[你的題目](#你的題目)」表格，選一個你有興趣的題目（1-8）。
+假設你選了 **題目 1（餐飲連鎖 POS 庫存優化）**。
+
+### Step 2：看需求
+
+打開你的題目資料夾，先讀需求規格書：
+
+```
+📂 data/raw/topic_1/
+└── 📄 requirements_spec.md    ← 先讀這個！裡面有：
+                                  - 你要扮演什麼角色
+                                  - 客戶的問題是什麼
+                                  - 資料有哪些欄位
+                                  - 今天的 MVP 要做到什麼
+```
+
+### Step 3：開 Notebook 開始做
+
+同一個資料夾裡有你的 Notebook：
+
+```
+📂 data/raw/topic_1/
+├── 📄 requirements_spec.md    ← Step 2 讀過了
+├── 📊 reviews.csv             ← 你的原始資料（2,000 筆）
+└── 📓 pipeline.ipynb          ← 打開這個！照著一格一格跑
+```
+
+**用 Google Colab 開**：到 [colab.google](https://colab.research.google.com/) → 上傳 → 選 `pipeline.ipynb`
+**用本地開**：`jupyter notebook data/raw/topic_1/pipeline.ipynb`
+
+### Step 4：跑完後，產出在哪裡
+
+Notebook 跑完後，你的成果會出現在：
+
+```
+📂 專案根目錄/
+├── 🗄️ pipeline.db              ← 你的 SQLite 資料庫（自動產生）
+│   ├── raw_reviews 表              原始資料
+│   ├── cleaned_reviews 表          清洗後資料
+│   └── analyzed_reviews 表         LLM 分析結果
+│
+├── 📂 data/processed/           ← 統計結果 CSV（自動產生）
+│   └── restaurant_stats.csv
+│
+└── 📂 output/                   ← 顧問報告（自動產生）
+    └── report.md
+```
+
+### Step 5：選做 — FastAPI + Streamlit
+
+如果你還有時間，同一個資料夾裡有 API 和 Dashboard：
+
+```
+📂 data/raw/topic_1/
+├── api.py     ← FastAPI：啟動後你的分析結果變成 API
+└── app.py     ← Streamlit：啟動後看到視覺化 Dashboard
+```
+
+```bash
+# 啟動 API（先裝 uvicorn）
+pip install fastapi uvicorn
+uvicorn data.raw.topic_1.api:app --reload --port 8000
+
+# 另開 terminal，啟動 Dashboard
+pip install streamlit
+streamlit run data/raw/topic_1/app.py
+```
+
+### Step 6：打包
+
+跑完後，填寫以下兩份文件完成打包：
+
+| 要填什麼 | 在哪裡 | 說明 |
+|---------|--------|------|
+| 後續升級計畫 | [docs/upgrade_plan.md](docs/upgrade_plan.md) | 寫下你打算怎麼用 Docker/Airflow/GCP 升級這個專案 |
+| README | 用講師提供的模板 | 填完就是你的作品集說明文件 |
+
+### 遇到問題？
+
+| 狀況 | 去哪找幫助 |
+|------|-----------|
+| 不知道 pandas 語法怎麼寫 | [docs/ai_prompts.md](docs/ai_prompts.md) 有 prompt 模板，貼給 ChatGPT |
+| 不知道 LLM prompt 怎麼設計 | [docs/ai_prompts.md](docs/ai_prompts.md) 的第 5、6 節 |
+| 想知道資料從哪來的 | [docs/data_sources.md](docs/data_sources.md) |
+| 想看其他題目的規格 | [docs/topic_catalog.md](docs/topic_catalog.md) |
+| 想了解為什麼用 SQLite 不用 MySQL | [docs/tech_decision.md](docs/tech_decision.md) |
+
+---
 
 ## Pipeline 流程
 

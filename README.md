@@ -259,6 +259,8 @@ midterm-mvp-template/
 │   └── docker-compose.yml           Docker Compose 設定
 │
 └── _instructor/                 ← 📂 講師用（學員不需要看）
+    ├── facilitator_guide.md          講師引導手冊（當天照著跑）
+    ├── student_handbook.md           學員手冊（發給學員）
     ├── midterm_workshop_proposal.md  工作坊企劃書
     ├── midterm_workshop_slides.md    簡報原稿
     └── solutions/                    每題 pipeline 完整答案
@@ -326,7 +328,8 @@ midterm-mvp-template/
 
 | 文件 | 用途 | 什麼時候看 |
 |------|------|-----------|
-| [docs/topic_catalog.md](docs/topic_catalog.md) | 8 題的 MVP 問題、資料、ETL、LLM 規格 | 選題時 |
+| [docs/README_TEMPLATE.md](docs/README_TEMPLATE.md) | 個人 README 填空模板 | **打包時填寫！** |
+| [docs/topic_catalog.md](docs/topic_catalog.md) | 6 題的 MVP 問題、資料、ETL、LLM 規格 | 選題時 |
 | [docs/data_sources.md](docs/data_sources.md) | 每題資料的 Kaggle/政府 URL、欄位、授權 | 想了解資料從哪來時 |
 | [docs/ai_prompts.md](docs/ai_prompts.md) | 7 個 AI prompt 模板（需求釐清/pandas/debug/LLM/README） | 實作中需要 AI 幫忙時 |
 | [docs/repo_format.md](docs/repo_format.md) | Repo 資料夾結構、最小交付標準、題目切換方式 | 想了解 repo 設計時 |

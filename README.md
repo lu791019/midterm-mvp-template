@@ -83,9 +83,32 @@ Notebook 跑完後，你的成果會出現在：
 
 ```
 📂 data/raw/topic_1/
-├── api.py     ← FastAPI：啟動後你的分析結果變成 API
-└── app.py     ← Streamlit：啟動後看到視覺化 Dashboard
+├── api.py     ← FastAPI API
+└── app.py     ← Streamlit Dashboard
 ```
+
+**`api.py` 是什麼？為什麼需要它？**
+
+你在 Step 3 跑完 Notebook 後，分析結果都存在 `pipeline.db`（SQLite 資料庫）裡。
+`api.py` 用 FastAPI 把資料庫裡的結果**包裝成 API endpoint**，讓別人（或前端）可以透過網址取得你的分析：
+
+```
+GET /stats      → 回傳各餐廳評分統計（從 cleaned 表查詢）
+GET /analyzed   → 回傳 LLM 分析結果（從 analyzed 表查詢）
+GET /summary    → 回傳 pipeline 三表的摘要統計
+GET /report     → 回傳 output/report.md 的報告內容
+GET /health     → 確認 API 和資料庫正常運作
+```
+
+這就是真實資料工程的做法：**資料存在資料庫 → API 提供存取 → 前端呈現**，而不是直接傳 CSV 給別人。
+
+**`app.py` 是什麼？為什麼需要它？**
+
+`app.py` 用 Streamlit 把你的分析結果**變成互動式 Dashboard**。
+它可以直接讀 SQLite，也可以透過 `api.py` 的 API 拿資料（體驗「前後端分離」的架構）。
+打開後你會看到：圖表、統計數字、LLM 分析明細、顧問報告——這就是你交給客戶看的東西。
+
+**怎麼跑？**
 
 ```bash
 # 啟動 API（先裝 uvicorn）

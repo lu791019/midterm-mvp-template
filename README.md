@@ -1,6 +1,8 @@
-# LLM × DE Mini Data Pipeline 工作坊
+# LLM × DE MVP Builder 實戰營
 
-> TibaMe 雲端資料工程師養成班 — 期中 MVP 工作坊 Starter Repo
+> TibaMe 雲端資料工程師養成班 — 期中實戰營 Starter Repo
+>
+> 📋 學員手冊：[_instructor/student_handbook.md](_instructor/student_handbook.md)
 
 每位學員選一個題目，完成 **Mini Data Pipeline**：
 
@@ -15,7 +17,7 @@ CSV → pandas 清洗 → SQLite (raw/cleaned/analyzed) → SQL Query → (LLM �
 git clone https://github.com/lu791019/midterm-mvp-template.git
 cd midterm-mvp-template
 
-# 2. 選你的題目（1-8），打開對應的 Notebook
+# 2. 選你的題目（1-6），打開對應的 Notebook
 #    例如選題目 1：
 #    → 用 Colab：上傳 data/raw/topic_1/pipeline_starter.ipynb
 #    → 用本地：jupyter notebook data/raw/topic_1/pipeline_starter.ipynb

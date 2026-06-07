@@ -1332,24 +1332,82 @@ details.collapse > summary .collapse-hint {
   <div class="slide-inner">
 
     <h2 class="reveal-up" style="color:var(--electric-blue);">Pipeline 架構圖</h2>
-    <div class="reveal-up" style="margin-top:1.5rem; background:var(--deep-purple); border-radius:1rem; padding:2rem; font-family:monospace; font-size:var(--small-size); line-height:2; white-space:pre; overflow-x:auto;">
-┌─────────────┐     ┌──────────────┐     ┌────────────────────────┐
-│  CSV 資料   │────▶│ pandas 清洗  │────▶│  SQLite 資料庫         │
-│ (2000 筆)   │     │ (Transform)  │     │  ├── raw 表（原始）    │
-└─────────────┘     └──────────────┘     │  ├── cleaned 表（清洗）│
-                                          │  └── analyzed 表（AI） │
-                                          └────────┬───────────────┘
-                                                   │
-                              ┌─────────────┐      │      ┌──────────────┐
-                              │ SQL 查詢    │◀─────┤      │ LLM 分析     │
-                              │ (統計分析)  │      └─────▶│ (分類/摘要)  │
-                              └──────┬──────┘             └──────┬───────┘
-                                     │                           │
-                                     ▼                           ▼
-                              processed/*.csv              report.md</div>
+
+    <!-- 主流程：橫向五步 -->
+    <div class="reveal-up" style="display:flex; align-items:center; gap:0.5rem; margin-top:2rem; justify-content:center; flex-wrap:wrap;">
+      <!-- Step 1: CSV -->
+      <div style="background:#E3F2FD; border:2px solid #1565C0; border-radius:1rem; padding:1rem 1.2rem; text-align:center; min-width:120px;">
+        <div style="font-size:1.8rem;">📄</div>
+        <div style="font-weight:800; color:#1565C0;">Extract</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">CSV 2,000 筆</div>
+        <div style="font-size:0.75rem; font-family:monospace; color:#1565C0;">pd.read_csv()</div>
+      </div>
+      <div style="font-size:1.8rem; color:var(--electric-blue);">→</div>
+
+      <!-- Step 2: Transform -->
+      <div style="background:#E8F5E9; border:2px solid #2E7D32; border-radius:1rem; padding:1rem 1.2rem; text-align:center; min-width:120px;">
+        <div style="font-size:1.8rem;">🔧</div>
+        <div style="font-weight:800; color:#2E7D32;">Transform</div>
+        <div style="font-size:0.85rem; color:var(--text-muted);">pandas 清洗</div>
+        <div style="font-size:0.75rem; font-family:monospace; color:#2E7D32;">dropna / to_datetime</div>
+      </div>
+      <div style="font-size:1.8rem; color:var(--electric-blue);">→</div>
+
+      <!-- Step 3: SQLite -->
+      <div style="background:#FFF3E0; border:2px solid #E65100; border-radius:1rem; padding:1rem 1.2rem; text-align:center; min-width:160px;">
+        <div style="font-size:1.8rem;">🗄️</div>
+        <div style="font-weight:800; color:#E65100;">Load → SQLite</div>
+        <div style="display:flex; gap:0.3rem; justify-content:center; margin-top:0.3rem;">
+          <span style="background:#BBDEFB; padding:0.15rem 0.5rem; border-radius:0.5rem; font-size:0.75rem;">raw</span>
+          <span style="background:#C8E6C9; padding:0.15rem 0.5rem; border-radius:0.5rem; font-size:0.75rem;">cleaned</span>
+          <span style="background:#FFE0B2; padding:0.15rem 0.5rem; border-radius:0.5rem; font-size:0.75rem;">analyzed</span>
+        </div>
+        <div style="font-size:0.75rem; font-family:monospace; color:#E65100;">df.to_sql()</div>
+      </div>
+      <div style="font-size:1.8rem; color:var(--electric-blue);">→</div>
+
+      <!-- Step 4: SQL + LLM -->
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="background:#F3E5F5; border:2px solid #7B1FA2; border-radius:1rem; padding:0.8rem 1.2rem; text-align:center;">
+          <div style="font-size:1.3rem;">📊</div>
+          <div style="font-weight:800; color:#7B1FA2; font-size:0.9rem;">SQL 查詢</div>
+          <div style="font-size:0.7rem; font-family:monospace;">GROUP BY / ORDER BY</div>
+        </div>
+        <div style="background:#FCE4EC; border:2px solid #C62828; border-radius:1rem; padding:0.8rem 1.2rem; text-align:center;">
+          <div style="font-size:1.3rem;">🤖</div>
+          <div style="font-weight:800; color:#C62828; font-size:0.9rem;">LLM 分析</div>
+          <div style="font-size:0.7rem; font-family:monospace;">分類 / 摘要</div>
+        </div>
+      </div>
+      <div style="font-size:1.8rem; color:var(--electric-blue);">→</div>
+
+      <!-- Step 5: Output -->
+      <div style="display:flex; flex-direction:column; gap:0.5rem;">
+        <div style="background:var(--deep-purple); border:2px solid var(--text-muted); border-radius:1rem; padding:0.8rem 1.2rem; text-align:center;">
+          <div style="font-size:1.3rem;">📈</div>
+          <div style="font-weight:700; font-size:0.9rem;">統計 CSV</div>
+        </div>
+        <div style="background:var(--deep-purple); border:2px solid var(--text-muted); border-radius:1rem; padding:0.8rem 1.2rem; text-align:center;">
+          <div style="font-size:1.3rem;">📄</div>
+          <div style="font-weight:700; font-size:0.9rem;">report.md</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 選做：下方虛線 -->
+    <div class="reveal-up" style="margin-top:1.5rem; display:flex; justify-content:center; align-items:center; gap:0.5rem;">
+      <div style="border:2px dashed var(--text-muted); border-radius:1rem; padding:0.6rem 1.5rem; text-align:center; opacity:0.6;">
+        <span style="font-size:1rem;">⚡</span> <strong>FastAPI</strong> <span style="color:var(--text-muted); font-size:0.85rem;">API endpoint</span>
+      </div>
+      <div style="font-size:1.2rem; color:var(--text-muted);">→</div>
+      <div style="border:2px dashed var(--text-muted); border-radius:1rem; padding:0.6rem 1.5rem; text-align:center; opacity:0.6;">
+        <span style="font-size:1rem;">📊</span> <strong>Streamlit</strong> <span style="color:var(--text-muted); font-size:0.85rem;">Dashboard</span>
+      </div>
+      <span style="background:var(--deep-purple); padding:0.2rem 0.8rem; border-radius:1rem; font-size:0.8rem; color:var(--text-muted); margin-left:0.5rem;">選做</span>
+    </div>
+
     <div class="reveal-up" style="display:flex; gap:1rem; margin-top:1rem; justify-content:center;">
-      <span style="background:var(--electric-blue); color:white; padding:0.3rem 1rem; border-radius:2rem; font-size:var(--small-size);">必做：CSV → SQLite → SQL → LLM → 報告</span>
-      <span style="background:var(--deep-purple); padding:0.3rem 1rem; border-radius:2rem; font-size:var(--small-size);">選做：FastAPI + Streamlit</span>
+      <span style="background:var(--electric-blue); color:white; padding:0.3rem 1rem; border-radius:2rem; font-size:var(--small-size);">必做：CSV → SQLite 三表 → SQL → LLM → 報告</span>
     </div>
   </div>
 </section>

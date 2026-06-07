@@ -1,0 +1,8 @@
+flowchart LR
+    A[Raw Data] --> B[extract.py]
+    B --> C[transform.py]
+    C --> D[load.py]
+    D --> E[llm_analyze.py]
+    E --> F[processed_reviews.csv]
+    E --> G[report.md]
+    F --> H[Streamlit app.py]

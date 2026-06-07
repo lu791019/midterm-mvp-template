@@ -2,7 +2,7 @@
 
 ## 情境
 
-你是一家求職媒合平台的資料顧問。產品經理說：「我想知道現在市場上最缺什麼技能、哪些職缺最多、資料相關的職位通常要求什麼條件，這樣我們可以幫求職者推薦該補強什麼。」
+你是一家求職媒合平台的資料顧問。產品經理說：「我想知道資料領域的薪資行情、不同經驗等級差多少、遠端 vs 進辦公室的薪資差異、哪些職稱最搶手，這樣我們可以幫求職者做職涯建議。」
 
 ## 你的角色
 
@@ -10,46 +10,53 @@
 
 ## 使用者
 
-求職媒合平台產品經理——用分析結果設計「技能推薦」功能和「市場趨勢報告」。
+求職媒合平台產品經理——用分析結果設計「薪資參考」和「職涯建議」功能。
 
 ## 資料來源
 
 | 檔案 | 筆數 | 說明 | 來源 |
 |------|------|------|------|
-| `jobs.csv` | 2,000 | 資料科學相關職缺（含技能需求） | [Kaggle: Data Science Job Postings & Skills 2024](https://www.kaggle.com/datasets/asaniczka/data-science-job-postings-and-skills) |
+| `jobs.csv` | 2,000 | 資料領域職缺與薪資（2020-2024，全球） | [Kaggle: Jobs and Salaries in Data Field 2024](https://www.kaggle.com/datasets/murilozangari/jobs-and-salaries-in-data-field-2024) |
 
 ### 欄位說明
 
 | 欄位 | 型別 | 說明 |
 |------|------|------|
-| `job_title` | str | 職稱（Data Engineer, Data Scientist 等） |
-| `company` | str | 公司名稱 |
-| `job_location` | str | 工作地點 |
-| `job_level` | str | 職級（Entry, Mid, Senior 等） |
-| `job_type` | str | 類型（Full-time, Contract 等） |
-| `job_skills` | str | 技能需求（逗號分隔的技能列表） |
+| `work_year` | int | 年份（2020-2024） |
+| `experience_level` | str | 經驗等級（Entry-level / Mid-level / Senior / Executive） |
+| `employment_type` | str | 雇用類型（Full-time / Part-time / Contract / Freelance） |
+| `job_title` | str | 職稱（Data Engineer / Data Scientist / ML Engineer 等） |
+| `salary` | int | 原始幣別薪資 |
+| `salary_currency` | str | 薪資幣別 |
+| `salary_in_usd` | int | 換算成 USD 的年薪 |
+| `employee_residence` | str | 員工居住國 |
+| `work_setting` | str | 工作模式（Remote / In-person / Hybrid） |
+| `company_location` | str | 公司所在國 |
+| `company_size` | str | 公司規模（S / M / L） |
+| `job_category` | str | 職位類別（Data Engineering / Data Science / ML 等） |
 
 ## 今日 MVP Scope
 
 ### ETL（pandas 清洗 + 統計）
 
-- 處理 job_skills 欄位（逗號分隔 → 展開成個別技能）
-- 統計：技能出現頻率 Top 20、職稱分佈、職級分佈、地區分佈
-- 交叉分析：不同職稱最常要求的技能差異
-- 產出 `data/processed/skill_demand.csv`
+- 統計：各 job_category 平均薪資、各 experience_level 薪資分佈
+- 交叉分析：Remote vs In-person 薪資差異、公司規模 vs 薪資
+- 趨勢：2020-2024 各年份薪資變化
+- 職稱排行：最常見的 Top 20 職稱、最高薪的 Top 20 職稱
+- 產出 `data/processed/salary_stats.csv`
 
 ### LLM（AI 加值分析）
 
-- 對 Top 10 熱門技能，生成**技能補強建議**：「如果你想當 Data Engineer，最該先學什麼？」
-- 對特定職缺描述，生成**職缺摘要**：一句話總結這個職缺在找什麼人
-- 生成市場趨勢報告：「目前資料領域最搶手的是什麼角色？」
+- 對各 job_category 的統計結果，生成**薪資洞察**：「Data Engineer 的平均薪資、成長趨勢、競爭力分析」
+- 生成**職涯建議**：「如果你是 Entry-level 想進 Data Engineering，應該瞄準什麼樣的公司和地區？」
+- 跨維度摘要：「Remote 工作是否薪資較低？什麼類型的職位 Remote 比例最高？」
 
 ## 預期產出
 
-- `data/processed/skill_demand.csv`：技能頻率 + 職稱交叉統計
-- `output/report.md`：市場趨勢 + 技能建議報告
+- `data/processed/salary_stats.csv`：薪資 × 職稱 × 經驗 × 模式 統計
+- `output/report.md`：薪資分析 + 職涯建議報告
 
 ## 成功指標
 
-- 能說出「資料領域最常被要求的 5 項技能是什麼」
-- 技能建議具體、可行動（不是「多學習」這種空話）
+- 能說出「Data Engineer vs Data Scientist 的薪資差異，以及 Remote 是否影響薪資」
+- 職涯建議具體、有數據支撐

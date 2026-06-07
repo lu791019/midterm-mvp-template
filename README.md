@@ -216,41 +216,35 @@ midterm-mvp-template/
 ├── requirements.txt             ← Python 套件（pip install -r requirements.txt）
 ├── .env.example                 ← API Key 設定範例（複製成 .env 填入）
 │
-├── data/raw/                    ← 📂 8 個題目的資料與工具
-│   ├── topic_1/                 ← 題目 1：餐飲連鎖 POS 庫存優化
+├── data/raw/                    ← 📂 6 個題目的資料與工具
+│   ├── topic_1/                 ← 題目 1：零售 POS 銷售分析
 │   │   ├── requirements_spec.md     需求規格書（情境/角色/資料/MVP scope）
-│   │   ├── reviews.csv              2,000 筆餐廳評論資料
+│   │   ├── orders.csv               2,000 筆零售交易紀錄（品項/數量/金額/客戶/國家）
 │   │   ├── pipeline.ipynb           📓 Notebook（從這裡開始做！）
 │   │   ├── api.py                   ⭐ 選做：FastAPI API
 │   │   └── app.py                   ⭐ 選做：Streamlit Dashboard
 │   ├── topic_2/                 ← 題目 2：B2C 電商競品比價
 │   │   ├── requirements_spec.md
-│   │   └── products.csv
-│   ├── topic_3/                 ← 題目 3：數位金融客訴效率
-│   │   ├── requirements_spec.md
-│   │   └── complaints.csv
+│   │   └── products.csv             2,000 筆跨平台商品價格（Amazon × Flipkart）
 │   ├── topic_4/                 ← 題目 4：音樂串流趨勢分析
 │   │   ├── requirements_spec.md
-│   │   └── tracks.csv
+│   │   └── tracks.csv               2,000 筆 Spotify 歌曲（29 欄跨平台數據）
 │   ├── topic_5/                 ← 題目 5：叫車服務交通熱點
 │   │   ├── requirements_spec.md
-│   │   ├── trips.csv
+│   │   ├── trips.csv                2,000 筆 NYC 計程車行程（19 欄）
 │   │   └── taxi_zone_lookup.csv     區域碼 → 地名對照表
-│   ├── topic_6/                 ← 題目 6：求職媒合職缺洞察
+│   ├── topic_6/                 ← 題目 6：求職媒合薪資洞察
 │   │   ├── requirements_spec.md
-│   │   └── jobs.csv
-│   ├── topic_7/                 ← 題目 7：媒體業新聞輿情監測
-│   │   ├── requirements_spec.md
-│   │   └── news.csv
+│   │   └── jobs.csv                 2,000 筆資料領域職缺與薪資（12 欄）
 │   └── topic_8/                 ← 題目 8：不動產房價趨勢分析
 │       ├── requirements_spec.md
-│       └── real_estate.csv
+│       └── real_estate.csv          2,000 筆台灣實價登錄（34 欄）
 │
 ├── data/processed/              ← 📂 你的清洗結果會存在這（跑完自動產生）
 ├── output/                      ← 📂 你的報告會存在這（跑完自動產生）
 │
 ├── docs/                        ← 📂 參考文件（不需要改，需要時查閱）
-│   ├── topic_catalog.md             8 題總覽：每題的 MVP 問題/資料/ETL/LLM 規格
+│   ├── topic_catalog.md             6 題總覽：每題的 MVP 問題/資料/ETL/LLM 規格
 │   ├── data_sources.md              資料來源說明：每題的 Kaggle/政府 URL + 欄位
 │   ├── ai_prompts.md                AI prompt 模板：7 個可直接用的 prompt
 │   ├── repo_format.md               Repo 格式說明：資料夾結構 + 最小交付標準
@@ -271,16 +265,14 @@ midterm-mvp-template/
 
 選一個，打開該資料夾的 `requirements_spec.md` 看需求，然後跑 `pipeline.ipynb`：
 
-| # | 題目 | 資料 | LLM 做什麼 | 詳細需求 |
-|---|------|------|-----------|---------|
-| 1 | 餐飲連鎖 POS 庫存優化 | 2,000 筆餐廳評論 | 情緒分析 + 主題分類 | [requirements_spec.md](data/raw/topic_1/requirements_spec.md) |
-| 2 | B2C 電商競品比價追蹤 | 2,000 筆跨平台商品價格 | 競品摘要 + 定價建議 | [requirements_spec.md](data/raw/topic_2/requirements_spec.md) |
-| 3 | 數位金融客訴效率分析 | 2,000 筆金融客訴文字 | 情緒分析 + 自動分類 | [requirements_spec.md](data/raw/topic_3/requirements_spec.md) |
-| 4 | 音樂串流趨勢分析 | 2,000 筆 Spotify 歌曲 | 聽眾洞察 + 推薦文案 | [requirements_spec.md](data/raw/topic_4/requirements_spec.md) |
-| 5 | 叫車服務交通熱點分析 | 2,000 筆 NYC 計程車行程 | 交通模式解讀 + 調度建議 | [requirements_spec.md](data/raw/topic_5/requirements_spec.md) |
-| 6 | 求職媒合職缺洞察 | 2,000 筆資料科學職缺 | 職缺摘要 + 技能建議 | [requirements_spec.md](data/raw/topic_6/requirements_spec.md) |
-| 7 | 媒體業新聞輿情監測 | 2,000 筆新聞標題摘要 | 情緒分類 + 輿情重點 | [requirements_spec.md](data/raw/topic_7/requirements_spec.md) |
-| 8 | 不動產房價趨勢分析 | 2,000 筆台灣實價登錄 | 區域分析建議書 | [requirements_spec.md](data/raw/topic_8/requirements_spec.md) |
+| # | 題目 | 資料 | 數值欄 | LLM 做什麼 | 詳細需求 |
+|---|------|------|--------|-----------|---------|
+| 1 | 零售 POS 銷售分析 | 2,000 筆交易（品項/數量/金額/客戶/國家） | 6 | 品類分類 + 客戶洞察 + 庫存建議 | [requirements_spec.md](data/raw/topic_1/requirements_spec.md) |
+| 2 | B2C 電商競品比價 | 2,000 筆跨平台商品價格 | 5 | 競品摘要 + 定價建議 | [requirements_spec.md](data/raw/topic_2/requirements_spec.md) |
+| 4 | 音樂串流趨勢分析 | 2,000 筆 Spotify 歌曲（29 欄跨平台） | 12 | 聽眾洞察 + 推薦文案 | [requirements_spec.md](data/raw/topic_4/requirements_spec.md) |
+| 5 | 叫車服務交通熱點 | 2,000 筆 NYC 計程車行程 | 16 | 交通模式解讀 + 調度建議 | [requirements_spec.md](data/raw/topic_5/requirements_spec.md) |
+| 6 | 求職媒合薪資洞察 | 2,000 筆資料領域職缺與薪資 | 3 | 薪資洞察 + 職涯建議 | [requirements_spec.md](data/raw/topic_6/requirements_spec.md) |
+| 8 | 不動產房價趨勢 | 2,000 筆台灣實價登錄（34 欄） | 17 | 區域分析建議書 | [requirements_spec.md](data/raw/topic_8/requirements_spec.md) |
 
 > 資料來源詳情見 [docs/data_sources.md](docs/data_sources.md)
 

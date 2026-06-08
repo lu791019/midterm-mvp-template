@@ -1297,7 +1297,7 @@ details.collapse > summary .collapse-hint {
       <div style="background:#E3F2FD; border:3px solid #1565C0; border-radius:0.75rem; padding:0.7rem; text-align:center; flex:1; max-width:220px;">
         <div style="font-size:1.5rem;">🥉</div>
         <div style="font-weight:900; color:#1565C0; font-size:1rem;">Bronze</div>
-        <div style="font-size:0.75rem; color:var(--text-muted);">= Raw 層 = Staging 層</div>
+        <div style="font-size:0.75rem; color:var(--text-muted);">= Raw 層 = Landing 層</div>
         <div style="font-size:0.75rem; margin-top:0.3rem; line-height:1.4;">原始資料原封灌入<br>保留雜訊可回溯</div>
         <div style="font-size:0.75rem; margin-top:0.2rem; font-weight:700; color:#1565C0;">→ 你的 raw 表</div>
       </div>
@@ -1305,7 +1305,7 @@ details.collapse > summary .collapse-hint {
       <div style="background:#E8F5E9; border:3px solid #2E7D32; border-radius:0.75rem; padding:0.7rem; text-align:center; flex:1; max-width:220px;">
         <div style="font-size:1.5rem;">🥈</div>
         <div style="font-weight:900; color:#2E7D32; font-size:1rem;">Silver</div>
-        <div style="font-size:0.75rem; color:var(--text-muted);">= Cleaned 層 = DWH 層</div>
+        <div style="font-size:0.75rem; color:var(--text-muted);">= Staging 層 = ODS 層</div>
         <div style="font-size:0.75rem; margin-top:0.3rem; line-height:1.4;">清洗、標準化、合併<br>Enterprise View</div>
         <div style="font-size:0.75rem; margin-top:0.2rem; font-weight:700; color:#2E7D32;">→ 你的 cleaned 表</div>
       </div>
@@ -1319,7 +1319,7 @@ details.collapse > summary .collapse-hint {
       </div>
     </div>
     <div class="reveal-up" style="background:var(--deep-purple); border-radius:0.5rem; padding:0.5rem 1rem; margin-top:0.6rem; font-size:0.75rem; text-align:center;">
-      <strong>兩套術語對照</strong>：Bronze/Silver/Gold（Databricks）= Raw/Staging/Application（傳統 DWH）= 銅/銀/金（口語）
+      <strong>術語對照</strong>：Bronze = Raw/Landing ｜ Silver = Staging/ODS ｜ Gold = Data Mart/Application
     </div>
     <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.8rem; font-weight:700;">Data Lineage：追蹤每筆資料從哪來、經過什麼處理、現在在哪</p>
   </div>

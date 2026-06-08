@@ -1236,549 +1236,508 @@ details.collapse > summary .collapse-hint {
 </nav>
 
 <section class="slide slide-cover" id="slide-1" aria-label="封面">
-
   <div class="data-flow" style="left:10%; height:120vh; --duration:7s; --delay:0s;"></div>
   <div class="data-flow" style="left:30%; height:100vh; --duration:9s; --delay:2s;"></div>
   <div class="data-flow" style="left:65%; height:110vh; --duration:6s; --delay:1s;"></div>
   <div class="data-flow" style="left:85%; height:95vh; --duration:11s; --delay:3s;"></div>
   <div class="slide-inner">
-
     <p class="reveal-up" style="font-size:var(--body-size); color:var(--text-muted); letter-spacing:0.1em;">Tibame 雲端資料工程師在職遠距班｜期中活動</p>
     <h1 class="cover-title reveal-up" style="font-size:var(--title-size); font-weight:900; line-height:1.15; margin-top:0.5rem;">
-      LLM × DE<br>
-      <span style="color:var(--electric-blue);">MVP Builder</span> 實戰工作坊
+      LLM × DE<br><span style="color:var(--electric-blue);">MVP Builder</span> 實戰工作坊
     </h1>
-    <p class="reveal-up" style="font-size:var(--h3-size); margin-top:1.5rem; color:var(--text-secondary);">
-      上次你畫了流程圖，今天把它做出來
+    <p class="reveal-up" style="font-size:var(--h3-size); margin-top:1.5rem; color:var(--text-secondary);">上次你畫了流程圖，今天把它做出來</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-2" aria-label="今日目標">
+  <div class="slide-inner">
+    <h2 class="reveal-up" style="color:var(--electric-blue);">今日目標：建一條 Mini Data Pipeline</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); border-radius:1rem; padding:1.2rem; margin:1rem 0; font-family:monospace; font-size:var(--body-size); text-align:center;">
+      CSV → pandas → <span style="color:var(--electric-blue); font-weight:700;">SQLite</span> (Bronze/Silver/Gold) → <span style="color:var(--electric-blue);">SQL</span> → <span style="color:var(--neon-purple);">LLM</span> → <span style="color:#7B1FA2;">FastAPI</span> → <span style="color:#7B1FA2;">Streamlit</span>
+    </div>
+    <div class="reveal-up" style="background:var(--deep-purple); border-radius:1rem; padding:1rem; margin-top:1rem;">
+      <h3 style="margin-bottom:0.5rem;">ELT vs ETL — 你今天做的是 ELT</h3>
+      <p style="font-size:var(--small-size); line-height:1.6;">
+        傳統 ETL：先轉換再載入資料庫。<strong>現代 ELT</strong>：先把原始資料載入資料庫（Bronze 層），再在資料庫內做轉換。
+        好處是保留原始資料可回溯、轉換邏輯用 SQL 管理、符合 Snowflake / BigQuery / Databricks 的主流架構。
+      </p>
+    </div>
+    <div class="reveal-up" style="display:grid; grid-template-columns:repeat(4,1fr); gap:0.8rem; margin-top:1rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.3rem;">🗄️</div><div style="font-weight:700;">pipeline.db</div><div style="font-size:0.8rem; color:var(--text-muted);">三層資料庫</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.3rem;">📊</div><div style="font-weight:700;">統計 CSV</div><div style="font-size:0.8rem; color:var(--text-muted);">分析產出</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.3rem;">📄</div><div style="font-weight:700;">report.md</div><div style="font-size:0.8rem; color:var(--text-muted);">LLM 分析報告</div>
+      </div>
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem; text-align:center;">
+        <div style="font-size:1.3rem;">⚡</div><div style="font-weight:700;">API + Dashboard</div><div style="font-size:0.8rem; color:var(--text-muted);">Data Product</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-3" aria-label="三段旅程">
+  <div class="slide-inner">
+    <h2 class="reveal-up" style="color:var(--electric-blue);">從期初到期末</h2>
+    <div class="reveal-up" style="margin-top:1rem; display:flex; flex-direction:column; gap:0.6rem; align-items:center;">
+      <div style="background:var(--deep-purple); padding:1rem 3rem; border-radius:1rem; text-align:center; opacity:0.6; width:80%;">
+        <div style="font-weight:700;">期初活動 ✅</div><div style="color:var(--text-muted);">紙筆畫流程圖 → 概念理解</div>
+      </div>
+      <div style="font-size:1.3rem;">↓</div>
+      <div style="background:var(--electric-blue); color:white; padding:1rem 3rem; border-radius:1rem; text-align:center; box-shadow:0 4px 20px rgba(83,145,255,0.3); width:80%;">
+        <div style="font-weight:900; font-size:var(--h3-size);">期中實戰工作坊（今天）</div>
+        <div>個人實作完整 ELT pipeline → MVP 作品</div>
+      </div>
+      <div style="font-size:1.3rem;">↓</div>
+      <div style="background:var(--deep-purple); padding:1rem 3rem; border-radius:1rem; text-align:center; opacity:0.6; width:80%;">
+        <div style="font-weight:700;">期末團專</div><div style="color:var(--text-muted);">團隊整合完整系統 + 部署</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-4" aria-label="Medallion Architecture">
+  <div class="slide-inner">
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Medallion Architecture（業界標準）</h2>
+    <p class="reveal-up" style="font-size:var(--small-size); color:var(--text-muted); margin-top:0.5rem;">
+      由 Databricks 提出的資料湖倉分層設計模式，被 Microsoft / Google / AWS 廣泛採用。
+    </p>
+    <div class="reveal-up" style="display:flex; gap:1rem; margin-top:1.5rem; justify-content:center;">
+      <div style="background:#E3F2FD; border:3px solid #1565C0; border-radius:1rem; padding:1.2rem; text-align:center; flex:1; max-width:250px;">
+        <div style="font-size:2rem;">🥉</div>
+        <div style="font-weight:900; color:#1565C0; font-size:1.2rem;">Bronze（Raw）</div>
+        <div style="font-size:0.85rem; margin-top:0.5rem; color:var(--text-secondary); line-height:1.5;">
+          原始資料直接灌入<br>保留原始格式<br>有缺漏、有雜訊<br><strong>→ raw 表</strong>
+        </div>
+      </div>
+      <div style="font-size:2rem; align-self:center;">→</div>
+      <div style="background:#E8F5E9; border:3px solid #2E7D32; border-radius:1rem; padding:1.2rem; text-align:center; flex:1; max-width:250px;">
+        <div style="font-size:2rem;">🥈</div>
+        <div style="font-weight:900; color:#2E7D32; font-size:1.2rem;">Silver（Cleaned）</div>
+        <div style="font-size:0.85rem; margin-top:0.5rem; color:var(--text-secondary); line-height:1.5;">
+          清洗、標準化、合併<br>型別正確、去重複<br>Enterprise view<br><strong>→ cleaned 表</strong>
+        </div>
+      </div>
+      <div style="font-size:2rem; align-self:center;">→</div>
+      <div style="background:#FFF3E0; border:3px solid #E65100; border-radius:1rem; padding:1.2rem; text-align:center; flex:1; max-width:250px;">
+        <div style="font-size:2rem;">🥇</div>
+        <div style="font-weight:900; color:#E65100; font-size:1.2rem;">Gold（Enriched）</div>
+        <div style="font-size:0.85rem; margin-top:0.5rem; color:var(--text-secondary); line-height:1.5;">
+          業務聚合、AI 加值<br>可直接用於分析/報告<br>對接 BI / API<br><strong>→ analyzed 表</strong>
+        </div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:1rem; font-size:var(--small-size); color:var(--text-muted);">
+      你今天做的 raw → cleaned → analyzed 就是 Medallion Architecture 的實踐
     </p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-2" aria-label="今日目標">
 
+<section class="slide slide-content" id="slide-5" aria-label="Pipeline 架構">
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">今日目標</h2>
-    <div class="reveal-up" style="margin-top:1.5rem;">
-      <p style="font-size:var(--h3-size); font-weight:700; text-align:center;">每人完成一條 Mini Data Pipeline</p>
-      <div style="background:var(--deep-purple); border-radius:1rem; padding:1.5rem; margin:1.5rem 0; font-family:monospace; font-size:var(--body-size); text-align:center; letter-spacing:0.05em;">
-        CSV → pandas → <span style="color:var(--electric-blue); font-weight:700;">SQLite</span> (raw/cleaned/analyzed) → <span style="color:var(--electric-blue); font-weight:700;">SQL</span> → <span style="color:var(--neon-purple); font-weight:700;">LLM</span> → <span style="color:#7B1FA2; font-weight:700;">FastAPI</span> → <span style="color:#7B1FA2; font-weight:700;">Streamlit</span>
-      </div>
-    </div>
-    <div class="reveal-up" style="display:grid; grid-template-columns: repeat(4, 1fr); gap:1rem; margin-top:1rem;">
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
-        <div style="font-size:1.5rem;">🗄️</div>
-        <div style="font-weight:700;">pipeline.db</div>
-        <div style="font-size:var(--small-size); color:var(--text-muted);">SQLite 三表</div>
-      </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
-        <div style="font-size:1.5rem;">📊</div>
-        <div style="font-weight:700;">統計 CSV</div>
-        <div style="font-size:var(--small-size); color:var(--text-muted);">processed/</div>
-      </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
-        <div style="font-size:1.5rem;">📄</div>
-        <div style="font-weight:700;">分析報告</div>
-        <div style="font-size:var(--small-size); color:var(--text-muted);">report.md</div>
-      </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
-        <div style="font-size:1.5rem;">⚡</div>
-        <div style="font-weight:700;">API + Dashboard</div>
-        <div style="font-size:var(--small-size); color:var(--text-muted);">FastAPI + Streamlit</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide slide-content" id="slide-3" aria-label="三段旅程">
-
-  <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">從期初到期末</h2>
-    <div class="reveal-up" style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.8rem; align-items:center;">
-      <div style="background:var(--deep-purple); padding:1.2rem 3rem; border-radius:1rem; text-align:center; opacity:0.6; width:80%;">
-        <div style="font-weight:700;">期初活動 ✅</div>
-        <div style="color:var(--text-muted);">紙筆畫流程圖 → 概念理解</div>
-      </div>
-      <div style="font-size:1.5rem;">↓</div>
-      <div style="background:var(--electric-blue); color:white; padding:1.2rem 3rem; border-radius:1rem; text-align:center; box-shadow:0 4px 20px rgba(83,145,255,0.3); width:80%;">
-        <div style="font-weight:900; font-size:var(--h3-size);">期中實戰工作坊（今天）</div>
-        <div>個人寫程式跑 pipeline → MVP 作品</div>
-      </div>
-      <div style="font-size:1.5rem;">↓</div>
-      <div style="background:var(--deep-purple); padding:1.2rem 3rem; border-radius:1rem; text-align:center; opacity:0.6; width:80%;">
-        <div style="font-weight:700;">期末團專</div>
-        <div style="color:var(--text-muted);">團隊整合完整系統</div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="slide slide-content" id="slide-4" aria-label="Pipeline">
-
-  <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">Pipeline 架構</h2>
-    <div class="reveal-up" style="display:flex; align-items:center; gap:0.4rem; margin-top:1.5rem; justify-content:center; flex-wrap:wrap;">
-      <div style="background:#E3F2FD; border:2px solid #1565C0; border-radius:1rem; padding:0.8rem 1rem; text-align:center; min-width:100px;">
-        <div style="font-size:1.5rem;">📄</div>
-        <div style="font-weight:800; color:#1565C0; font-size:0.9rem;">Extract</div>
-        <div style="font-size:0.75rem; color:var(--text-muted);">CSV 2,000 筆</div>
+    <div class="reveal-up" style="display:flex; align-items:center; gap:0.3rem; margin-top:1.2rem; justify-content:center; flex-wrap:wrap;">
+      <div style="background:#E3F2FD; border:2px solid #1565C0; border-radius:0.75rem; padding:0.6rem 0.8rem; text-align:center;">
+        <div style="font-weight:800; color:#1565C0; font-size:0.85rem;">📄 Extract</div>
+        <div style="font-size:0.7rem;">CSV → DataFrame</div>
       </div>
-      <div style="font-size:1.5rem; color:var(--electric-blue);">→</div>
-      <div style="background:#E8F5E9; border:2px solid #2E7D32; border-radius:1rem; padding:0.8rem 1rem; text-align:center; min-width:100px;">
-        <div style="font-size:1.5rem;">🔧</div>
-        <div style="font-weight:800; color:#2E7D32; font-size:0.9rem;">Transform</div>
-        <div style="font-size:0.75rem; color:var(--text-muted);">pandas 清洗</div>
+      <div style="color:var(--electric-blue);">→</div>
+      <div style="background:#E3F2FD; border:2px solid #1565C0; border-radius:0.75rem; padding:0.6rem 0.8rem; text-align:center;">
+        <div style="font-weight:800; color:#1565C0; font-size:0.85rem;">🗄️ Load（Bronze）</div>
+        <div style="font-size:0.7rem;">to_sql → raw 表</div>
       </div>
-      <div style="font-size:1.5rem; color:var(--electric-blue);">→</div>
-      <div style="background:#FFF3E0; border:2px solid #E65100; border-radius:1rem; padding:0.8rem 1rem; text-align:center; min-width:130px;">
-        <div style="font-size:1.5rem;">🗄️</div>
-        <div style="font-weight:800; color:#E65100; font-size:0.9rem;">Load → SQLite</div>
-        <div style="display:flex; gap:0.2rem; justify-content:center; margin-top:0.2rem;">
-          <span style="background:#BBDEFB; padding:0.1rem 0.4rem; border-radius:0.4rem; font-size:0.65rem;">raw</span>
-          <span style="background:#C8E6C9; padding:0.1rem 0.4rem; border-radius:0.4rem; font-size:0.65rem;">cleaned</span>
-          <span style="background:#FFE0B2; padding:0.1rem 0.4rem; border-radius:0.4rem; font-size:0.65rem;">analyzed</span>
+      <div style="color:var(--electric-blue);">→</div>
+      <div style="background:#E8F5E9; border:2px solid #2E7D32; border-radius:0.75rem; padding:0.6rem 0.8rem; text-align:center;">
+        <div style="font-weight:800; color:#2E7D32; font-size:0.85rem;">🔧 Transform（Silver）</div>
+        <div style="font-size:0.7rem;">清洗 → cleaned 表</div>
+      </div>
+      <div style="color:var(--electric-blue);">→</div>
+      <div style="display:flex; flex-direction:column; gap:0.3rem;">
+        <div style="background:#F3E5F5; border:2px solid #7B1FA2; border-radius:0.5rem; padding:0.3rem 0.6rem; text-align:center;">
+          <div style="font-weight:800; color:#7B1FA2; font-size:0.8rem;">📊 SQL Query</div>
+        </div>
+        <div style="background:#FCE4EC; border:2px solid #C62828; border-radius:0.5rem; padding:0.3rem 0.6rem; text-align:center;">
+          <div style="font-weight:800; color:#C62828; font-size:0.8rem;">🤖 LLM（Gold）</div>
         </div>
       </div>
-      <div style="font-size:1.5rem; color:var(--electric-blue);">→</div>
-      <div style="display:flex; flex-direction:column; gap:0.4rem;">
-        <div style="background:#F3E5F5; border:2px solid #7B1FA2; border-radius:0.75rem; padding:0.5rem 0.8rem; text-align:center;">
-          <div style="font-weight:800; color:#7B1FA2; font-size:0.85rem;">📊 SQL 查詢</div>
+      <div style="color:var(--electric-blue);">→</div>
+      <div style="display:flex; flex-direction:column; gap:0.3rem;">
+        <div style="background:var(--deep-purple); border:1px solid var(--text-muted); border-radius:0.5rem; padding:0.3rem 0.6rem; text-align:center;">
+          <div style="font-size:0.8rem;">📈 CSV + 📄 Report</div>
         </div>
-        <div style="background:#FCE4EC; border:2px solid #C62828; border-radius:0.75rem; padding:0.5rem 0.8rem; text-align:center;">
-          <div style="font-weight:800; color:#C62828; font-size:0.85rem;">🤖 LLM 分析</div>
-        </div>
-      </div>
-      <div style="font-size:1.5rem; color:var(--electric-blue);">→</div>
-      <div style="display:flex; flex-direction:column; gap:0.4rem;">
-        <div style="background:var(--deep-purple); border:2px solid var(--text-muted); border-radius:0.75rem; padding:0.5rem 0.8rem; text-align:center;">
-          <div style="font-weight:700; font-size:0.85rem;">📈 統計 CSV</div>
-        </div>
-        <div style="background:var(--deep-purple); border:2px solid var(--text-muted); border-radius:0.75rem; padding:0.5rem 0.8rem; text-align:center;">
-          <div style="font-weight:700; font-size:0.85rem;">📄 report.md</div>
+        <div style="border:2px dashed var(--text-muted); border-radius:0.5rem; padding:0.3rem 0.6rem; text-align:center; opacity:0.6;">
+          <div style="font-size:0.8rem;">⚡ API → 📊 Dashboard</div>
         </div>
       </div>
     </div>
-    <div class="reveal-up" style="margin-top:1.2rem; display:flex; justify-content:center; align-items:center; gap:0.5rem;">
-      <div style="border:2px dashed var(--text-muted); border-radius:0.75rem; padding:0.4rem 1rem; opacity:0.6; font-size:0.85rem;">
-        ⚡ <strong>FastAPI</strong>
-      </div>
-      <span style="color:var(--text-muted);">→</span>
-      <div style="border:2px dashed var(--text-muted); border-radius:0.75rem; padding:0.4rem 1rem; opacity:0.6; font-size:0.85rem;">
-        📊 <strong>Streamlit</strong>
-      </div>
+    <div class="reveal-up" style="background:var(--deep-purple); border-radius:0.75rem; padding:1rem; margin-top:1.2rem; font-size:0.85rem;">
+      <h3 style="margin-bottom:0.5rem;">Modern Data Stack 對照</h3>
+      <table style="width:100%; border-collapse:collapse;">
+        <tr><td style="padding:0.2rem;">Ingestion</td><td>→ 你的 <code>pd.read_csv()</code></td><td style="color:var(--text-muted);">（業界：Fivetran / Airbyte）</td></tr>
+        <tr><td>Storage</td><td>→ 你的 SQLite</td><td style="color:var(--text-muted);">（業界：Snowflake / BigQuery）</td></tr>
+        <tr><td>Transform</td><td>→ 你的 pandas + SQL</td><td style="color:var(--text-muted);">（業界：dbt）</td></tr>
+        <tr><td>AI/ML</td><td>→ 你的 LLM API</td><td style="color:var(--text-muted);">（業界：SageMaker / Vertex AI）</td></tr>
+        <tr><td>Serving</td><td>→ 你的 FastAPI + Streamlit</td><td style="color:var(--text-muted);">（業界：Looker / Metabase）</td></tr>
+      </table>
     </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-5" aria-label="時間表">
 
+<section class="slide slide-content" id="slide-6" aria-label="時間表">
   <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">時間表</h2>
-    <table class="reveal-up" style="width:100%; margin-top:1rem; border-collapse:collapse; font-size:0.85rem;">
-      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.5rem;">時段</th><th>分鐘</th><th>模式</th><th>內容</th><th>Notebook</th></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">10:00-10:30</td><td>30</td><td>講解</td><td>開場 + Pipeline Demo + 題目導覽</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.4rem; font-weight:700;">10:30-11:15</td><td>45</td><td>🔧 實作 1</td><td>clone → 選題 → 看 spec → 開始做</td><td>Section 0-1</td></tr>
-      <tr><td style="padding:0.3rem; color:var(--text-muted);" colspan="5">11:15-11:20 交流討論（5 min）</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">11:20-11:30</td><td>10</td><td>講解</td><td>ETL + SQLite 三表</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.4rem; font-weight:700;">11:30-12:10</td><td>40</td><td>🔧 實作 2</td><td>清洗 → SQLite → SQL 統計</td><td>Section 1-3</td></tr>
-      <tr><td style="padding:0.3rem; color:var(--text-muted);" colspan="5">12:10-12:15 交流討論（5 min）→ 12:15-13:30 午休</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">13:30-13:40</td><td>10</td><td>講解</td><td>LLM + prompt 設計</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.4rem; font-weight:700;">13:40-14:25</td><td>45</td><td>🔧 實作 3</td><td>LLM 分析 → 驗證 → 報告</td><td>Section 4-6</td></tr>
-      <tr><td style="padding:0.3rem; color:var(--text-muted);" colspan="5">14:25-14:30 交流討論（5 min）</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">14:30-14:40</td><td>10</td><td>講解</td><td>打包 + FastAPI/Dashboard</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.4rem; font-weight:700;">14:40-15:25</td><td>45</td><td>🔧 實作 4</td><td>打包 + FastAPI + Dashboard</td><td>Section 7-10</td></tr>
-      <tr><td style="padding:0.3rem; color:var(--text-muted);" colspan="5">15:25-15:30 交流討論 + Demo 準備（5 min）</td></tr>
-      <tr style="background:var(--electric-blue); color:white;"><td style="padding:0.4rem; font-weight:900;">15:30-16:00</td><td>30</td><td>🎤 Demo</td><td>閃電秀</td><td></td></tr>
+    <table class="reveal-up" style="width:100%; margin-top:0.8rem; border-collapse:collapse; font-size:0.8rem;">
+      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.4rem;">時段</th><th>分鐘</th><th>模式</th><th>內容</th><th>Notebook</th></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.35rem;">10:00-10:30</td><td>30</td><td>講解</td><td>開場 + Pipeline Demo + 題目導覽</td><td></td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.35rem; font-weight:700;">10:30-11:15</td><td>45</td><td>🔧 實作 1</td><td>clone → 選題 → 開 Notebook → 開始做</td><td>Section 0-1</td></tr>
+      <tr><td style="padding:0.25rem; color:var(--text-muted);" colspan="5">11:15-11:20 交流（5 min）</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.35rem;">11:20-11:30</td><td>10</td><td>講解</td><td>ETL + Data Quality + Medallion</td><td></td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.35rem; font-weight:700;">11:30-12:10</td><td>40</td><td>🔧 實作 2</td><td>清洗 → SQLite → SQL 統計</td><td>Section 1-3</td></tr>
+      <tr><td style="padding:0.25rem; color:var(--text-muted);" colspan="5">12:10-12:15 交流（5 min）→ 12:15-13:30 午休</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.35rem;">13:30-13:40</td><td>10</td><td>講解</td><td>LLM in Pipeline + Prompt Engineering</td><td></td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.35rem; font-weight:700;">13:40-14:25</td><td>45</td><td>🔧 實作 3</td><td>LLM 分析 → 驗證 → 報告</td><td>Section 4-6</td></tr>
+      <tr><td style="padding:0.25rem; color:var(--text-muted);" colspan="5">14:25-14:30 交流（5 min）</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.35rem;">14:30-14:40</td><td>10</td><td>講解</td><td>Data Product + FastAPI/Dashboard</td><td></td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.35rem; font-weight:700;">14:40-15:25</td><td>45</td><td>🔧 實作 4</td><td>FastAPI + Dashboard + 打包</td><td>Section 7-10</td></tr>
+      <tr><td style="padding:0.25rem; color:var(--text-muted);" colspan="5">15:25-15:30 交流 + Demo 準備（5 min）</td></tr>
+      <tr style="background:var(--electric-blue); color:white;"><td style="padding:0.35rem; font-weight:900;">15:30-16:00</td><td>30</td><td>🎤</td><td>閃電秀</td><td></td></tr>
     </table>
-    <div class="reveal-up" style="display:flex; gap:1.5rem; justify-content:center; margin-top:0.8rem; font-size:0.85rem;">
-      <span>講解 60 min</span>
-      <span style="color:var(--neon-purple); font-weight:700;">實作 175 min</span>
-      <span>交流 20 min</span>
-      <span>Demo 30 min</span>
-    </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-6" aria-label="規則">
 
+<section class="slide slide-content" id="slide-7" aria-label="規則">
   <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">活動規則</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1.5rem;">
-      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem;">
-        <h3 style="color:var(--electric-blue); margin-bottom:0.8rem;">✅ 可以做</h3>
-        <ul style="list-style:none; font-size:var(--body-size); line-height:2;">
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1.2rem;">
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+        <h3 style="color:var(--electric-blue);">✅ 可以做</h3>
+        <ul style="list-style:none; font-size:0.95rem; line-height:2;">
           <li>✅ 用 ChatGPT / Claude 生成語法</li>
           <li>✅ 用 AI debug 錯誤</li>
           <li>✅ 用 LLM API 做分類/摘要</li>
           <li>✅ 同組互相討論 debug</li>
         </ul>
       </div>
-      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem;">
-        <h3 style="color:var(--neon-purple); margin-bottom:0.8rem;">📋 注意</h3>
-        <ul style="list-style:none; font-size:var(--body-size); line-height:2;">
-          <li>⚠️ Demo 時要能說明 pipeline 每一步</li>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+        <h3 style="color:var(--neon-purple);">📋 注意</h3>
+        <ul style="list-style:none; font-size:0.95rem; line-height:2;">
+          <li>⚠️ Demo 時要能說明每一步</li>
           <li>✅ 做不完帶走繼續</li>
-          <li>✅ 完成到哪就 Demo 到哪</li>
         </ul>
-        <p style="margin-top:0.5rem; color:var(--text-muted); font-size:var(--small-size);">
-          Prompt 模板：<code>docs/ai_prompts.md</code>
-        </p>
+        <p style="margin-top:0.5rem; font-size:0.85rem; color:var(--text-muted);">Prompt 模板：<code>docs/ai_prompts.md</code></p>
       </div>
     </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-7" aria-label="角色定位">
 
+<section class="slide slide-content" id="slide-8" aria-label="DE 角色">
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">你今天的角色：資料解決方案顧問</h2>
-    <div class="reveal-up" style="margin-top:1.5rem;">
-      <div style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; margin-bottom:1.5rem;">
-        <h3 style="margin-bottom:0.5rem;">為什麼資料工程師是「顧問」？</h3>
-        <ul style="font-size:var(--body-size); line-height:1.8; list-style:none;">
-          <li>📋 <strong>懂業務面</strong>：理解客戶的痛點和需求，不只是寫 SQL</li>
-          <li>🔧 <strong>有技術能力</strong>：能用 Python / SQL / API 把想法落地成系統</li>
-          <li>🏗️ <strong>能建立架構</strong>：設計 ETL pipeline、資料庫分層、API 服務</li>
-          <li>🤝 <strong>協助導入</strong>：從原型到部署，協助組織用資料做決策</li>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">你的角色：資料解決方案顧問</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; margin-top:1rem;">
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+        <h3>為什麼 DE 是「顧問」？</h3>
+        <ul style="font-size:0.9rem; line-height:1.8; list-style:none; margin-top:0.3rem;">
+          <li>📋 <strong>懂業務</strong>：理解客戶痛點，把需求轉成技術規格</li>
+          <li>🔧 <strong>有技術</strong>：Python / SQL / API 落地成系統</li>
+          <li>🏗️ <strong>建架構</strong>：設計 ETL pipeline、資料庫分層</li>
+          <li>🤝 <strong>能導入</strong>：從原型到部署，讓組織用資料決策</li>
         </ul>
       </div>
-      <p style="font-size:var(--body-size); color:var(--text-secondary); text-align:center;">
-        今天你拿到一個業務情境 → 用技術做出可交付的分析成果 → 這就是顧問的工作
-      </p>
+      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+        <h3>DE vs DA vs DS</h3>
+        <table style="width:100%; font-size:0.85rem; margin-top:0.3rem;">
+          <tr><td style="padding:0.2rem;"><strong>DE</strong></td><td>建管線、管資料流、維護架構</td></tr>
+          <tr><td><strong>DA</strong></td><td>分析資料、做報表、回答業務問題</td></tr>
+          <tr><td><strong>DS</strong></td><td>建模型、做預測、設計演算法</td></tr>
+        </table>
+        <p style="font-size:0.85rem; margin-top:0.5rem; color:var(--neon-purple);">今天你同時體驗三個角色：建管線（DE）+ 做分析（DA）+ 用 LLM（DS）</p>
+      </div>
     </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-8" aria-label="6 題情境">
 
+<section class="slide slide-content" id="slide-9" aria-label="6 題情境">
   <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">6 個業務情境</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem; font-size:var(--small-size);">
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:0.8rem; font-size:0.85rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
         <strong style="color:var(--electric-blue);">題 1 零售 POS</strong>
-        <p style="color:var(--text-muted); margin-top:0.3rem;">老闆說「我有 10 萬筆交易紀錄但沒人在看」。你要找出暢銷商品、高價值客戶、各國市場差異。</p>
-        <p style="font-size:0.8rem;">📂 <code>orders.csv</code> — 9 欄（品項/數量/金額/客戶/國家）</p>
+        <p style="color:var(--text-muted); margin-top:0.2rem;">「10 萬筆交易沒人看」→ 暢銷商品 + 客戶分群 + 各國比較</p>
+        <p style="font-size:0.75rem;"><code>orders.csv</code> 9 欄 ｜ <span style="color:var(--text-muted);">Pipeline pattern: Batch ETL + Classification</span></p>
       </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
         <strong style="color:var(--electric-blue);">題 2 電商比價</strong>
-        <p style="color:var(--text-muted); margin-top:0.3rem;">老闆說「我想知道同一本書在 Amazon 和 Flipkart 價差多大」。你要找出異常價差、分析定價策略。</p>
-        <p style="font-size:0.8rem;">📂 <code>products.csv</code> — 7 欄（跨平台價格/評分）</p>
+        <p style="color:var(--text-muted); margin-top:0.2rem;">「跨平台價差有多大？」→ 價差分析 + 異常偵測 + 定價建議</p>
+        <p style="font-size:0.75rem;"><code>products.csv</code> 7 欄 ｜ <span style="color:var(--text-muted);">Pattern: Cross-source Join + Anomaly Detection</span></p>
       </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
         <strong style="color:var(--electric-blue);">題 3 音樂串流</strong>
-        <p style="color:var(--text-muted); margin-top:0.3rem;">產品經理說「哪些歌在 Spotify 紅但 TikTok 不紅？」你要做跨平台分析、產出推薦歌單。</p>
-        <p style="font-size:0.8rem;">📂 <code>tracks.csv</code> — 29 欄（Spotify/YouTube/TikTok）</p>
+        <p style="color:var(--text-muted); margin-top:0.2rem;">「Spotify 紅但 TikTok 不紅？」→ 跨平台比較 + 推薦歌單</p>
+        <p style="font-size:0.75rem;"><code>tracks.csv</code> 29 欄 ｜ <span style="color:var(--text-muted);">Pattern: Multi-platform Analytics</span></p>
       </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
         <strong style="color:var(--electric-blue);">題 4 叫車交通</strong>
-        <p style="color:var(--text-muted); margin-top:0.3rem;">營運主管說「想提前調度司機到熱點區域」。你要分析時段×地區的叫車量、小費模式。</p>
-        <p style="font-size:0.8rem;">📂 <code>trips.csv</code> + <code>taxi_zone_lookup.csv</code> — 需 merge 兩表</p>
+        <p style="color:var(--text-muted); margin-top:0.2rem;">「提前調度司機」→ 時段×地區熱點 + 小費分析</p>
+        <p style="font-size:0.75rem;"><code>trips.csv</code> + lookup ｜ <span style="color:var(--text-muted);">Pattern: Dimensional Join + Geospatial</span></p>
       </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
         <strong style="color:var(--electric-blue);">題 5 求職薪資</strong>
-        <p style="color:var(--text-muted); margin-top:0.3rem;">產品經理說「資料領域薪資行情到底如何？Remote 影響多大？」你要做薪資交叉分析。</p>
-        <p style="font-size:0.8rem;">📂 <code>jobs.csv</code> — 12 欄（薪資/經驗/公司/模式）</p>
+        <p style="color:var(--text-muted); margin-top:0.2rem;">「Remote 影響薪資多大？」→ 薪資交叉分析 + 職涯建議</p>
+        <p style="font-size:0.75rem;"><code>jobs.csv</code> 12 欄 ｜ <span style="color:var(--text-muted);">Pattern: Multi-dimensional Aggregation</span></p>
       </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
         <strong style="color:var(--electric-blue);">題 6 不動產房價</strong>
-        <p style="color:var(--text-muted); margin-top:0.3rem;">業務主管說「幫我做各區域的市場報告」。你要處理台灣實價登錄、做區域分析。</p>
-        <p style="font-size:0.8rem;">📂 <code>real_estate.csv</code> — 34 欄（中文 + 民國年轉換）</p>
+        <p style="color:var(--text-muted); margin-top:0.2rem;">「各區域市場報告」→ 區域分析 + 民國年轉換</p>
+        <p style="font-size:0.75rem;"><code>real_estate.csv</code> 34 欄 ｜ <span style="color:var(--text-muted);">Pattern: Schema Normalization + Locale Handling</span></p>
       </div>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.8rem; font-size:var(--small-size); color:var(--text-muted);">
-      詳細需求見各題 <code>requirements_spec.md</code>
-    </p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.5rem; font-size:0.8rem; color:var(--text-muted);">詳細需求：各題 <code>requirements_spec.md</code></p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-9" aria-label="Repo 導覽">
 
+<section class="slide slide-content" id="slide-10" aria-label="Repo 導覽">
   <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">Repo 導覽</h2>
-    <div class="reveal-up" style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; margin-top:1rem; font-family:monospace; font-size:0.85rem; line-height:1.8; white-space:pre;">data/raw/topic_N/
-├── requirements_spec.md      ← 先讀這個（需求規格）
-├── xxx.csv                   ← 你的資料（2,000 筆）
-├── pipeline_starter.ipynb    ← 打開這個開始做
-├── api.py                    ← Section 8（FastAPI）
-├── app.py                    ← Section 9（Streamlit）
-├── processed/                ← 統計結果（跑完產生）
-└── output/                   ← 報告（跑完產生）</div>
-    <div class="reveal-up" style="margin-top:1rem; font-size:var(--small-size);">
-      <p>📂 參考文件在 <code>docs/</code>：<code>ai_prompts.md</code>（AI prompt 模板）、<code>data_sources.md</code>（資料來源）、<code>README_TEMPLATE.md</code>（打包模板）</p>
-      <p style="margin-top:0.5rem;">🔗 GitHub: <code>github.com/lu791019/midterm-mvp-template</code></p>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem; margin-top:1rem; font-family:monospace; font-size:0.8rem; line-height:1.7; white-space:pre;">data/raw/topic_N/
+├── requirements_spec.md      ← 需求規格（先讀）
+├── xxx.csv                   ← 原始資料 2,000 筆
+├── pipeline_starter.ipynb    ← Notebook（從這開始）
+├── api.py                    ← FastAPI（Section 8）
+├── app.py                    ← Streamlit（Section 9）
+├── processed/                ← 統計產出
+└── output/                   ← 報告產出</div>
+    <div class="reveal-up" style="margin-top:0.8rem; font-size:0.85rem;">
+      <p>📂 <code>docs/</code>：<code>ai_prompts.md</code>（Prompt 模板）/ <code>data_sources.md</code>（資料來源）/ <code>README_TEMPLATE.md</code>（打包模板）</p>
+      <p style="margin-top:0.3rem;">🔗 <code>github.com/lu791019/midterm-mvp-template</code></p>
     </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-10" aria-label="Notebook">
 
+<section class="slide slide-content" id="slide-11" aria-label="Notebook">
   <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">Notebook 怎麼用</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1.5rem;">
-      <div style="background:#E8F5E9; padding:1.2rem; border-radius:1rem; border-left:4px solid #4CAF50;">
-        <div style="font-weight:900;">🟢 簡單</div>
-        <div>有 <code># 相關程式碼</code></div>
-        <div style="color:var(--text-muted); font-size:0.85rem;">取消註解、改欄位名</div>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
+      <div style="background:#E8F5E9; padding:1rem; border-radius:0.75rem; border-left:4px solid #4CAF50;">
+        <div style="font-weight:900;">🟢 簡單</div><div style="font-size:0.85rem;">有 <code># 相關程式碼</code>，取消註解改欄位</div>
       </div>
-      <div style="background:#FFF3E0; padding:1.2rem; border-radius:1rem; border-left:4px solid #FF9800;">
-        <div style="font-weight:900;">🟡 中等</div>
-        <div>有別的情境範例</div>
-        <div style="color:var(--text-muted); font-size:0.85rem;">看範例翻譯到你的欄位</div>
+      <div style="background:#FFF3E0; padding:1rem; border-radius:0.75rem; border-left:4px solid #FF9800;">
+        <div style="font-weight:900;">🟡 中等</div><div style="font-size:0.85rem;">有別的情境範例，看範例翻譯到你的欄位</div>
       </div>
-      <div style="background:#FFEBEE; padding:1.2rem; border-radius:1rem; border-left:4px solid #F44336;">
-        <div style="font-weight:900;">🔴 較難</div>
-        <div>有骨架填空</div>
-        <div style="color:var(--text-muted); font-size:0.85rem;">填 SQL / 欄位名</div>
+      <div style="background:#FFEBEE; padding:1rem; border-radius:0.75rem; border-left:4px solid #F44336;">
+        <div style="font-weight:900;">🔴 較難</div><div style="font-size:0.85rem;">有骨架填空（SQL / FastAPI / ipywidgets）</div>
       </div>
-      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem; border-left:4px solid var(--text-muted);">
-        <div style="font-weight:900;">⬜ 不需要改</div>
-        <div>直接 Shift+Enter</div>
-        <div style="color:var(--text-muted); font-size:0.85rem;">環境/檢查點/helper</div>
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; border-left:4px solid var(--text-muted);">
+        <div style="font-weight:900;">⬜ 不需要改</div><div style="font-size:0.85rem;">環境設定 / 檢查點 / LLM helper</div>
       </div>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:1rem; font-weight:700;">前面 🟢 手把手 → 中間 🟡 看範例 → 後面 🔴 填骨架</p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-11" aria-label="實作1">
 
+<section class="slide slide-content" id="slide-12" aria-label="實作1">
   <div class="slide-inner">
-
     <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(3rem, 10vw, 7rem); font-weight:900; color:var(--neon-purple); line-height:1.1;">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.5rem;">實作 1 — 環境準備 + 選題</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:1rem;">⏱ 45 分鐘</div>
+      <div style="font-size:clamp(3rem,10vw,7rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 1 — 環境準備 + 選題</div>
+      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.8rem;">⏱ 45 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1.5rem; text-align:left; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
-      <p>1️⃣ <code>git clone</code> 或下載 ZIP</p>
-      <p>2️⃣ 選題 → 打開 <code>requirements_spec.md</code> 讀需求</p>
-      <p>3️⃣ 開 <code>pipeline_starter.ipynb</code>（Colab 或本地）</p>
-      <p>4️⃣ 跑 Section 0（環境設定）</p>
-      <p>5️⃣ 開始 Section 1（Extract — 讀 CSV + 寫入 SQLite）</p>
+    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
+      <p>1️⃣ 沒有 GitHub 帳號？→ <code>github.com</code> 註冊（免費）</p>
+      <p>2️⃣ <code>git clone https://github.com/lu791019/midterm-mvp-template.git</code></p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;或到 GitHub 頁面點 <strong>Code → Download ZIP</strong> 解壓縮</p>
+      <p>3️⃣ 選題 → 讀 <code>requirements_spec.md</code></p>
+      <p>4️⃣ 開 <code>pipeline_starter.ipynb</code>（Colab 或本地 Jupyter）</p>
+      <p>5️⃣ 跑 Section 0 → 開始 Section 1（Extract → Bronze 層）</p>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:1rem; color:var(--text-muted); font-size:var(--small-size);">
-      前 4 格有 <code># 相關程式碼</code> ｜ 交流時間：跟組員分享你選了什麼題
-    </p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-12" aria-label="ETL">
 
+<section class="slide slide-content" id="slide-13" aria-label="ETL 講解">
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">ETL + SQLite 三表</h2>
-    <div class="reveal-up" style="display:flex; gap:1rem; margin-top:1.5rem; justify-content:center;">
-      <div style="background:#E3F2FD; padding:1rem; border-radius:1rem; text-align:center; flex:1;">
-        <div style="font-weight:900; color:#1565C0;">raw 表</div>
-        <div style="font-size:0.85rem;">原始灌入<br>有缺漏/格式亂</div>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">ETL + Data Quality</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:1rem;">
+        <h3>Data Quality 四維度</h3>
+        <table style="font-size:0.85rem; margin-top:0.3rem; width:100%;">
+          <tr><td style="padding:0.2rem;"><strong>完整性</strong></td><td>缺漏值有多少？→ <code>isnull().sum()</code></td></tr>
+          <tr><td><strong>一致性</strong></td><td>同欄位格式統一嗎？→ <code>dtypes</code></td></tr>
+          <tr><td><strong>時效性</strong></td><td>資料多新？→ 日期範圍檢查</td></tr>
+          <tr><td><strong>準確性</strong></td><td>數值合理嗎？→ <code>describe()</code></td></tr>
+        </table>
       </div>
-      <div style="font-size:1.5rem; align-self:center;">→</div>
-      <div style="background:#E8F5E9; padding:1rem; border-radius:1rem; text-align:center; flex:1;">
-        <div style="font-weight:900; color:#2E7D32;">cleaned 表</div>
-        <div style="font-size:0.85rem;">清洗後<br>型別正確/新欄位</div>
-      </div>
-      <div style="font-size:1.5rem; align-self:center;">→</div>
-      <div style="background:#FFF3E0; padding:1rem; border-radius:1rem; text-align:center; flex:1;">
-        <div style="font-weight:900; color:#E65100;">analyzed 表</div>
-        <div style="font-size:0.85rem;">AI 加值<br>有分類/摘要標籤</div>
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:1rem;">
+        <h3>pandas 常用方法</h3>
+        <table style="font-size:0.85rem; margin-top:0.3rem; width:100%;">
+          <tr><td style="padding:0.2rem;">缺漏值</td><td><code>df.dropna()</code></td></tr>
+          <tr><td>轉數字</td><td><code>pd.to_numeric(errors="coerce")</code></td></tr>
+          <tr><td>轉日期</td><td><code>pd.to_datetime()</code></td></tr>
+          <tr><td>合併表</td><td><code>df.merge()</code>（題 4）</td></tr>
+          <tr><td>民國年</td><td>前幾碼 + 1911（題 6）</td></tr>
+        </table>
       </div>
     </div>
-    <table class="reveal-up" style="width:100%; margin-top:1.5rem; border-collapse:collapse; font-size:0.85rem;">
-      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.5rem;">常見問題</th><th>pandas 方法</th></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">缺漏值</td><td><code>df.dropna(subset=[...])</code></td></tr>
-      <tr><td style="padding:0.4rem;">字串轉數字</td><td><code>pd.to_numeric(df["col"], errors="coerce")</code></td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">日期轉換</td><td><code>pd.to_datetime(df["col"])</code></td></tr>
-      <tr><td style="padding:0.4rem;">合併兩表</td><td><code>df.merge(other, left_on=..., right_on=...)</code>（題 4）</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">民國年轉西元</td><td>前幾碼 + 1911（題 6）</td></tr>
-    </table>
   </div>
 </section>
-<section class="slide slide-content" id="slide-13" aria-label="實作2">
 
+<section class="slide slide-content" id="slide-14" aria-label="實作2">
   <div class="slide-inner">
-
     <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(3rem, 10vw, 7rem); font-weight:900; color:var(--neon-purple); line-height:1.1;">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.5rem;">實作 2 — ETL Pipeline</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:1rem;">⏱ 40 分鐘</div>
+      <div style="font-size:clamp(3rem,10vw,7rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL Pipeline（Bronze → Silver）</div>
+      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.8rem;">⏱ 40 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1.5rem; text-align:left; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
-      <p>✅ Section 1：讀 CSV → 寫入 SQLite <strong>raw</strong> 表</p>
-      <p>✅ Section 2：清洗 → 寫入 <strong>cleaned</strong> 表</p>
+    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
+      <p>✅ Section 1：Extract → 寫入 <strong>Bronze</strong>（raw 表）</p>
+      <p>✅ Section 2：Transform → 寫入 <strong>Silver</strong>（cleaned 表）</p>
       <p>✅ Section 3：SQL 查詢統計 → 存 <code>processed/</code></p>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:1rem; color:var(--text-muted); font-size:var(--small-size);">
-      卡太久就跳過細節先建表 ｜ 交流時間：跟組員比較清洗策略和 SQL 寫法
-    </p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.8rem; font-size:var(--small-size); color:var(--text-muted);">交流：跟組員比較清洗策略和 SQL 寫法</p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-14" aria-label="LLM">
 
+<section class="slide slide-content" id="slide-15" aria-label="LLM 講解">
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">LLM 加值分析</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:1.5rem;">
-      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
-        <h3>Prompt 設計</h3>
-        <div style="font-size:0.85rem; line-height:1.8; margin-top:0.5rem;">
-          <p>1. 給明確標籤選項（不要開放式）</p>
-          <p>2. 要求 JSON 格式回傳</p>
-          <p>3. 加「不確定就選最接近的」</p>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">LLM in Data Pipeline</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:1rem;">
+        <h3>Structured Output</h3>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">LLM 回傳 JSON → 直接存入資料庫欄位</p>
+        <div style="font-family:monospace; font-size:0.8rem; background:rgba(0,0,0,0.05); padding:0.5rem; border-radius:0.5rem; margin-top:0.3rem;">
+          {"category": "家飾", "insight": "..."}
         </div>
-        <p style="margin-top:0.5rem; font-size:0.8rem; color:var(--text-muted);">範本：<code>docs/ai_prompts.md</code></p>
+        <p style="font-size:0.8rem; margin-top:0.3rem; color:var(--text-muted);">Prompt 設計：給標籤選項 + 要求 JSON + 不確定就選最接近的</p>
       </div>
-      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
-        <h3>API vs Fallback</h3>
-        <div style="font-size:0.85rem; line-height:1.8; margin-top:0.5rem;">
-          <p>有 API Key → 呼叫 GPT-4o-mini</p>
-          <p>沒有 → 用關鍵字規則判斷</p>
-          <p style="color:var(--neon-purple); font-weight:700;">兩個都能完成，沒 Key 不影響</p>
-        </div>
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:1rem;">
+        <h3>成本意識（LLM FinOps）</h3>
+        <p style="font-size:0.85rem; margin-top:0.3rem;">GPT-4o-mini：~$0.15 / 1M input tokens</p>
+        <p style="font-size:0.85rem;">2,000 筆 × ~100 tokens ≈ $0.03</p>
+        <p style="font-size:0.85rem; margin-top:0.5rem; color:var(--neon-purple); font-weight:700;">API 掛了？→ Fallback 規則版（零成本）</p>
+        <p style="font-size:0.8rem; margin-top:0.3rem; color:var(--text-muted);">業界做法：先跑 fallback baseline → API 加值比較效果</p>
       </div>
-    </div>
-    <div class="reveal-up" style="margin-top:1rem; font-size:0.85rem; text-align:center; color:var(--text-muted);">
-      流程：先跑 1 筆測試 → 確認 prompt 有效 → 再跑批次（50 筆）→ 結果寫入 analyzed 表
     </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-15" aria-label="實作3">
 
+<section class="slide slide-content" id="slide-16" aria-label="實作3">
   <div class="slide-inner">
-
     <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(3rem, 10vw, 7rem); font-weight:900; color:var(--neon-purple); line-height:1.1;">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.5rem;">實作 3 — LLM 分析 + 報告</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:1rem;">⏱ 45 分鐘</div>
+      <div style="font-size:clamp(3rem,10vw,7rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM 分析（Silver → Gold）</div>
+      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.8rem;">⏱ 45 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1.5rem; text-align:left; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
-      <p>✅ Section 4：LLM 分析 → 寫入 <strong>analyzed</strong> 表</p>
-      <p>✅ Section 5：跨表查詢驗證（data lineage）</p>
+    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
+      <p>✅ Section 4：LLM 分析 → 寫入 <strong>Gold</strong>（analyzed 表）</p>
+      <p>✅ Section 5：Data Lineage 驗證（跨三表查詢）</p>
       <p>✅ Section 6：產出 <code>output/report.md</code></p>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:1rem; color:var(--text-muted); font-size:var(--small-size);">
-      先跑 1 筆確認 prompt → 再跑批次 ｜ 交流時間：分享 LLM 分類結果和 prompt 經驗
-    </p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.8rem; font-size:var(--small-size); color:var(--text-muted);">先跑 1 筆確認 → 再批次 ｜ 交流：分享 prompt 經驗和分類結果</p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-16" aria-label="打包">
 
+<section class="slide slide-content" id="slide-17" aria-label="Data Product">
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">打包 + FastAPI + Dashboard</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-top:1.5rem;">
-      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+    <h2 class="reveal-up" style="color:var(--electric-blue);">Data Product：FastAPI + Dashboard</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:1rem; border-radius:1rem; margin-top:1rem;">
+      <p style="font-size:var(--body-size); line-height:1.6;">
+        Pipeline 的最終產出不是 CSV，而是<strong>給人用的產品</strong>。
+        API 讓工程師串接、Dashboard 讓業務看圖表。這就是 <strong>Data Product</strong> 的概念：
+        pipeline 的價值 = 有人能用它做決策。
+      </p>
+    </div>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.8rem; margin-top:1rem;">
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
         <h3>📋 打包</h3>
-        <p style="font-size:0.85rem; margin-top:0.5rem;">填 <code>README_TEMPLATE.md</code></p>
-        <p style="font-size:0.85rem;">填 <code>upgrade_plan.md</code></p>
-        <p style="font-size:0.85rem;">Section 7 自動檢查產出</p>
+        <p style="font-size:0.85rem;">README + upgrade_plan</p>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Section 7</p>
       </div>
-      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
         <h3>⚡ FastAPI</h3>
-        <p style="font-size:0.85rem; margin-top:0.5rem;">把 SQLite 結果包裝成 API</p>
-        <p style="font-size:0.85rem;">定義 endpoint + 測試</p>
-        <p style="font-size:0.85rem;">Section 8 或 <code>api.py</code></p>
+        <p style="font-size:0.85rem;">SQLite → API endpoint</p>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Section 8 / <code>api.py</code></p>
       </div>
-      <div style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem;">
+      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; text-align:center;">
         <h3>📊 Dashboard</h3>
-        <p style="font-size:0.85rem; margin-top:0.5rem;">ipywidgets 互動圖表</p>
-        <p style="font-size:0.85rem;">或 Streamlit（本地）</p>
-        <p style="font-size:0.85rem;">Section 9 或 <code>app.py</code></p>
+        <p style="font-size:0.85rem;">ipywidgets / Streamlit</p>
+        <p style="font-size:0.8rem; color:var(--text-muted);">Section 9 / <code>app.py</code></p>
       </div>
     </div>
   </div>
 </section>
-<section class="slide slide-content" id="slide-17" aria-label="實作4">
 
+<section class="slide slide-content" id="slide-18" aria-label="實作4">
   <div class="slide-inner">
-
     <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(3rem, 10vw, 7rem); font-weight:900; color:var(--neon-purple); line-height:1.1;">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.5rem;">實作 4 — FastAPI + Dashboard</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:1rem;">⏱ 45 分鐘</div>
+      <div style="font-size:clamp(3rem,10vw,7rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 4 — Data Product</div>
+      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.4rem 2rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.8rem;">⏱ 45 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1.5rem; text-align:left; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
-      <p>✅ Section 7：打包確認（自動檢查產出）</p>
-      <p>✅ 填寫 README + upgrade_plan</p>
+    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto; font-size:var(--body-size); line-height:2;">
+      <p>✅ Section 7：打包確認</p>
+      <p>✅ 填 README（用 <code>docs/README_TEMPLATE.md</code>）</p>
       <p>⭐ Section 8：FastAPI — 定義 API endpoint</p>
-      <p>⭐ Section 9：Dashboard — ipywidgets 互動圖表</p>
-      <p>⭐ Section 10：本地部署指引</p>
+      <p>⭐ Section 9：Dashboard — 互動圖表</p>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:1rem; color:var(--text-muted); font-size:var(--small-size);">
-      重點是 FastAPI + Dashboard ｜ 交流時間：準備 Demo
-    </p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.8rem; font-size:var(--small-size); color:var(--text-muted);">重點：FastAPI + Dashboard ｜ 交流：準備 Demo</p>
   </div>
 </section>
-<section class="slide slide-content" id="slide-18" aria-label="完成標準">
 
-  <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">最低完成標準</h2>
-    <div class="reveal-up" style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; margin-top:1.5rem; font-size:var(--h3-size); line-height:2.2;">
-      <p>☐ 跑完 Notebook Section 1-6</p>
-      <p>☐ pipeline.db 有 raw / cleaned / analyzed 三表</p>
-      <p>☐ processed/ 有統計 CSV</p>
-      <p>☐ output/report.md 有報告</p>
-      <p>☐ 填完 README + upgrade_plan</p>
-      <p>☐ 能用 2 分鐘講清楚 pipeline</p>
-    </div>
-  </div>
-</section>
 <section class="slide slide-content" id="slide-19" aria-label="Demo">
-
   <div class="slide-inner">
-
     <h2 class="reveal-up" style="color:var(--electric-blue);">🎤 閃電秀</h2>
-    <p class="reveal-up" style="text-align:center; font-size:var(--h3-size); font-weight:700; margin-top:1rem;">每人 ~2 分鐘</p>
-    <table class="reveal-up" style="width:80%; margin:1rem auto; border-collapse:collapse; font-size:var(--body-size);">
-      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.5rem;">時間</th><th>講什麼</th></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">0:00-0:20</td><td>題目解決什麼問題</td></tr>
-      <tr><td style="padding:0.4rem;">0:20-0:40</td><td>資料從哪來、怎麼清</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">0:40-1:00</td><td>LLM 做了什麼</td></tr>
-      <tr><td style="padding:0.4rem;">1:00-1:20</td><td>show output（report / dashboard）</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.4rem;">1:20-1:40</td><td>下一步怎麼升級</td></tr>
-      <tr><td style="padding:0.4rem;">1:40-2:00</td><td>快問快答</td></tr>
+    <p class="reveal-up" style="text-align:center; font-size:var(--h3-size); font-weight:700; margin-top:0.8rem;">每人 ~2 分鐘</p>
+    <table class="reveal-up" style="width:70%; margin:1rem auto; border-collapse:collapse; font-size:var(--body-size);">
+      <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.4rem;">時間</th><th>講什麼</th></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">0:00-0:20</td><td>題目和業務問題</td></tr>
+      <tr><td style="padding:0.3rem;">0:20-0:40</td><td>資料來源 + 清洗（Bronze → Silver）</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">0:40-1:00</td><td>LLM 做了什麼（Silver → Gold）</td></tr>
+      <tr><td style="padding:0.3rem;">1:00-1:20</td><td>show output（report / dashboard）</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">1:20-1:40</td><td>後續升級方向</td></tr>
+      <tr><td style="padding:0.3rem;">1:40-2:00</td><td>快問快答</td></tr>
     </table>
   </div>
 </section>
-<section class="slide slide-content" id="slide-20" aria-label="升級">
 
+<section class="slide slide-content" id="slide-20" aria-label="升級路線">
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="color:var(--electric-blue);">後續升級路線</h2>
-    <div class="reveal-up" style="background:var(--deep-purple); padding:1.5rem; border-radius:1rem; margin-top:1.5rem; font-size:var(--body-size); line-height:2.2;">
-      <table style="width:100%; border-collapse:collapse;">
-        <tr><td style="padding:0.3rem;">Colab Notebook</td><td style="text-align:center;">→</td><td>後續進階課程拆成 ETL 架構</td></tr>
-        <tr><td>SQLite</td><td style="text-align:center;">→</td><td>MySQL / BigQuery</td></tr>
-        <tr><td>手動跑 pipeline</td><td style="text-align:center;">→</td><td>Airflow DAG 排程</td></tr>
-        <tr><td>本地 Streamlit</td><td style="text-align:center;">→</td><td>Docker 容器化</td></tr>
-        <tr><td>本地開發</td><td style="text-align:center;">→</td><td>GCP 雲端部署</td></tr>
-        <tr style="font-weight:700;"><td>個人 MVP</td><td style="text-align:center;">→</td><td>期末團隊完整系統</td></tr>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">後續升級：Modern Data Stack</h2>
+    <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:1rem; margin-top:1rem;">
+      <table style="width:100%; font-size:0.9rem; border-collapse:collapse;">
+        <tr style="font-weight:700;"><td style="padding:0.3rem; width:30%;">今天</td><td style="width:5%; text-align:center;">→</td><td style="width:30%;">升級後</td><td style="color:var(--text-muted);">業界工具</td></tr>
+        <tr><td style="padding:0.3rem;">SQLite</td><td style="text-align:center;">→</td><td>MySQL / BigQuery</td><td style="color:var(--text-muted);">Snowflake</td></tr>
+        <tr><td>pandas transform</td><td style="text-align:center;">→</td><td>dbt</td><td style="color:var(--text-muted);">dbt Cloud</td></tr>
+        <tr><td>手動跑 pipeline</td><td style="text-align:center;">→</td><td>Airflow DAG</td><td style="color:var(--text-muted);">Dagster / Prefect</td></tr>
+        <tr><td>本地 Streamlit</td><td style="text-align:center;">→</td><td>Docker 容器化</td><td style="color:var(--text-muted);">Cloud Run</td></tr>
+        <tr style="font-weight:700;"><td>個人 MVP</td><td style="text-align:center;">→</td><td>期末團隊系統</td><td></td></tr>
       </table>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:1rem; font-size:var(--small-size); color:var(--text-muted);">
-      升級計畫模板：<code>docs/upgrade_plan.md</code> ｜ Docker 模板：<code>_advanced/</code>
+    <p class="reveal-up" style="text-align:center; margin-top:0.8rem; font-size:var(--small-size); color:var(--text-muted);">
+      升級計畫：<code>docs/upgrade_plan.md</code> ｜ Docker 模板：<code>_advanced/</code>
     </p>
   </div>
 </section>
+
 <section class="slide slide-cover" id="slide-21" aria-label="結尾">
-
   <div class="data-flow" style="left:10%; height:120vh; --duration:7s; --delay:0s;"></div>
-  <div class="data-flow" style="left:30%; height:100vh; --duration:9s; --delay:2s;"></div>
   <div class="data-flow" style="left:65%; height:110vh; --duration:6s; --delay:1s;"></div>
-  <div class="data-flow" style="left:85%; height:95vh; --duration:11s; --delay:3s;"></div>
   <div class="slide-inner">
-
-    <h2 class="reveal-up" style="font-size:var(--h2-size); color:var(--electric-blue);">三件事</h2>
-    <div class="reveal-up" style="margin-top:2rem; font-size:var(--h3-size); line-height:2.5; text-align:center;">
+    <h2 class="reveal-up" style="font-size:var(--h2-size); color:var(--electric-blue);">收尾</h2>
+    <div class="reveal-up" style="margin-top:1.5rem; font-size:var(--h3-size); line-height:2.5; text-align:center;">
       <p><strong>1.</strong> Notebook + pipeline.db + 報告帶走</p>
       <p><strong>2.</strong> 課後 push 到你的 GitHub</p>
-      <p><strong>3.</strong> 後續課程回來升級這個專案</p>
+      <p><strong>3.</strong> 後續課程會持續升級這個專案</p>
     </div>
-    <div class="reveal-up" style="margin-top:2.5rem; text-align:center;">
-      <p style="font-size:var(--title-size); font-weight:900; color:var(--neon-purple);">
-        同一個專案，<br>每學一個新技術就升級一次。
+    <div class="reveal-up" style="margin-top:2rem; text-align:center;">
+      <p style="font-size:var(--h2-size); font-weight:900; color:var(--neon-purple);">
+        今天建的 pipeline 架構，<br>就是後續每個技術模組的實作基礎。
       </p>
-      <p style="margin-top:2rem; font-size:var(--h3-size); color:var(--text-muted);">── Q&A ──</p>
+      <p style="margin-top:1.5rem; font-size:var(--h3-size); color:var(--text-muted);">── Q&A ──</p>
     </div>
   </div>
 </section>
+
+
 <script>
 (function() {
   'use strict';

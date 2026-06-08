@@ -514,7 +514,7 @@ Notebook → pipeline.db → api.py（API）→ app.py（Dashboard）
 ```
 今天（期中）                    後續課程
 ──────────────────────────────────────────
-Colab Notebook 手動跑       →   EP01 拆成 ETL 架構
+Colab Notebook 手動跑       →   後續進階課程拆成 ETL 架構
 SQLite                      →   MySQL / BigQuery
 CSV 檔案                    →   資料庫
 手動觸發 pipeline           →   Airflow DAG 排程

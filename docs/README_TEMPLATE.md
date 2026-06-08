@@ -79,7 +79,7 @@ streamlit run app.py
 
 | 階段 | 升級內容 | 對應課程 |
 |------|---------|---------|
-| EP01 | 回顧 MVP → 拆成正式 ETL 架構 | 帶狀課 |
+| 後續進階課程 | 回顧 MVP → 拆成正式 ETL 架構 | 帶狀課 |
 | Docker | 容器化 pipeline + dashboard | Docker 模組 |
 | Airflow | run_pipeline 改成 DAG 排程 | Airflow 模組 |
 | MySQL / BigQuery | CSV 換成資料庫 | 資料庫模組 |

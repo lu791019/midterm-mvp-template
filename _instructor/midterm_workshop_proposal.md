@@ -26,16 +26,16 @@
 **核心設計**：工作坊產出的專案不是一次性練習，而是一個 **隨課程進度持續升級的長期作品**：
 
 ```
-期初活動              工作坊（期中）              EP01 與後續課程升級
+期初活動              工作坊（期中）              後續進階課程 與後續課程升級
 ──────────────       ──────────────           ──────────────
-紙筆流程圖        →   個人 LLM x DE 粗 MVP →   EP01 拆成 ETL 架構
+紙筆流程圖        →   個人 LLM x DE 粗 MVP →   後續進階課程 拆成 ETL 架構
 業務需求草稿      →   可跑 pipeline        →   WSL / VS Code / GitHub 整理
 工具選型討論      →   demo + 升級草稿      →   Docker / Airflow / GCP 升級
 
-同一個專案，從期中原型開始，EP01 正式回收，每學一個新技術就升級一次
+同一個專案，從期中原型開始，後續進階課程 正式回收，每學一個新技術就升級一次
 ```
 
-完整整合藍圖見 `LLM_DE_MVP_INTEGRATION_PLAN.md`。本工作坊的定位是產出 **v0-v2 的個人 MVP 種子**；EP01 會回收成果，產出 `mvp_review.md`、`etl_mapping.md`、`mvp_upgrade_plan.md`，後續課程再逐步升級到 GitHub / Docker / Airflow / GCP。
+完整整合藍圖見 `LLM_DE_MVP_INTEGRATION_PLAN.md`。本工作坊的定位是產出 **v0-v2 的個人 MVP 種子**；後續進階課程 會回收成果，產出 `mvp_review.md`、`etl_mapping.md`、`mvp_upgrade_plan.md`，後續課程再逐步升級到 GitHub / Docker / Airflow / GCP。
 
 ### 1.2 為什麼需要這個工作坊
 
@@ -43,9 +43,9 @@
 |------|---------|
 | 學了 Python 但不知道怎麼用在資料工程場景 | 以產業情境驅動，讓技術落地 |
 | 對 AI/LLM 在資料工程中的角色感到模糊 | 實際操作 ChatGPT + LLM API，體驗具體用法 |
-| 上次活動只停在「討論」層面，缺乏動手成就感 | 每人產出可跑、可展示、可被 EP01 回收的 MVP 原型 |
+| 上次活動只停在「討論」層面，缺乏動手成就感 | 每人產出可跑、可展示、可被 後續進階課程 回收的 MVP 原型 |
 | 轉職者缺乏「我做得到」的信心 | 闖關制 + Starter Code 降低門檻，保障完成率 |
-| 沒有可展示的作品集 | 每人帶走作品素材，EP01 後逐步整理成正式 repo 與作品集 |
+| 沒有可展示的作品集 | 每人帶走作品素材，後續進階課程 後逐步整理成正式 repo 與作品集 |
 
 ### 1.3 活動定位：工作坊骨架 × 黑客松調味
 
@@ -107,7 +107,7 @@
 | 執行單位 | 組 | 個人（組內互助，跨題討論） |
 | 產出 | 一張流程圖（組） | 可跑 MVP 原型（個人） |
 | 動手程度 | 畫圖 + 討論 | 寫 code + 跑 AI + 接 Dashboard |
-| 帶走什麼 | 概念理解 | 可展示作品素材，EP01 後整理成作品集 |
+| 帶走什麼 | 概念理解 | 可展示作品素材，後續進階課程 後整理成作品集 |
 | 團隊價值 | 分工協作 | 同儕學習 + 解題互助 + 團隊默契 |
 
 ### 3.3 設計原則
@@ -116,15 +116,15 @@
 |------|------|
 | **低門檻、高天花板** | Starter Code + 模板降低起步難度；Dashboard 部署讓強者不無聊 |
 | **傳統 vs AI 對比** | 每關都有「手動做法」和「AI 做法」的體驗，學員切身感受效率差異 |
-| **做不完沒關係** | 帶走的模板資料夾裡素材都在，EP01 後可繼續整理 |
-| **成果可延伸** | 工作坊產出會在 EP01 回收，後續再對接 GitHub、Docker、排程自動化、雲端部署 |
+| **做不完沒關係** | 帶走的模板資料夾裡素材都在，後續進階課程 後可繼續整理 |
+| **成果可延伸** | 工作坊產出會在 後續進階課程 回收，後續再對接 GitHub、Docker、排程自動化、雲端部署 |
 
 ### 3.4 MVP 版本階梯
 
 | 版本 | 名稱 | 工作坊中做到什麼 | 後續怎麼升級 |
 |---|---|---|---|
 | **v0** | Notebook Prototype | Colab / Notebook 手動跑 ETL + LLM 分析 | 拆成 `.py` script |
-| **v1** | Local Folder / Starter Repo | 本地資料夾或講師模板，能保留程式與輸出 | EP01 後整理成 GitHub repo、README、架構圖 |
+| **v1** | Local Folder / Starter Repo | 本地資料夾或講師模板，能保留程式與輸出 | 後續進階課程 後整理成 GitHub repo、README、架構圖 |
 | **v2** | Runnable Tool | `run_pipeline.py` / Streamlit 本地展示 | 補測試與設定管理 |
 | **v3** | Dockerized MVP | 使用講師模板嘗試 `docker compose up`，只體驗價值 | 學完 Docker 後自行改寫 |
 | **v4** | Scheduled Pipeline | 手動執行或簡單 Python schedule | 學完 Airflow 後改 DAG |
@@ -273,7 +273,7 @@
 
 | 升級階段 | 對應課程 | 升級內容 |
 |---------|---------|---------|
-| EP01 | 帶狀課回收 | 回顧 MVP → 拆成正式 ETL 架構 → 產出 etl_mapping.md |
+| 後續進階課程 | 帶狀課回收 | 回顧 MVP → 拆成正式 ETL 架構 → 產出 etl_mapping.md |
 | Docker | 容器化模組 | 把 pipeline + Streamlit 容器化，`docker compose up` 一鍵啟動 |
 | Airflow | 排程模組 | 把 `run_pipeline.py` 改成 DAG，定時自動跑 |
 | MySQL / BigQuery | 資料庫模組 | 把 CSV 換成資料庫，SQL 查詢取代 `pd.read_csv` |
@@ -332,8 +332,8 @@ my-data-project/
 ### 8.2 工作坊結束時的引導打包流程（10 min，包含在總結環節中）
 
 1. 講師帶學員將 Colab Notebook 下載 / 存到 Google Drive
-2. 提供 GitHub Repo 模板連結（可當天 fork，也可 EP01 後再整理）
-3. 提供 README 模板 + EP01 回收清單 + LinkedIn 貼文模板
+2. 提供 GitHub Repo 模板連結（可當天 fork，也可 後續進階課程 後再整理）
+3. 提供 README 模板 + 後續進階課程 回收清單 + LinkedIn 貼文模板
 
 ### 8.3 課後延伸路徑
 
@@ -342,7 +342,7 @@ my-data-project/
 ```
 工作坊結束（每人帶走可跑 MVP 原型）
     │
-    ├── EP01：回顧 MVP、拆成 ETL、補升級計畫
+    ├── 後續進階課程：回顧 MVP、拆成 ETL、補升級計畫
     │
     ├── 課後 / EP04：上傳 GitHub（附教學文件）
     │
@@ -366,7 +366,7 @@ my-data-project/
 | 需求規格書 | 個人產出的客戶需求分析文件 |
 | 完整 Pipeline Notebook / script | 包含 ETL + AI 加值的 Colab Notebook 或 Python script |
 | Dashboard 模板 | 可接入資料即時展示的 Streamlit App |
-| MVP 升級素材 | `requirements_spec.md`、輸出結果、demo 截圖、`upgrade_plan.md` 草稿，供 EP01 回收 |
+| MVP 升級素材 | `requirements_spec.md`、輸出結果、demo 截圖、`upgrade_plan.md` 草稿，供 後續進階課程 回收 |
 
 ### 9.2 衡量指標
 
@@ -376,7 +376,7 @@ my-data-project/
 | Dashboard / Demo 完成率 | ≥ 80% 學員能用截圖、Notebook output、Streamlit 或口頭方式完成展示 |
 | AI 工具使用率 | 100% 學員至少體驗過 ChatGPT + LLM API |
 | 學員滿意度 | 活動後問卷 ≥ 4.2 / 5.0 |
-| EP01 回收完成率 | ≥ 80% 學員能在 EP01 補出 `mvp_review.md`、`etl_mapping.md`、`mvp_upgrade_plan.md` |
+| 後續進階課程 回收完成率 | ≥ 80% 學員能在 後續進階課程 補出 `mvp_review.md`、`etl_mapping.md`、`mvp_upgrade_plan.md` |
 
 ---
 
@@ -452,23 +452,23 @@ my-data-project/
 | 關卡 2：pandas 資料清洗 | Python / pandas 基礎 | MySQL / BigQuery |
 | 關卡 2：SQL 查詢載入資料 | SQL 與資料庫 | 雲端資料倉儲 |
 | 關卡 3：呼叫 LLM API | API request / response 概念體驗 | Secret Manager / LLM FinOps |
-| 關卡 4：MVP 打包 | README 草稿 / Streamlit 模板 / demo 素材 | EP01 回顧、GitHub、Docker / Airflow / GCP |
+| 關卡 4：MVP 打包 | README 草稿 / Streamlit 模板 / demo 素材 | 後續進階課程 回顧、GitHub、Docker / Airflow / GCP |
 
 ### 12.2 工作坊作品的持續升級路徑
 
-工作坊產出的 MVP 原型將先在 EP01 被回收與拆解，再隨後續課程模組逐步升級，最終成為結業專題的基礎：
+工作坊產出的 MVP 原型將先在 後續進階課程 被回收與拆解，再隨後續課程模組逐步升級，最終成為結業專題的基礎：
 
 ```
-期初              期中（工作坊）                  EP01 與後續課程模組
+期初              期中（工作坊）                  後續進階課程 與後續課程模組
 ────────────────────────────────────────────────────────────
-紙筆流程圖     →   Colab / Notebook 手動執行    →   EP01 ETL mapping → Docker 容器化
+紙筆流程圖     →   Colab / Notebook 手動執行    →   後續進階課程 ETL mapping → Docker 容器化
 需求草稿       →   Streamlit 本地 Dashboard     →   README / repo → docker-compose 部署
 資料來源想像   →   CSV / SQLite                →   MySQL / BigQuery
 工具選型討論   →   手動觸發 pipeline           →   Airflow 排程自動化
 團隊情境       →   個人 MVP 原型               →   GCP 雲端部署
 ```
 
-> **對學員的價值**：同一個專案從期中原型跟到結業，EP01 先整理成工程化路線，每學一個新技術就升級一次。最終放進履歷的不是一次性練習題，而是一個歷經多次迭代的完整作品。
+> **對學員的價值**：同一個專案從期中原型跟到結業，後續進階課程 先整理成工程化路線，每學一個新技術就升級一次。最終放進履歷的不是一次性練習題，而是一個歷經多次迭代的完整作品。
 
 ---
 
@@ -482,7 +482,7 @@ my-data-project/
 | T-1 週 | 通知 | 學員事前準備通知（帳號申請、Colab 測試連結） |
 | T-3 天 | 驗證 | 場地 Wi-Fi 壓力測試、API Key 額度確認、備案方案確認 |
 | 當天 | 執行 | 工作坊 |
-| T+1 天 | 回饋 | 發送問卷 + EP01 回收清單 + 課後延伸教學文件（GitHub 上傳指引、Streamlit Cloud 部署教學） |
+| T+1 天 | 回饋 | 發送問卷 + 後續進階課程 回收清單 + 課後延伸教學文件（GitHub 上傳指引、Streamlit Cloud 部署教學） |
 
 ---
 

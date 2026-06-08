@@ -37,7 +37,7 @@
 | **5** | 與 TibaMe 課程的銜接 |
 | **6** | 預期成果 + Q&A |
 
-> 今天結束你會帶走一個**可升級的個人 LLM x DE MVP 原型**，EP01 會再整理成正式工程專案。
+> 今天結束你會帶走一個**可升級的個人 LLM x DE MVP 原型**，後續進階課程 會再整理成正式工程專案。
 
 ---
 
@@ -50,7 +50,7 @@
     ↓
 期中工作坊（個人實作粗版 MVP）  ← 你在這
     ↓
-EP01（回顧 MVP、拆成 ETL、規劃升級）
+後續進階課程（回顧 MVP、拆成 ETL、規劃升級）
     ↓
 期末團專（團隊交付完整系統）
 ```
@@ -72,13 +72,13 @@ EP01（回顧 MVP、拆成 ETL、規劃升級）
 ```
 期初：紙筆畫流程     →  概念理解（誰做什麼）
 期中：個人寫程式     →  動手實作（用程式碼跑出來）  ← 你在這
-EP01：工程化整理     →  ETL mapping + 升級計畫
+後續進階課程：工程化整理     →  ETL mapping + 升級計畫
 期末：團隊整合系統   →  完整交付（含部署 + Demo）
 ```
 
 ### 每階段都會：
 - 處理同樣 5 個環節：資料來源 → 截取 → 儲存 → 轉換 → 應用
-- **能力疊加**：紙筆 → Notebook / script MVP → EP01 工程化整理 → Docker / Airflow / 雲端部署
+- **能力疊加**：紙筆 → Notebook / script MVP → 後續進階課程 工程化整理 → Docker / Airflow / 雲端部署
 - **視角擴大**：個人 → 隊友 → 客戶
 
 > 期中是中繼站，**不是終點**。
@@ -143,15 +143,15 @@ EP01：工程化整理     →  ETL mapping + 升級計畫
 |---|---|---|
 | 1 | **低門檻、高天花板** | Starter Code 降低起步難度；Dashboard 部署讓強者不無聊 |
 | 2 | **傳統 vs AI 對比** | 每關都有「手動做法」和「AI 做法」，切身感受效率差異 |
-| 3 | **做不完沒關係** | 帶走的模板與輸出都在，EP01 會回來整理 |
-| 4 | **成果可延伸** | 工作坊產出先對接 EP01，再對接 GitHub / Docker / Airflow / GCP |
+| 3 | **做不完沒關係** | 帶走的模板與輸出都在，後續進階課程 會回來整理 |
+| 4 | **成果可延伸** | 工作坊產出先對接 後續進階課程，再對接 GitHub / Docker / Airflow / GCP |
 
 ### MVP 版本階梯
 
 | 版本 | 工作坊狀態 | 後續升級 |
 |---|---|---|
 | v0 | Notebook 跑完 ETL + LLM | 拆成 `.py` |
-| v1 | 本地資料夾 / starter repo | EP01 後整理成 GitHub + README |
+| v1 | 本地資料夾 / starter repo | 後續進階課程 後整理成 GitHub + README |
 | v2 | `run_pipeline.py` / Streamlit | 補測試與設定 |
 | v3+ | Docker / Airflow / GCP | 後續課程升級 |
 
@@ -189,7 +189,7 @@ EP01：工程化整理     →  ETL mapping + 升級計畫
 
 ### 做不完沒關係
 - 模板、輸出結果、demo 素材都會保留下來
-- EP01 會回收並整理成正式工程化路線
+- 後續進階課程 會回收並整理成正式工程化路線
 - 後續課程會回來升級這個專案
 
 ---
@@ -439,13 +439,13 @@ llm-de-mvp/
 ├── app.py                       ← Streamlit Dashboard 模板
 └── docs/
     ├── requirements_spec.md     ← 關卡 1 產出的需求規格書
-    ├── pipeline.mmd             ← 期初流程圖升級版，EP01 再正式整理
+    ├── pipeline.mmd             ← 期初流程圖升級版，後續進階課程 再正式整理
     ├── data_source.md           ← 資料來源說明
     ├── tech_decision.md         ← 工具選型理由
     └── upgrade_plan.md          ← Docker / Airflow / GCP 升級計畫
 ```
 
-> 今天先求能跑、能展示、能討論。EP01 會把它整理成真正的工程專案。
+> 今天先求能跑、能展示、能討論。後續進階課程 會把它整理成真正的工程專案。
 
 ---
 
@@ -458,7 +458,7 @@ llm-de-mvp/
 | **Dashboard 模板** | 可接入資料即時展示的 Streamlit App（關卡 4） |
 | **Starter 專案資料夾** | 整合以上所有產出的專案資料夾，可之後上傳 GitHub |
 | **升級計畫** | 後續 Docker / Airflow / GCP 要怎麼改 |
-| **EP01 回收素材** | `mvp_review.md`、`etl_mapping.md`、`mvp_upgrade_plan.md` 的內容來源 |
+| **後續進階課程 回收素材** | `mvp_review.md`、`etl_mapping.md`、`mvp_upgrade_plan.md` 的內容來源 |
 
 ### 衡量指標（內部目標）
 - 關卡 1-3 完成率 ≥ 80%
@@ -475,9 +475,9 @@ llm-de-mvp/
 |---|---|
 | 1 | 將 Colab Notebook **下載 / 存到 Google Drive** |
 | 2 | 下載或複製提供的 **starter 專案模板** |
-| 3 | 套用 **README 草稿 + EP01 回收清單 + LinkedIn 貼文模板** |
+| 3 | 套用 **README 草稿 + 後續進階課程 回收清單 + LinkedIn 貼文模板** |
 
-> 今天先讓作品素材收好。GitHub 與正式 repo 整理會在 EP01 之後繼續補。
+> 今天先讓作品素材收好。GitHub 與正式 repo 整理會在 後續進階課程 之後繼續補。
 
 ---
 
@@ -557,9 +557,9 @@ llm-de-mvp/
 ### 工作坊作品的持續升級路徑
 
 ```
-期初                 期中（工作坊）                  EP01 與後續課程模組
+期初                 期中（工作坊）                  後續進階課程 與後續課程模組
 ──────────────────────────────────────────────────
-紙筆流程圖        →   Notebook / script 手動執行    →   EP01 ETL mapping → Docker 容器化
+紙筆流程圖        →   Notebook / script 手動執行    →   後續進階課程 ETL mapping → Docker 容器化
 需求草稿          →   Streamlit 本地 Dashboard      →   README / GitHub → docker-compose 部署
 資料來源想像      →   CSV / SQLite                 →   MySQL / BigQuery
 工具選型討論      →   手動觸發 pipeline            →   Airflow 排程自動化
@@ -568,7 +568,7 @@ llm-de-mvp/
 
 ### 課後 1 週的行動
 
-- **EP01**：回顧 MVP、拆成 ETL、補升級計畫
+- **後續進階課程**：回顧 MVP、拆成 ETL、補升級計畫
 - **GitHub 課程後**：上傳 GitHub（附教學文件，講師會給模板）
 - **學 Docker / Airflow / GCP**：每學一個新技術就回來升級這個專案
 - **結業專題**：擴充為完整作品集
@@ -610,7 +610,7 @@ llm-de-mvp/
 
 ### 三個提醒
 
-- **保留今天的輸出與專案資料夾**（EP01 會用到）
+- **保留今天的輸出與專案資料夾**（後續進階課程 會用到）
 - **GitHub 會在後續正式整理**（不要今天卡在工具安裝）
 - **後續課程會回來升級這個專案**（不要做完就丟）
 - **同情境的組員是期末隊友**（保持聯絡）

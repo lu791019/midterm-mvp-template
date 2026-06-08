@@ -1,6 +1,6 @@
 # Midterm MVP Starter Repo Format
 
-> 目的：讓學員 clone / 下載後，能依照固定步驟完成自己的期中 MVP。期中先求可跑、可展示、可在 EP01 回收；GitHub、Docker、正式 package 化會在後續課程細教。
+> 目的：讓學員 clone / 下載後，能依照固定步驟完成自己的期中 MVP。期中先求可跑、可展示、可在 後續進階課程回收；GitHub、Docker、正式 package 化會在後續課程細教。
 
 ## 使用流程
 

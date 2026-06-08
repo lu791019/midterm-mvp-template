@@ -1369,10 +1369,10 @@ details.collapse > summary .collapse-hint {
       <h3 style="font-size:0.9rem; margin-bottom:0.3rem;">Notebook Section 對應</h3>
       <table style="width:100%; border-collapse:collapse;">
         <tr><td style="padding:0.15rem;">Section 0</td><td>環境</td><td style="padding:0.15rem;">Section 5</td><td>Data Lineage 驗證</td></tr>
-        <tr><td>Section 1</td><td>Extract → Bronze</td><td>Section 6</td><td>報告</td></tr>
-        <tr><td>Section 2</td><td>Transform → Silver</td><td>Section 7</td><td>打包</td></tr>
+        <tr><td>Section 1</td><td>Extract &amp; Load → 存入 Bronze（raw 表）</td><td>Section 6</td><td>報告</td></tr>
+        <tr><td>Section 2</td><td>Transform → 存入 Silver（cleaned 表）</td><td>Section 7</td><td>打包</td></tr>
         <tr><td>Section 3</td><td>SQL 統計</td><td>Section 8</td><td>FastAPI</td></tr>
-        <tr><td>Section 4</td><td>LLM → Gold</td><td>Section 9-10</td><td>Dashboard + 部署</td></tr>
+        <tr><td>Section 4</td><td>LLM Enrich → 存入 Gold（analyzed 表）</td><td>Section 9-10</td><td>Dashboard + 部署</td></tr>
       </table>
     </div>
   </div>
@@ -1389,10 +1389,10 @@ details.collapse > summary .collapse-hint {
       <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">10:30-11:15</td><td>45</td><td>🔧 實作1</td><td>clone → 選題 → 環境 → 開始做</td><td>Section 0-1</td></tr>
       <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">11:15-11:20 交流 5min</td></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">11:20-11:30</td><td>10</td><td>講解</td><td>Data Quality + Medallion</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">11:30-12:10</td><td>40</td><td>🔧 實作2</td><td>ETL: Bronze → Silver → SQL</td><td>Section 1-3</td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">11:30-12:10</td><td>40</td><td>🔧 實作2</td><td>ETL: 存入 Bronze → 清洗存入 Silver → SQL</td><td>Section 1-3</td></tr>
       <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">12:10-12:15 交流 5min → 12:15-13:30 午休</td></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">13:30-13:40</td><td>10</td><td>講解</td><td>LLM in Pipeline + FinOps</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">13:40-14:25</td><td>45</td><td>🔧 實作3</td><td>LLM → Gold → 驗證 → 報告</td><td>Section 4-6</td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">13:40-14:25</td><td>45</td><td>🔧 實作3</td><td>LLM → 存入 Gold → 驗證 → 報告</td><td>Section 4-6</td></tr>
       <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">14:25-14:30 交流 5min</td></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">14:30-14:40</td><td>10</td><td>講解</td><td>Data Product + FastAPI</td><td></td></tr>
       <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">14:40-15:25</td><td>45</td><td>🔧 實作4</td><td>FastAPI + Dashboard + 打包</td><td>Section 7-10</td></tr>
@@ -1498,7 +1498,7 @@ details.collapse > summary .collapse-hint {
       <p>2️⃣ <code>git clone</code> 或 GitHub 頁面 → <strong>Code → Download ZIP</strong></p>
       <p>3️⃣ 選題 → 讀 <code>requirements_spec.md</code></p>
       <p>4️⃣ 開 <code>pipeline_starter.ipynb</code>（Colab / Jupyter）</p>
-      <p>5️⃣ 跑 Section 0（環境）→ 開始 Section 1（Extract → Bronze）</p>
+      <p>5️⃣ 跑 Section 0（環境）→ 開始 Section 1（Extract &amp; Load → 存入 Bronze 層）</p>
     </div>
   </div>
 </section>
@@ -1559,12 +1559,12 @@ details.collapse > summary .collapse-hint {
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL Pipeline（Bronze → Silver）</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL: Extract &amp; Load → Transform</div>
       <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 40 分鐘</div>
     </div>
     <div class="reveal-up" style="margin-top:1rem; max-width:650px; margin-left:auto; margin-right:auto; font-size:0.95rem; line-height:2;">
-      <p>✅ Section 1：Extract → 寫入 <strong>Bronze</strong></p>
-      <p>✅ Section 2：Transform → 寫入 <strong>Silver</strong></p>
+      <p>✅ Section 1：Extract &amp; Load → 存入 <strong>Bronze</strong></p>
+      <p>✅ Section 2：Transform → 存入 <strong>Silver</strong></p>
       <p>✅ Section 3：SQL 統計 → 存 <code>processed/</code></p>
     </div>
     <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">交流：跟組員比較清洗策略和 SQL 寫法</p>
@@ -1621,11 +1621,11 @@ details.collapse > summary .collapse-hint {
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM 分析（Silver → Gold）</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM Enrich → Gold 層</div>
       <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
     </div>
     <div class="reveal-up" style="margin-top:1rem; max-width:650px; margin-left:auto; margin-right:auto; font-size:0.95rem; line-height:2;">
-      <p>✅ Section 4：LLM 分析 → 寫入 <strong>Gold</strong></p>
+      <p>✅ Section 4：LLM Enrich → 存入 <strong>Gold</strong></p>
       <p>✅ Section 5：Data Lineage 驗證</p>
       <p>✅ Section 6：產出 <code>output/report.md</code></p>
     </div>
@@ -1713,8 +1713,8 @@ details.collapse > summary .collapse-hint {
     <table class="reveal-up" style="width:65%; margin:0.8rem auto; border-collapse:collapse; font-size:0.9rem;">
       <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.3rem;">時間</th><th>講什麼</th></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.25rem;">0:00-0:20</td><td>業務問題</td></tr>
-      <tr><td style="padding:0.25rem;">0:20-0:40</td><td>資料 + 清洗（Bronze → Silver）</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.25rem;">0:40-1:00</td><td>LLM（Silver → Gold）</td></tr>
+      <tr><td style="padding:0.25rem;">0:20-0:40</td><td>Extract &amp; Load (Bronze) → Transform (Silver)</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.25rem;">0:40-1:00</td><td>LLM Enrich → Gold</td></tr>
       <tr><td style="padding:0.25rem;">1:00-1:20</td><td>show output</td></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.25rem;">1:20-1:40</td><td>升級方向</td></tr>
       <tr><td style="padding:0.25rem;">1:40-2:00</td><td>問答</td></tr>

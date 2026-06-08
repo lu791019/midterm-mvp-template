@@ -1531,24 +1531,24 @@ details.collapse > summary .collapse-hint {
 <section class="slide slide-content" id="slide-15" aria-label="pandas 清洗">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 pandas 清洗方法 + 各題難點</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.8rem;">
-      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
-        <h3 style="font-size:0.9rem;">常用方法</h3>
-        <table style="font-size:0.8rem; width:100%; margin-top:0.3rem;">
-          <tr><td style="padding:0.2rem;">缺漏值</td><td><code>df.dropna()</code></td></tr>
-          <tr><td>轉數字</td><td><code>pd.to_numeric(errors="coerce")</code></td></tr>
-          <tr><td>轉日期</td><td><code>pd.to_datetime()</code></td></tr>
-          <tr><td>合併表</td><td><code>df.merge()</code></td></tr>
-          <tr><td>去逗號</td><td><code>.str.replace(",","")</code></td></tr>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(0.5rem, 1vw, 1rem); margin-top:clamp(0.5rem, 1vw, 1rem);">
+      <div style="background:var(--deep-purple); padding:clamp(0.5rem, 1vw, 1rem); border-radius:0.75rem;">
+        <h3 style="font-size:var(--small-size);">常用方法</h3>
+        <table style="font-size:var(--small-size); width:100%; margin-top:0.3rem;">
+          <tr><td style="padding:0.15rem 0.3rem;">缺漏值</td><td><code>df.dropna()</code></td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">轉數字</td><td><code>pd.to_numeric()</code></td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">轉日期</td><td><code>pd.to_datetime()</code></td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">合併表</td><td><code>df.merge()</code></td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">去逗號</td><td><code>.str.replace(",")</code></td></tr>
         </table>
       </div>
-      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
-        <h3 style="font-size:0.9rem;">各題特殊難點</h3>
-        <table style="font-size:0.8rem; width:100%; margin-top:0.3rem;">
-          <tr><td style="padding:0.2rem;">題3</td><td>Spotify Streams 有逗號</td></tr>
-          <tr><td>題4</td><td><strong>merge 兩表</strong>（trips + zone lookup）</td></tr>
-          <tr><td>題6</td><td><strong>民國年轉西元</strong>（+1911）</td></tr>
-          <tr><td>題1,2,5</td><td>相對直覺</td></tr>
+      <div style="background:var(--deep-purple); padding:clamp(0.5rem, 1vw, 1rem); border-radius:0.75rem;">
+        <h3 style="font-size:var(--small-size);">各題特殊難點</h3>
+        <table style="font-size:var(--small-size); width:100%; margin-top:0.3rem;">
+          <tr><td style="padding:0.15rem 0.3rem;">題3</td><td>Spotify Streams 有逗號</td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">題4</td><td><strong>merge 兩表</strong>（trips + lookup）</td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">題6</td><td><strong>民國年轉西元</strong>（+1911）</td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;">題1,2,5</td><td>相對直覺</td></tr>
         </table>
       </div>
     </div>

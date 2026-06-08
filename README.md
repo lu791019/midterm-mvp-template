@@ -261,10 +261,11 @@ midterm-mvp-template/
 │   └── docker-compose.yml           Docker Compose 設定
 │
 └── _instructor/                 ← 📂 講師用（學員不需要看）
-    ├── facilitator_guide.md          講師引導手冊（當天照著跑）
-    ├── student_handbook.md           學員手冊（發給學員）
+    ├── mvp_builder_slides.html        投影簡報（26 張 HTML）
+    ├── speaker_notes.md              講稿（逐字稿）
+    ├── facilitator_guide.md          講師引導手冊
+    ├── student_handbook.md           學員手冊
     ├── midterm_workshop_proposal.md  工作坊企劃書
-    ├── midterm_workshop_slides.md    簡報原稿
     └── solutions/                    每題 pipeline 完整答案
         ├── topic_1_solution.ipynb
         ├── topic_2_solution.ipynb

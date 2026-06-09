@@ -86,7 +86,7 @@ def get_summary():
     result = {}
     for table in ["raw_orders", "cleaned_orders", "analyzed_orders"]:
         try:
-            result[table] = pd.read_sql(f"SELECT COUNT(*) as n FROM {table}", conn)["n"][0]
+            result[table] = int(pd.read_sql(f"SELECT COUNT(*) as n FROM {table}", conn)["n"][0])
         except Exception:
             result[table] = 0
     conn.close()

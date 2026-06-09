@@ -21,7 +21,7 @@ def stats():
 @app.get("/analyzed")
 def analyzed(limit: int = 20):
     conn = get_conn()
-    df = pd.read_sql(f"""SELECT 鄉鎮市區, area_character, llm_insight FROM analyzed_realestate LIMIT {{min(limit,100)}}""", conn)
+    df = pd.read_sql(f"""SELECT 鄉鎮市區, area_character, llm_insight FROM analyzed_realestate LIMIT {min(limit,100)}""", conn)
     conn.close()
     return df.to_dict(orient="records")
 @app.get("/summary")

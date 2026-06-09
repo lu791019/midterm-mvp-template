@@ -1237,9 +1237,6 @@ details.collapse > summary .collapse-hint {
     <a href="#slide-21" class="nav-dot" aria-label="Slide 21"></a>
     <a href="#slide-22" class="nav-dot" aria-label="Slide 22"></a>
     <a href="#slide-23" class="nav-dot" aria-label="Slide 23"></a>
-    <a href="#slide-24" class="nav-dot" aria-label="Slide 24"></a>
-    <a href="#slide-25" class="nav-dot" aria-label="Slide 25"></a>
-    <a href="#slide-26" class="nav-dot" aria-label="Slide 26"></a>
 </nav>
 
 <section class="slide slide-cover" id="slide-1" aria-label="封面">
@@ -1286,8 +1283,6 @@ details.collapse > summary .collapse-hint {
     </div>
   </div>
 </section>
-
-
 
 <section class="slide slide-content" id="slide-4" aria-label="Medallion">
   <div class="slide-inner">
@@ -1362,7 +1357,8 @@ details.collapse > summary .collapse-hint {
       <div style="color:var(--electric-blue); font-size:1.2rem;">→</div>
       <div style="display:flex; flex-direction:column; gap:0.2rem;">
         <div style="background:var(--deep-purple); border:1px solid var(--text-muted); border-radius:0.4rem; padding:0.3rem 0.5rem;"><div style="font-size:0.75rem;">📈 CSV + 📄 Report</div></div>
-        <div style="border:2px dashed var(--text-muted); border-radius:0.4rem; padding:0.3rem 0.5rem; opacity:0.6;"><div style="font-size:0.75rem;">⚡ API → 📊 Dashboard</div></div>
+        <div style="background:var(--deep-purple); border:1px solid var(--text-muted); border-radius:0.4rem; padding:0.3rem 0.5rem;"><div style="font-size:0.75rem;">⚡ API</div></div>
+        <div style="border:2px dashed var(--text-muted); border-radius:0.4rem; padding:0.3rem 0.5rem; opacity:0.5;"><div style="font-size:0.65rem;">📊 Dashboard（回家作業）</div></div>
       </div>
     </div>
     <div class="reveal-up" style="background:var(--deep-purple); border-radius:0.75rem; padding:0.8rem; margin-top:1rem; font-size:0.8rem;">
@@ -1372,33 +1368,27 @@ details.collapse > summary .collapse-hint {
         <tr><td>Section 1</td><td>Extract &amp; Load → 存入 Bronze（raw 表）</td><td>Section 6</td><td>報告</td></tr>
         <tr><td>Section 2</td><td>Transform → 存入 Silver（cleaned 表）</td><td>Section 7</td><td>打包</td></tr>
         <tr><td>Section 3</td><td>SQL 統計</td><td>Section 8</td><td>FastAPI</td></tr>
-        <tr><td>Section 4</td><td>LLM Enrich → 存入 Gold（analyzed 表）</td><td>Section 9-10</td><td>Dashboard + 部署</td></tr>
+        <tr><td>Section 4</td><td>LLM Enrich → 存入 Gold（analyzed 表）</td><td style="color:var(--text-muted);">Section 9-10</td><td style="color:var(--text-muted);">Dashboard（回家作業）</td></tr>
       </table>
     </div>
   </div>
 </section>
 
-
-
 <section class="slide slide-content" id="slide-7" aria-label="時間表">
   <div class="slide-inner">
-    <h2 class="reveal-up" style="color:var(--electric-blue);">時間表</h2>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">時間表（下午 3 小時）</h2>
     <table class="reveal-up" style="width:100%; margin-top:0.6rem; border-collapse:collapse; font-size:0.75rem;">
       <tr style="background:var(--electric-blue); color:white;"><th style="padding:0.35rem;">時段</th><th>分鐘</th><th>模式</th><th>內容</th><th>Notebook</th></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">10:00-10:30</td><td>30</td><td>講解</td><td>開場 + Demo + 題目導覽</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">10:30-11:15</td><td>45</td><td>🔧 實作1</td><td>clone → 選題 → 環境 → 開始做</td><td>Section 0-1</td></tr>
-      <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">11:15-11:20 交流 5min</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">11:20-11:30</td><td>10</td><td>講解</td><td>Data Quality + Medallion</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">11:30-12:10</td><td>40</td><td>🔧 實作2</td><td>ETL: 存入 Bronze → 清洗存入 Silver → SQL</td><td>Section 1-3</td></tr>
-      <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">12:10-12:15 交流 5min → 12:15-13:30 午休</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">13:30-13:40</td><td>10</td><td>講解</td><td>LLM in Pipeline + FinOps</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">13:40-14:25</td><td>45</td><td>🔧 實作3</td><td>LLM → 存入 Gold → 驗證 → 報告</td><td>Section 4-6</td></tr>
-      <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">14:25-14:30 交流 5min</td></tr>
-      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">14:30-14:40</td><td>10</td><td>講解</td><td>Data Product + FastAPI</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">14:40-15:25</td><td>45</td><td>🔧 實作4</td><td>FastAPI + Dashboard + 打包</td><td>Section 7-10</td></tr>
-      <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">15:25-15:30 交流 + 準備 Demo 5min</td></tr>
-      <tr style="background:var(--electric-blue); color:white;"><td style="padding:0.3rem; font-weight:900;">15:30-16:00</td><td>30</td><td>🎤</td><td>閃電秀</td><td></td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">13:30-13:55</td><td>25</td><td>講解</td><td>開場 + 概念 + 題目導覽</td><td></td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">13:55-14:40</td><td>45</td><td>🔧 實作1</td><td>clone → 選題 → ETL → SQL</td><td>Section 0-3</td></tr>
+      <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">14:40-14:45 交流 5min</td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">14:45-14:55</td><td>10</td><td>講解</td><td>LLM + Prompt + Data Product + API</td><td></td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">14:55-15:40</td><td>45</td><td>🔧 實作2</td><td>LLM → Gold → 驗證 → 報告 → API</td><td>Section 4-8</td></tr>
+      <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">15:40-15:45 準備 Demo 5min</td></tr>
+      <tr style="background:var(--electric-blue); color:white;"><td style="padding:0.3rem; font-weight:900;">15:45-16:15</td><td>30</td><td>🎤</td><td>閃電秀 Demo</td><td></td></tr>
+      <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">16:15-16:30</td><td>15</td><td>收尾</td><td>升級路線 + Q&amp;A</td><td></td></tr>
     </table>
+    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">Dashboard（Section 9-10）= 回家作業</p>
   </div>
 </section>
 
@@ -1486,92 +1476,53 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-13" aria-label="實作1">
+<section class="slide slide-content" id="slide-13" aria-label="Data Quality + pandas">
   <div class="slide-inner">
-    <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 1 — 環境準備 + 選題</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
-    </div>
-    <div class="reveal-up" style="margin-top:1rem; max-width:650px; margin-left:auto; margin-right:auto; font-size:0.95rem; line-height:2;">
-      <p>1️⃣ 沒有 GitHub？→ <code>github.com</code> 註冊（免費）</p>
-      <p>2️⃣ <code>git clone</code> 或 GitHub 頁面 → <strong>Code → Download ZIP</strong></p>
-      <p>3️⃣ 選題 → 讀 <code>requirements_spec.md</code></p>
-      <p>4️⃣ 開 <code>pipeline_starter.ipynb</code>（Colab / Jupyter）</p>
-      <p>5️⃣ 跑 Section 0（環境）→ 開始 Section 1（Extract &amp; Load → 存入 Bronze 層）</p>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="slide slide-content" id="slide-14" aria-label="Data Quality">
-  <div class="slide-inner">
-    <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：Data Quality</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
-        <h3>四維度</h3>
-        <table style="font-size:0.85rem; width:100%; margin-top:0.3rem;">
-          <tr><td style="padding:0.2rem;"><strong>完整性</strong></td><td>缺漏值多少？</td></tr>
-          <tr><td><strong>一致性</strong></td><td>同欄位格式統一？</td></tr>
-          <tr><td><strong>時效性</strong></td><td>資料多新？</td></tr>
-          <tr><td><strong>準確性</strong></td><td>數值合理？</td></tr>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 Data Quality + 清洗方法</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.8rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
+        <h3 style="font-size:var(--small-size);">資料品質四維度</h3>
+        <table style="font-size:var(--small-size); width:100%; margin-top:0.3rem;">
+          <tr><td style="padding:0.15rem 0.3rem;"><strong>完整性</strong></td><td>缺漏值多少？→ <code>isnull().sum()</code></td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;"><strong>一致性</strong></td><td>同欄位格式統一？→ <code>dtypes</code></td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;"><strong>時效性</strong></td><td>資料多新？</td></tr>
+          <tr><td style="padding:0.15rem 0.3rem;"><strong>準確性</strong></td><td>數值合理？→ <code>describe()</code></td></tr>
         </table>
-        <p style="font-size:0.8rem; margin-top:0.5rem; color:var(--text-muted);">業界工具：Great Expectations / Soda / Monte Carlo</p>
+        <p style="font-size:0.75rem; margin-top:0.3rem; color:var(--text-muted);">Schema-on-Read：Bronze 不強制格式，讀取時再處理</p>
       </div>
-      <div style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem;">
-        <h3>Schema-on-Read</h3>
-        <p style="font-size:0.85rem; margin-top:0.3rem; line-height:1.6;">Bronze 層不強制格式，讀的時候再處理。這就是為什麼先灌原始資料進 raw 表，Transform 階段才清洗。</p>
-        <p style="font-size:0.85rem; margin-top:0.3rem;">對比 Schema-on-Write（傳統 RDBMS）：寫入時就要符合格式。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="slide slide-content" id="slide-15" aria-label="pandas 清洗">
-  <div class="slide-inner">
-    <h2 class="reveal-up" style="color:var(--electric-blue);">📋 pandas 清洗方法 + 各題難點</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:clamp(0.5rem, 1vw, 1rem); margin-top:clamp(0.5rem, 1vw, 1rem);">
-      <div style="background:var(--deep-purple); padding:clamp(0.5rem, 1vw, 1rem); border-radius:0.75rem;">
-        <h3 style="font-size:var(--small-size);">常用方法</h3>
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem;">
+        <h3 style="font-size:var(--small-size);">pandas 常用 + 各題難點</h3>
         <table style="font-size:var(--small-size); width:100%; margin-top:0.3rem;">
           <tr><td style="padding:0.15rem 0.3rem;">缺漏值</td><td><code>df.dropna()</code></td></tr>
           <tr><td style="padding:0.15rem 0.3rem;">轉數字</td><td><code>pd.to_numeric()</code></td></tr>
           <tr><td style="padding:0.15rem 0.3rem;">轉日期</td><td><code>pd.to_datetime()</code></td></tr>
           <tr><td style="padding:0.15rem 0.3rem;">合併表</td><td><code>df.merge()</code></td></tr>
-          <tr><td style="padding:0.15rem 0.3rem;">去逗號</td><td><code>.str.replace(",")</code></td></tr>
         </table>
-      </div>
-      <div style="background:var(--deep-purple); padding:clamp(0.5rem, 1vw, 1rem); border-radius:0.75rem;">
-        <h3 style="font-size:var(--small-size);">各題特殊難點</h3>
-        <table style="font-size:var(--small-size); width:100%; margin-top:0.3rem;">
-          <tr><td style="padding:0.15rem 0.3rem;">題3</td><td>Spotify Streams 有逗號</td></tr>
-          <tr><td style="padding:0.15rem 0.3rem;">題4</td><td><strong>merge 兩表</strong>（trips + lookup）</td></tr>
-          <tr><td style="padding:0.15rem 0.3rem;">題6</td><td><strong>民國年轉西元</strong>（+1911）</td></tr>
-          <tr><td style="padding:0.15rem 0.3rem;">題1,2,5</td><td>相對直覺</td></tr>
-        </table>
+        <p style="font-size:0.75rem; margin-top:0.3rem; color:var(--text-muted);">題4 merge 兩表 ｜ 題6 民國年+1911 ｜ 題3 去逗號</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-16" aria-label="實作2">
+<section class="slide slide-content" id="slide-14" aria-label="實作1">
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL: Extract &amp; Load → Transform</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 40 分鐘</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 1 — ETL Pipeline</div>
+      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
     </div>
     <div class="reveal-up" style="margin-top:1rem; max-width:650px; margin-left:auto; margin-right:auto; font-size:0.95rem; line-height:2;">
-      <p>✅ Section 1：Extract &amp; Load → 存入 <strong>Bronze</strong></p>
-      <p>✅ Section 2：Transform → 存入 <strong>Silver</strong></p>
-      <p>✅ Section 3：SQL 統計 → 存 <code>processed/</code></p>
+      <p>1️⃣ <code>git clone</code> 或 Download ZIP → 選題 → 讀 <code>requirements_spec.md</code></p>
+      <p>2️⃣ Section 0：環境準備（<code>pip install</code>）</p>
+      <p>3️⃣ Section 1：Extract &amp; Load → 存入 <strong>Bronze</strong></p>
+      <p>4️⃣ Section 2：Transform → 存入 <strong>Silver</strong></p>
+      <p>5️⃣ Section 3：SQL 統計 → 存 <code>processed/</code></p>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">交流：跟組員比較清洗策略和 SQL 寫法</p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">前 4 格有 🟢 相關程式碼 ｜ 交流：跟組員分享選題和清洗策略</p>
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-17" aria-label="LLM 業界">
+<section class="slide slide-content" id="slide-15" aria-label="LLM 業界">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：LLM in Data Pipeline</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
@@ -1591,7 +1542,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-18" aria-label="Prompt 活動">
+<section class="slide slide-content" id="slide-16" aria-label="Prompt 活動">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 Prompt 設計 + API vs Fallback</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
@@ -1617,23 +1568,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-19" aria-label="實作3">
-  <div class="slide-inner">
-    <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM Enrich → Gold 層</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
-    </div>
-    <div class="reveal-up" style="margin-top:1rem; max-width:650px; margin-left:auto; margin-right:auto; font-size:0.95rem; line-height:2;">
-      <p>✅ Section 4：LLM Enrich → 存入 <strong>Gold</strong></p>
-      <p>✅ Section 5：Data Lineage 驗證</p>
-      <p>✅ Section 6：產出 <code>output/report.md</code></p>
-    </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">先 1 筆確認 prompt → 再批次 ｜ 交流：分享 prompt 和分類結果</p>
-  </div>
-</section>
-
-<section class="slide slide-content" id="slide-20" aria-label="Data Product 業界">
+<section class="slide slide-content" id="slide-17" aria-label="Data Product 業界">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：Data Product</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; margin-top:1rem;">
@@ -1651,48 +1586,48 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-21" aria-label="FastAPI Dashboard 活動">
+<section class="slide slide-content" id="slide-18" aria-label="FastAPI + 打包">
   <div class="slide-inner">
-    <h2 class="reveal-up" style="color:var(--electric-blue);">📋 FastAPI + Dashboard + 打包</h2>
-    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:0.6rem; margin-top:1rem;">
+    <h2 class="reveal-up" style="color:var(--electric-blue);">📋 FastAPI + 打包</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:1rem;">
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.6rem; text-align:center;">
+        <h3 style="font-size:0.9rem;">⚡ FastAPI</h3>
+        <p style="font-size:0.8rem;">SQLite → API endpoint</p>
+        <p style="font-size:0.8rem;"><code>/health</code> <code>/stats/products</code> <code>/analyzed</code></p>
+        <p style="font-size:0.75rem; color:var(--text-muted);">Section 8 / <code>api.py</code></p>
+      </div>
       <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.6rem; text-align:center;">
         <h3 style="font-size:0.9rem;">📋 打包</h3>
         <p style="font-size:0.8rem;">README_TEMPLATE.md</p>
         <p style="font-size:0.8rem;">upgrade_plan.md</p>
         <p style="font-size:0.75rem; color:var(--text-muted);">Section 7</p>
       </div>
-      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.6rem; text-align:center;">
-        <h3 style="font-size:0.9rem;">⚡ FastAPI</h3>
-        <p style="font-size:0.8rem;">SQLite → API endpoint</p>
-        <p style="font-size:0.75rem; color:var(--text-muted);">Section 8 / <code>api.py</code></p>
-      </div>
-      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.6rem; text-align:center;">
-        <h3 style="font-size:0.9rem;">📊 Dashboard</h3>
-        <p style="font-size:0.8rem;">ipywidgets / Streamlit</p>
-        <p style="font-size:0.75rem; color:var(--text-muted);">Section 9 / <code>app.py</code></p>
-      </div>
+    </div>
+    <div class="reveal-up" style="background:var(--deep-purple); border-radius:0.5rem; padding:0.6rem 1rem; margin-top:0.6rem; font-size:0.8rem; text-align:center;">
+      📊 <strong>Dashboard（Section 9-10）= 回家作業</strong>，用 ipywidgets 或 Streamlit，<code>app.py</code> 已有 solution
     </div>
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-22" aria-label="實作4">
+<section class="slide slide-content" id="slide-19" aria-label="實作2">
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 4 — Data Product</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — LLM + API</div>
       <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
     </div>
     <div class="reveal-up" style="margin-top:1rem; max-width:650px; margin-left:auto; margin-right:auto; font-size:0.95rem; line-height:2;">
-      <p>✅ Section 7：打包確認</p>
-      <p>✅ 填 README（<code>docs/README_TEMPLATE.md</code>）</p>
+      <p>✅ Section 4：LLM Enrich → 存入 <strong>Gold</strong></p>
+      <p>✅ Section 5：Data Lineage 驗證</p>
+      <p>✅ Section 6：產出 <code>output/report.md</code></p>
+      <p>✅ Section 7：打包確認 + 填 README</p>
       <p>⭐ Section 8：FastAPI endpoint</p>
-      <p>⭐ Section 9：Dashboard 互動圖表</p>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">重點：FastAPI + Dashboard ｜ 交流：準備 Demo</p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.8rem; color:var(--text-muted);">先 1 筆確認 prompt → 再批次 ｜ 交流：準備 Demo</p>
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-23" aria-label="完成標準">
+<section class="slide slide-content" id="slide-20" aria-label="完成標準">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">最低完成標準</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; margin-top:1rem; font-size:var(--body-size); line-height:2.2;">
@@ -1706,7 +1641,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-24" aria-label="Demo">
+<section class="slide slide-content" id="slide-21" aria-label="Demo">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🎤 閃電秀</h2>
     <p class="reveal-up" style="text-align:center; font-size:var(--h3-size); font-weight:700; margin-top:0.6rem;">每人 ~2 分鐘</p>
@@ -1722,7 +1657,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-25" aria-label="升級">
+<section class="slide slide-content" id="slide-22" aria-label="升級">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 後續升級：Modern Data Stack</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; margin-top:1rem;">
@@ -1739,7 +1674,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-cover" id="slide-26" aria-label="結尾">
+<section class="slide slide-cover" id="slide-23" aria-label="結尾">
   <div class="data-flow" style="left:10%; height:120vh; --duration:7s; --delay:0s;"></div>
   <div class="data-flow" style="left:65%; height:110vh; --duration:6s; --delay:1s;"></div>
   <div class="slide-inner">

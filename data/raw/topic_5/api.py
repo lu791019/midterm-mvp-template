@@ -21,7 +21,7 @@ def stats():
 @app.get("/analyzed")
 def analyzed(limit: int = 20):
     conn = get_conn()
-    df = pd.read_sql(f"""SELECT job_title, field, llm_insight FROM analyzed_jobs LIMIT {{min(limit,100)}}""", conn)
+    df = pd.read_sql(f"""SELECT job_title, field, llm_insight FROM analyzed_jobs LIMIT {min(limit,100)}""", conn)
     conn.close()
     return df.to_dict(orient="records")
 @app.get("/summary")

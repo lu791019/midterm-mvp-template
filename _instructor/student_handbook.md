@@ -1,6 +1,6 @@
-# LLM × DE MVP Builder 實戰營｜學員手冊
+# LLM × DE MVP Builder 實戰工作坊｜學員手冊
 
-> 給你（學員）的：今天要做什麼、怎麼做、產出什麼。
+> 給你（學員）的：今天下午要做什麼、怎麼做、產出什麼。
 
 ---
 
@@ -8,9 +8,9 @@
 
 **情境**：你是「資料解決方案顧問」，要用已學的 Python / pandas / SQL 做出一條 Mini Data Pipeline。
 
-**目標**：每人選一個題目，在半天內完成一條可跑的 pipeline，帶走一個作品集。
+**目標**：每人選一個題目，在下午 3 小時內完成一條可跑的 pipeline，帶走一個作品集。
 
-**時長**：約 4.5 小時（10:00-16:00，含午休）
+**時長**：13:30-16:30（下午 3 小時）
 
 **形式**：個人實作 + 3 組智囊團互相討論
 
@@ -21,8 +21,10 @@
 選一個題目，照著 Notebook 跑完整條 pipeline：
 
 ```
-CSV → pandas 清洗 → SQLite（raw/cleaned/analyzed 三表）→ SQL 查詢 → LLM 分析 → 報告
+CSV → pandas 清洗 → SQLite（raw/cleaned/analyzed 三表）→ SQL 查詢 → LLM 分析 → 報告 → FastAPI
 ```
+
+> Dashboard（Section 9-10）是回家作業，app.py 已有 solution。
 
 ### 6 個題目
 
@@ -35,7 +37,7 @@ CSV → pandas 清洗 → SQLite（raw/cleaned/analyzed 三表）→ SQL 查詢 
 | 5 | 求職媒合薪資洞察 | 想看資料領域薪資行情 |
 | 6 | 不動產房價趨勢 | 想分析台灣房價（中文資料） |
 
-> 每題都有 2,000 筆真實資料、需求規格書、Notebook、API、Dashboard。
+> 每題都有 2,000 筆真實資料、需求規格書、Notebook、API。
 > 詳細規格見各題的 `requirements_spec.md`。
 
 ---
@@ -44,19 +46,14 @@ CSV → pandas 清洗 → SQLite（raw/cleaned/analyzed 三表）→ SQL 查詢 
 
 | 時段 | 做什麼 | Notebook |
 |------|--------|---------|
-| 10:00-10:30 | 聽開場：Pipeline Demo + 6 題導覽 | |
-| **10:30-11:15** | 🔧 **實作 1**：clone repo → 選題 → 看 spec → 開 Notebook | Section 0 |
-| 11:15-11:20 | 休息 | |
-| 11:20-11:30 | 聽講解：ETL + pandas + SQLite 三表 | |
-| **11:30-12:10** | 🔧 **實作 2**：CSV → 清洗 → SQLite → SQL 統計 | Section 1-3 |
-| 12:00-13:30 | 午休（想繼續做也可以） | |
-| 13:30-13:40 | 聽講解：LLM + prompt 設計 | |
-| **13:40-14:25** | 🔧 **實作 3**：LLM 分析 → 驗證 → 報告 | Section 4-6 |
-| 14:25-14:30 | 休息 | |
-| 14:30-14:40 | 聽講解：打包 + Demo 怎麼講 | |
-| **14:40-15:25** | 🔧 **實作 4**：打包 + README + FastAPI + Dashboard | Section 7-10 |
-| 15:25-15:30 | 休息 | |
-| **15:30-16:00** | 🎤 **閃電秀**：每人 3 分鐘 Demo | |
+| 13:30-13:55 | 聽開場：Pipeline 概念 + 題目導覽 | |
+| **13:55-14:40** | 🔧 **實作 1**：clone → 選題 → ETL → SQL | Section 0-3 |
+| 14:40-14:45 | 交流：跟組員分享選題和清洗策略 | |
+| 14:45-14:55 | 聽講解：LLM + Prompt + API | |
+| **14:55-15:40** | 🔧 **實作 2**：LLM → 驗證 → 報告 → 打包 → FastAPI | Section 4-8 |
+| 15:40-15:45 | 準備 Demo | |
+| **15:45-16:15** | 🎤 **閃電秀**：每人 ~2 分鐘 Demo | |
+| 16:15-16:30 | 收尾：升級路線 + Q&A | |
 
 ---
 
@@ -89,6 +86,9 @@ Notebook 裡有 10 個 Section，標記如下：
 - `TODO 🔴`：較難，有骨架填空
 - `（不需要改）`：直接跑
 
+**實作 1 做 Section 0-3（ETL + SQL）**
+**實作 2 做 Section 4-8（LLM + 報告 + API）**
+
 ### Step 5：打包
 
 跑完後，填寫：
@@ -97,13 +97,13 @@ Notebook 裡有 10 個 Section，標記如下：
 
 ### Step 6：Demo
 
-3 分鐘閃電秀：
-1. 30s — 題目解決什麼問題
-2. 30s — 資料從哪來、怎麼清
-3. 30s — LLM 做了什麼
-4. 30s — show output
-5. 30s — 下一步怎麼升級
-6. 30s — 快問快答
+2 分鐘閃電秀：
+1. 20s — 題目解決什麼問題
+2. 20s — 資料從哪來、怎麼清
+3. 20s — LLM 做了什麼
+4. 20s — show output
+5. 20s — 下一步怎麼升級
+6. 20s — 快問快答
 
 ---
 
@@ -137,6 +137,6 @@ Notebook 裡有 10 個 Section，標記如下：
 - 一個完整的 **pipeline.db**（SQLite 資料庫，含三張表）
 - 一份 **分析報告**（output/report.md）
 - 一個 **GitHub repo**（後續課程持續升級）
-- 一段 **3 分鐘 Demo 經驗**
+- 一段 **2 分鐘 Demo 經驗**
 
-> 這不是練習題，是放進履歷的作品集起點。
+> 回家作業：Dashboard（Section 9-10），app.py 已有 solution。

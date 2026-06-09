@@ -1,6 +1,6 @@
-# LLM × DE MVP Builder 實戰營
+# LLM × DE MVP Builder 實戰工作坊
 
-> TibaMe 雲端資料工程師養成班 — 期中實戰營 Starter Repo
+> TibaMe 雲端資料工程師在職遠距班 — 期中實戰工作坊 Starter Repo
 >
 > 📋 學員手冊：[_instructor/student_handbook.md](_instructor/student_handbook.md)
 
@@ -31,7 +31,7 @@ cd midterm-mvp-template
 
 ### Step 1：選題
 
-到下方「[你的題目](#你的題目)」表格，選一個你有興趣的題目（1-8）。
+到下方「[你的題目](#你的題目)」表格，選一個你有興趣的題目（1-6）。
 假設你選了 **題目 1（零售 POS 銷售分析）**。
 
 ### Step 2：看需求
@@ -81,9 +81,9 @@ Notebook 跑完後，你的成果會出現在：
 
 > 💡 所有產出都在**你自己的題目資料夾**裡，不會跟別人的混在一起。
 
-### Step 5：選做 — FastAPI + Streamlit
+### Step 5：FastAPI（活動內容）+ Dashboard（回家作業）
 
-如果你還有時間，同一個資料夾裡有 API 和 Dashboard：
+同一個資料夾裡有 API 和 Dashboard：
 
 ```
 📂 data/raw/topic_1/
@@ -261,7 +261,7 @@ midterm-mvp-template/
 │   └── docker-compose.yml           Docker Compose 設定
 │
 └── _instructor/                 ← 📂 講師用（學員不需要看）
-    ├── mvp_builder_slides.html        投影簡報（26 張 HTML）
+    ├── mvp_builder_slides.html        投影簡報（23 張 HTML）
     ├── speaker_notes.md              講稿（逐字稿）
     ├── facilitator_guide.md          講師引導手冊
     ├── student_handbook.md           學員手冊
@@ -296,7 +296,7 @@ midterm-mvp-template/
 - [ ] 題目資料夾裡的 `pipeline.db` 有 raw / cleaned / analyzed 三張表
 - [ ] `processed/` 有統計結果 CSV
 - [ ] `output/report.md` 有 LLM 分析報告
-- [ ] 能用 3 分鐘說明：題目、資料、pipeline、output
+- [ ] 能用 2 分鐘說明：題目、資料、pipeline、output
 - [ ] 填完 [docs/upgrade_plan.md](docs/upgrade_plan.md)
 
 ## AI 使用規範

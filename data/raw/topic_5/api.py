@@ -29,7 +29,7 @@ def summary():
     conn = get_conn()
     r = {}
     for t in ["raw_jobs","cleaned_jobs","analyzed_jobs"]:
-        try: r[t] = pd.read_sql(f"SELECT COUNT(*) as n FROM {t}", conn)["n"][0]
+        try: r[t] = int(pd.read_sql(f"SELECT COUNT(*) as n FROM {t}", conn)["n"][0])
         except: r[t] = 0
     conn.close()
     return r

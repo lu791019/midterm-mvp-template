@@ -1,3 +1,12 @@
+> ⚠️ **歷史文件**：本企劃書為早期規劃版本（全天 8 題），僅供參考。
+> 正式版本請看：
+> - 時間表 → `mvp_builder_slides.html`（Slide 7）
+> - 講師手冊 → `facilitator_guide.md`
+> - 學員手冊 → `student_handbook.md`
+> - 題目：6 題（topic_1 ~ topic_6）
+
+---
+
 # 雲端資料工程師期中活動企劃書：AI × 資料工程挑戰賽
 
 > **版本**：v4.0

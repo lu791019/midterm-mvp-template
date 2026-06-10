@@ -1521,19 +1521,25 @@ details.collapse > summary .collapse-hint {
       <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 1 — 環境 + 選題</div>
       <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 25 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; font-size:0.85rem;">
-        <div style="background:var(--deep-purple); padding:0.7rem; border-radius:0.6rem;">
-          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.3rem;">✅ 基礎完成</div>
-          <div style="line-height:1.8;">☐ repo 已 clone 或 ZIP 解壓<br>☐ Notebook 能打開（Colab/本地）<br>☐ Section 0 跑通<br>☐ 已選題、已讀需求</div>
+    <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
+      <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
+        1️⃣ <code>git clone</code> 或 Download ZIP<br>
+        2️⃣ 選題 → 讀 <code>requirements_spec.md</code><br>
+        3️⃣ 開 <code>pipeline_starter.ipynb</code>（Colab 或本地）<br>
+        4️⃣ 跑 <strong>Section 0</strong>（環境設定）→ 確認套件載入成功
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem;">✅ 基礎完成</div>
+          <div style="line-height:1.7;">☐ Notebook 能開、Section 0 跑通<br>☐ 已選題、已讀需求</div>
         </div>
-        <div style="background:var(--deep-purple); padding:0.7rem; border-radius:0.6rem;">
-          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.3rem;">⭐ 進階完成</div>
-          <div style="line-height:1.8;">☐ 瀏覽過 CSV（知道欄位）<br>☐ 跟組員分享選題理由<br>☐ 想好要分析什麼方向</div>
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.2rem;">⭐ 進階完成</div>
+          <div style="line-height:1.7;">☐ 瀏覽過 CSV 欄位<br>☐ 跟組員分享選題理由</div>
         </div>
       </div>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.5rem; font-size:0.8rem; color:var(--text-muted);">交流：每人說選了什麼題、資料裡最有趣的欄位是什麼</p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">交流：每人說選了什麼題、資料裡最有趣的欄位是什麼</p>
   </div>
 </section>
 
@@ -1631,19 +1637,24 @@ details.collapse > summary .collapse-hint {
       <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL Pipeline</div>
       <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; font-size:0.85rem;">
-        <div style="background:var(--deep-purple); padding:0.7rem; border-radius:0.6rem;">
-          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.3rem;">✅ 基礎完成</div>
-          <div style="line-height:1.8;">☐ pipeline.db 有 raw 表<br>☐ pipeline.db 有 cleaned 表<br>☐ processed/ 有統計 CSV<br>☐ 有一個能 Demo 講的數字</div>
+    <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
+      <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
+        ✅ <strong>Section 1</strong>：Extract — 讀 CSV → 存入 <strong>raw 表</strong>（Bronze）<br>
+        ✅ <strong>Section 2</strong>：Transform — 清洗 → 存入 <strong>cleaned 表</strong>（Silver）<br>
+        ✅ <strong>Section 3</strong>：SQL 統計 → 存 <code>processed/*.csv</code>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem;">✅ 基礎完成</div>
+          <div style="line-height:1.7;">☐ pipeline.db 有 raw + cleaned 表<br>☐ processed/ 有統計 CSV<br>☐ 有一個能 Demo 講的數字</div>
         </div>
-        <div style="background:var(--deep-purple); padding:0.7rem; border-radius:0.6rem;">
-          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.3rem;">⭐ 進階完成</div>
-          <div style="line-height:1.8;">☐ 寫了 2+ 個 SQL 查詢<br>☐ 發現了有趣的統計規律<br>☐ 嘗試了進階清洗或分析</div>
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.2rem;">⭐ 進階完成</div>
+          <div style="line-height:1.7;">☐ 寫了 2+ 個 SQL 查詢<br>☐ 發現有趣的統計規律<br>☐ 嘗試「你還可以分析什麼」</div>
         </div>
       </div>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.5rem; font-size:0.8rem; color:var(--text-muted);">交流：跟組員比較清洗策略（刪了多少筆？為什麼？），分享最有趣的發現</p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">交流：跟組員比較清洗策略（刪了多少筆？為什麼？），分享最有趣的發現</p>
   </div>
 </section>
 
@@ -1654,19 +1665,25 @@ details.collapse > summary .collapse-hint {
       <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM + Report + API</div>
       <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 30 分鐘</div>
     </div>
-    <div class="reveal-up" style="margin-top:1rem; max-width:700px; margin-left:auto; margin-right:auto;">
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; font-size:0.85rem;">
-        <div style="background:var(--deep-purple); padding:0.7rem; border-radius:0.6rem;">
-          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.3rem;">✅ 基礎完成</div>
-          <div style="line-height:1.8;">☐ analyzed 表有資料<br>☐ output/report.md 存在<br>☐ FastAPI /health 回 200</div>
+    <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
+      <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
+        ✅ <strong>Section 4</strong>：LLM / fallback 分析 → 存入 <strong>analyzed 表</strong>（Gold）<br>
+        ✅ <strong>Section 5-6</strong>：驗證 + 產出 <code>output/report.md</code><br>
+        ✅ <strong>Section 7</strong>：文件補齊 + Next Step 規劃<br>
+        ⭐ <strong>Section 8</strong>：FastAPI — 把 pipeline.db 包成 API
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem;">✅ 基礎完成</div>
+          <div style="line-height:1.7;">☐ analyzed 表有資料<br>☐ output/report.md 存在<br>☐ FastAPI /health 回 200</div>
         </div>
-        <div style="background:var(--deep-purple); padding:0.7rem; border-radius:0.6rem;">
-          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.3rem;">⭐ 進階完成</div>
-          <div style="line-height:1.8;">☐ LLM prompt 有客製化<br>☐ 報告有具體數字<br>☐ 試了多個 API endpoint</div>
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.2rem;">⭐ 進階完成</div>
+          <div style="line-height:1.7;">☐ LLM prompt 有客製化<br>☐ 報告有具體數字<br>☐ 試了多個 API endpoint</div>
         </div>
       </div>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.5rem; font-size:0.8rem; color:var(--text-muted);">先 1 筆確認 prompt → 再批次 ｜ 準備 Demo：整理要 show 的畫面</p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">先 1 筆確認 prompt → 再批次 ｜ 準備 Demo：整理要 show 的畫面</p>
   </div>
 </section>
 

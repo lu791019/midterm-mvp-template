@@ -1278,7 +1278,7 @@ details.collapse > summary .collapse-hint {
       </div>
       <div style="background:var(--deep-purple); border:2px solid var(--electric-blue); border-radius:0.75rem; padding:0.6rem 1.2rem; display:flex; align-items:center; gap:1rem;">
         <div style="font-weight:900; color:var(--electric-blue); font-size:1.1rem; min-width:55px;">實作 2</div>
-        <div><div style="font-weight:700;">ETL Pipeline（Section 1-3）</div><div style="font-size:0.75rem; color:var(--text-muted);">CSV → raw 表 → cleaned 表 → SQL 統計 → processed CSV</div></div>
+        <div><div style="font-weight:700;">ETL Pipeline（Section 1-3）</div><div style="font-size:0.75rem; color:var(--text-muted);">CSV → raw 表 → cleaned 表 → 統計分析 → processed CSV</div></div>
         <div style="margin-left:auto; font-size:0.7rem; color:var(--electric-blue);">⏱ 最多時間</div>
       </div>
       <div style="background:var(--deep-purple); border:2px solid var(--electric-blue); border-radius:0.75rem; padding:0.6rem 1.2rem; display:flex; align-items:center; gap:1rem;">
@@ -1390,7 +1390,7 @@ details.collapse > summary .collapse-hint {
         <tr><td style="padding:0.15rem;">Section 0</td><td>環境</td><td style="padding:0.15rem;">Section 5</td><td>Data Lineage 驗證</td></tr>
         <tr><td>Section 1</td><td>Extract &amp; Load → 存入 Bronze（raw 表）</td><td>Section 6</td><td>報告</td></tr>
         <tr><td>Section 2</td><td>Transform → 存入 Silver（cleaned 表）</td><td>Section 7</td><td>Next Step 規劃</td></tr>
-        <tr><td>Section 3</td><td>SQL 統計</td><td>Section 8</td><td>FastAPI</td></tr>
+        <tr><td>Section 3</td><td>統計分析</td><td>Section 8</td><td>FastAPI</td></tr>
         <tr><td>Section 4</td><td>LLM Enrich → 存入 Gold（analyzed 表）</td><td style="color:var(--text-muted);">Section 9-10</td><td style="color:var(--text-muted);">Dashboard（回家作業）</td></tr>
       </table>
     </div>
@@ -1406,7 +1406,7 @@ details.collapse > summary .collapse-hint {
       <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">13:50-14:15</td><td>25</td><td>🔧 實作1</td><td>clone → 環境 → 選題 → 討論</td><td>Section 0</td></tr>
       <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">14:15-14:20 交流 5min：分享選題和資料初印象</td></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">14:20-14:30</td><td>10</td><td>講解</td><td>ETL + Data Quality + 清洗重點</td><td></td></tr>
-      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">14:30-15:15</td><td>45</td><td>🔧 實作2</td><td>ETL：raw → cleaned → SQL 統計</td><td>Section 1-3</td></tr>
+      <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">14:30-15:15</td><td>45</td><td>🔧 實作2</td><td>ETL：raw → cleaned → 統計分析</td><td>Section 1-3</td></tr>
       <tr><td style="padding:0.2rem; color:var(--text-muted);" colspan="5">15:15-15:20 交流 5min：比較清洗策略和統計發現</td></tr>
       <tr style="background:var(--deep-purple);"><td style="padding:0.3rem;">15:20-15:25</td><td>5</td><td>講解</td><td>LLM + Prompt + API</td><td></td></tr>
       <tr style="background:var(--neon-purple); color:white;"><td style="padding:0.3rem; font-weight:700;">15:25-15:55</td><td>30</td><td>🔧 實作3</td><td>LLM → report → FastAPI</td><td>Section 4-8</td></tr>
@@ -1641,7 +1641,7 @@ details.collapse > summary .collapse-hint {
       <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
         ✅ <strong>Section 1</strong>：Extract — 讀 CSV → 存入 <strong>raw 表</strong>（Bronze）<br>
         ✅ <strong>Section 2</strong>：Transform — 清洗 → 存入 <strong>cleaned 表</strong>（Silver）<br>
-        ✅ <strong>Section 3</strong>：SQL 統計 → 存 <code>processed/*.csv</code>
+        ✅ <strong>Section 3</strong>：統計分析 → 存 <code>processed/*.csv</code>
       </div>
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
         <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">

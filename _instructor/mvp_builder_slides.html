@@ -1543,7 +1543,35 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-15" aria-label="LLM 業界">
+<section class="slide slide-content" id="slide-15" aria-label="實作2">
+  <div class="slide-inner">
+    <div class="reveal-up" style="text-align:center;">
+      <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
+      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL Pipeline</div>
+      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
+    </div>
+    <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
+      <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
+        ✅ <strong>Section 1</strong>：Extract — 讀 CSV → 存入 <strong>raw 表</strong>（Bronze）<br>
+        ✅ <strong>Section 2</strong>：Transform — 清洗 → 存入 <strong>cleaned 表</strong>（Silver）<br>
+        ✅ <strong>Section 3</strong>：統計分析 → 存 <code>processed/*.csv</code>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem;">✅ 基礎完成</div>
+          <div style="line-height:1.7;">☐ pipeline.db 有 raw + cleaned 表<br>☐ processed/ 有統計 CSV<br>☐ 有一個能 Demo 講的數字</div>
+        </div>
+        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.2rem;">⭐ 進階完成</div>
+          <div style="line-height:1.7;">☐ 寫了 2+ 個 SQL 查詢<br>☐ 發現有趣的統計規律<br>☐ 嘗試「你還可以分析什麼」</div>
+        </div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">交流：跟組員比較清洗策略（刪了多少筆？為什麼？），分享最有趣的發現</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-16" aria-label="LLM 業界">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：LLM in Data Pipeline</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
@@ -1563,7 +1591,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-16" aria-label="Prompt 活動">
+<section class="slide slide-content" id="slide-17" aria-label="Prompt 活動">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 Prompt 設計 + API vs Fallback</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
@@ -1589,7 +1617,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-17" aria-label="Data Product 業界">
+<section class="slide slide-content" id="slide-18" aria-label="Data Product 業界">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：Data Product</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; margin-top:1rem;">
@@ -1607,7 +1635,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-18" aria-label="FastAPI + Next Step 規劃">
+<section class="slide slide-content" id="slide-19" aria-label="FastAPI + Next Step 規劃">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 FastAPI + Next Step 規劃</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:1rem;">
@@ -1627,34 +1655,6 @@ details.collapse > summary .collapse-hint {
     <div class="reveal-up" style="background:var(--deep-purple); border-radius:0.5rem; padding:0.6rem 1rem; margin-top:0.6rem; font-size:0.8rem; text-align:center;">
       📊 <strong>Dashboard（Section 9-10）= 回家作業</strong>，用 ipywidgets 或 Streamlit，<code>app.py</code> 已有 solution
     </div>
-  </div>
-</section>
-
-<section class="slide slide-content" id="slide-19" aria-label="實作2">
-  <div class="slide-inner">
-    <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL Pipeline</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
-    </div>
-    <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
-      <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
-        ✅ <strong>Section 1</strong>：Extract — 讀 CSV → 存入 <strong>raw 表</strong>（Bronze）<br>
-        ✅ <strong>Section 2</strong>：Transform — 清洗 → 存入 <strong>cleaned 表</strong>（Silver）<br>
-        ✅ <strong>Section 3</strong>：統計分析 → 存 <code>processed/*.csv</code>
-      </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
-        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
-          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem;">✅ 基礎完成</div>
-          <div style="line-height:1.7;">☐ pipeline.db 有 raw + cleaned 表<br>☐ processed/ 有統計 CSV<br>☐ 有一個能 Demo 講的數字</div>
-        </div>
-        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
-          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.2rem;">⭐ 進階完成</div>
-          <div style="line-height:1.7;">☐ 寫了 2+ 個 SQL 查詢<br>☐ 發現有趣的統計規律<br>☐ 嘗試「你還可以分析什麼」</div>
-        </div>
-      </div>
-    </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">交流：跟組員比較清洗策略（刪了多少筆？為什麼？），分享最有趣的發現</p>
   </div>
 </section>
 

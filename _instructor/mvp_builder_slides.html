@@ -1237,6 +1237,7 @@ details.collapse > summary .collapse-hint {
     <a href="#slide-21" class="nav-dot" aria-label="Slide 21"></a>
     <a href="#slide-22" class="nav-dot" aria-label="Slide 22"></a>
     <a href="#slide-23" class="nav-dot" aria-label="Slide 23"></a>
+    <a href="#slide-24" class="nav-dot" aria-label="Slide 24"></a>
 </nav>
 
 <section class="slide slide-cover" id="slide-1" aria-label="封面">
@@ -1271,7 +1272,37 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-3" aria-label="三段旅程">
+<section class="slide slide-content" id="slide-3" aria-label="完成分層">
+  <div class="slide-inner">
+    <h2 class="reveal-up" style="color:var(--electric-blue);">做到哪算完成？</h2>
+    <p class="reveal-up" style="text-align:center; font-size:0.9rem; color:var(--text-muted); margin-top:0.3rem;">不用全做完。做到哪就 Demo 到哪。</p>
+    <div class="reveal-up" style="display:flex; flex-direction:column; gap:0.5rem; margin-top:1rem; max-width:750px; margin-left:auto; margin-right:auto;">
+      <div style="background:#E3F2FD; border:3px solid #1565C0; border-radius:0.75rem; padding:0.7rem 1.2rem; display:flex; align-items:center; gap:1rem;">
+        <div style="font-size:1.5rem;">🥉</div>
+        <div><div style="font-weight:900; color:#1565C0;">Bronze — ETL + SQL</div><div style="font-size:0.8rem;">Section 0-3：CSV → raw 表 → cleaned 表 → 統計 CSV</div></div>
+        <div style="margin-left:auto; background:#1565C0; color:white; padding:0.2rem 0.6rem; border-radius:2rem; font-size:0.75rem; font-weight:700;">必做</div>
+      </div>
+      <div style="background:#E8F5E9; border:3px solid #2E7D32; border-radius:0.75rem; padding:0.7rem 1.2rem; display:flex; align-items:center; gap:1rem;">
+        <div style="font-size:1.5rem;">🥈</div>
+        <div><div style="font-weight:900; color:#2E7D32;">Silver — LLM + Report</div><div style="font-size:0.8rem;">Section 4-7：LLM/fallback → analyzed 表 → report.md → 打包</div></div>
+        <div style="margin-left:auto; background:#2E7D32; color:white; padding:0.2rem 0.6rem; border-radius:2rem; font-size:0.75rem; font-weight:700;">必做</div>
+      </div>
+      <div style="background:#FFF3E0; border:3px solid #E65100; border-radius:0.75rem; padding:0.7rem 1.2rem; display:flex; align-items:center; gap:1rem;">
+        <div style="font-size:1.5rem;">🥇</div>
+        <div><div style="font-weight:900; color:#E65100;">Gold — FastAPI</div><div style="font-size:0.8rem;">Section 8：把 pipeline.db 包成 API endpoint</div></div>
+        <div style="margin-left:auto; background:#E65100; color:white; padding:0.2rem 0.6rem; border-radius:2rem; font-size:0.75rem; font-weight:700;">必做</div>
+      </div>
+      <div style="background:var(--deep-purple); border:2px dashed var(--text-muted); border-radius:0.75rem; padding:0.7rem 1.2rem; display:flex; align-items:center; gap:1rem; opacity:0.7;">
+        <div style="font-size:1.5rem;">💎</div>
+        <div><div style="font-weight:900; color:var(--text-muted);">Platinum — Dashboard</div><div style="font-size:0.8rem;">Section 9-10：ipywidgets / Streamlit 互動圖表</div></div>
+        <div style="margin-left:auto; background:var(--text-muted); color:white; padding:0.2rem 0.6rem; border-radius:2rem; font-size:0.75rem; font-weight:700;">回家作業</div>
+      </div>
+    </div>
+    <p class="reveal-up" style="text-align:center; margin-top:0.8rem; font-size:0.85rem; font-weight:700;">現場必做：Bronze + Silver + Gold + 2 分鐘 Demo</p>
+  </div>
+</section>
+
+<section class="slide slide-content" id="slide-4" aria-label="三段旅程">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">從期初到期末</h2>
     <div class="reveal-up" style="margin-top:1rem; display:flex; flex-direction:column; gap:0.5rem; align-items:center;">
@@ -1284,7 +1315,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-4" aria-label="Medallion">
+<section class="slide slide-content" id="slide-5" aria-label="Medallion">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：資料倉儲分層架構</h2>
     <p class="reveal-up" style="font-size:0.8rem; color:var(--text-muted);">Databricks Medallion Architecture + 傳統 DWH 三層，業界兩套術語說的是同一件事</p>
@@ -1320,7 +1351,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-5" aria-label="Modern Data Stack">
+<section class="slide slide-content" id="slide-6" aria-label="Modern Data Stack">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：Modern Data Stack</h2>
     <div class="reveal-up" style="background:var(--deep-purple); border-radius:1rem; padding:1.2rem; margin-top:1rem;">
@@ -1338,7 +1369,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-6" aria-label="我們的 Pipeline">
+<section class="slide slide-content" id="slide-7" aria-label="我們的 Pipeline">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 我們今天的 Pipeline</h2>
     <div class="reveal-up" style="display:flex; align-items:center; gap:0.3rem; margin-top:1rem; justify-content:center; flex-wrap:wrap;">
@@ -1374,7 +1405,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-7" aria-label="時間表">
+<section class="slide slide-content" id="slide-8" aria-label="時間表">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">時間表（下午 3 小時）</h2>
     <table class="reveal-up" style="width:100%; margin-top:0.6rem; border-collapse:collapse; font-size:0.75rem;">
@@ -1392,7 +1423,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-8" aria-label="規則">
+<section class="slide slide-content" id="slide-9" aria-label="規則">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">活動規則</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
@@ -1408,7 +1439,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-9" aria-label="DE 角色">
+<section class="slide slide-content" id="slide-10" aria-label="DE 角色">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：DE 在組織中的位置</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:1rem;">
@@ -1434,7 +1465,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-10" aria-label="6 題">
+<section class="slide slide-content" id="slide-11" aria-label="6 題">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 6 個業務情境</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; margin-top:0.6rem; font-size:0.8rem;">
@@ -1448,7 +1479,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-11" aria-label="Repo">
+<section class="slide slide-content" id="slide-12" aria-label="Repo">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 Repo 導覽</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; margin-top:0.8rem; font-family:monospace; font-size:0.8rem; line-height:1.6; white-space:pre;">data/raw/topic_N/
@@ -1463,7 +1494,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-12" aria-label="Notebook">
+<section class="slide slide-content" id="slide-13" aria-label="Notebook">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 Notebook 怎麼用</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:0.8rem;">
@@ -1476,7 +1507,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-13" aria-label="Data Quality + pandas">
+<section class="slide slide-content" id="slide-14" aria-label="Data Quality + pandas">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 Data Quality + 清洗方法</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.8rem;">
@@ -1504,7 +1535,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-14" aria-label="實作1">
+<section class="slide slide-content" id="slide-15" aria-label="實作1">
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
@@ -1522,7 +1553,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-15" aria-label="LLM 業界">
+<section class="slide slide-content" id="slide-16" aria-label="LLM 業界">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：LLM in Data Pipeline</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
@@ -1542,7 +1573,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-16" aria-label="Prompt 活動">
+<section class="slide slide-content" id="slide-17" aria-label="Prompt 活動">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 Prompt 設計 + API vs Fallback</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
@@ -1568,7 +1599,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-17" aria-label="Data Product 業界">
+<section class="slide slide-content" id="slide-18" aria-label="Data Product 業界">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 業界概念：Data Product</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; margin-top:1rem;">
@@ -1586,7 +1617,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-18" aria-label="FastAPI + 打包">
+<section class="slide slide-content" id="slide-19" aria-label="FastAPI + 打包">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">📋 FastAPI + 打包</h2>
     <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; margin-top:1rem;">
@@ -1609,7 +1640,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-19" aria-label="實作2">
+<section class="slide slide-content" id="slide-20" aria-label="實作2">
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
@@ -1627,21 +1658,44 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-20" aria-label="完成標準">
+<section class="slide slide-content" id="slide-21" aria-label="完成標準">
   <div class="slide-inner">
-    <h2 class="reveal-up" style="color:var(--electric-blue);">最低完成標準</h2>
-    <div class="reveal-up" style="background:var(--deep-purple); padding:1.2rem; border-radius:0.75rem; margin-top:1rem; font-size:var(--body-size); line-height:2.2;">
-      <p>☐ 跑完 Notebook Section 1-6</p>
-      <p>☐ pipeline.db 有 Bronze / Silver / Gold 三表</p>
-      <p>☐ processed/ 有統計 CSV</p>
-      <p>☐ output/report.md 有報告</p>
-      <p>☐ 填完 README + upgrade_plan</p>
-      <p>☐ 能用 2 分鐘講清楚 pipeline</p>
+    <h2 class="reveal-up" style="color:var(--electric-blue);">完成標準 Checklist</h2>
+    <div class="reveal-up" style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:1rem;">
+      <div style="background:#E3F2FD; padding:0.8rem; border-radius:0.75rem; border-left:4px solid #1565C0;">
+        <h3 style="color:#1565C0; font-size:0.9rem;">🥉 Bronze（Section 0-3）</h3>
+        <div style="font-size:0.8rem; line-height:1.8;">
+          <p>☐ pipeline.db 有 raw + cleaned 兩表</p>
+          <p>☐ processed/ 有統計 CSV</p>
+        </div>
+      </div>
+      <div style="background:#E8F5E9; padding:0.8rem; border-radius:0.75rem; border-left:4px solid #2E7D32;">
+        <h3 style="color:#2E7D32; font-size:0.9rem;">🥈 Silver（Section 4-7）</h3>
+        <div style="font-size:0.8rem; line-height:1.8;">
+          <p>☐ pipeline.db 有 analyzed 表</p>
+          <p>☐ output/report.md 有報告</p>
+        </div>
+      </div>
+      <div style="background:#FFF3E0; padding:0.8rem; border-radius:0.75rem; border-left:4px solid #E65100;">
+        <h3 style="color:#E65100; font-size:0.9rem;">🥇 Gold（Section 8）</h3>
+        <div style="font-size:0.8rem; line-height:1.8;">
+          <p>☐ FastAPI 跑得起來</p>
+          <p>☐ /health 回 200</p>
+        </div>
+      </div>
+      <div style="background:var(--deep-purple); padding:0.8rem; border-radius:0.75rem; border-left:4px solid var(--text-muted);">
+        <h3 style="color:var(--text-muted); font-size:0.9rem;">💎 Platinum（回家作業）</h3>
+        <div style="font-size:0.8rem; line-height:1.8;">
+          <p>☐ Dashboard 可互動</p>
+          <p>☐ README 完整</p>
+        </div>
+      </div>
     </div>
+    <p class="reveal-up" style="text-align:center; margin-top:0.6rem; font-size:0.9rem; font-weight:700;">能用 2 分鐘講清楚你的 pipeline = 完成 ✅</p>
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-21" aria-label="Demo">
+<section class="slide slide-content" id="slide-22" aria-label="Demo">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🎤 閃電秀</h2>
     <p class="reveal-up" style="text-align:center; font-size:var(--h3-size); font-weight:700; margin-top:0.6rem;">每人 ~2 分鐘</p>
@@ -1657,7 +1711,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-22" aria-label="升級">
+<section class="slide slide-content" id="slide-23" aria-label="升級">
   <div class="slide-inner">
     <h2 class="reveal-up" style="color:var(--electric-blue);">🏭 後續升級：Modern Data Stack</h2>
     <div class="reveal-up" style="background:var(--deep-purple); padding:1rem; border-radius:0.75rem; margin-top:1rem;">
@@ -1674,7 +1728,7 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-cover" id="slide-23" aria-label="結尾">
+<section class="slide slide-cover" id="slide-24" aria-label="結尾">
   <div class="data-flow" style="left:10%; height:120vh; --duration:7s; --delay:0s;"></div>
   <div class="data-flow" style="left:65%; height:110vh; --duration:6s; --delay:1s;"></div>
   <div class="slide-inner">

@@ -35,5 +35,5 @@ def summary():
     return r
 @app.get("/report")
 def report():
-    if not os.path.exists("output/report.md"): raise HTTPException(404, "report.md 不存在")
-    with open("output/report.md") as f: return {"report": f.read()}
+    if not os.path.exists("output/pipeline_doc.md"): raise HTTPException(404, "pipeline_doc.md 不存在")
+    with open("output/pipeline_doc.md") as f: return {"report": f.read()}

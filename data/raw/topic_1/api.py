@@ -95,8 +95,8 @@ def get_summary():
 
 @app.get("/report")
 def get_report():
-    """讀取 output/report.md"""
-    if not os.path.exists("output/report.md"):
-        raise HTTPException(status_code=404, detail="report.md 不存在")
-    with open("output/report.md") as f:
+    """讀取 output/pipeline_doc.md"""
+    if not os.path.exists("output/pipeline_doc.md"):
+        raise HTTPException(status_code=404, detail="pipeline_doc.md 不存在")
+    with open("output/pipeline_doc.md") as f:
         return {"report": f.read()}

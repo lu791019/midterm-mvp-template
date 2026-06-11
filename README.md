@@ -82,7 +82,7 @@ cd midterm-mvp-template
 |---------|--------|--------|
 | 4 | LLM / fallback → 寫入 **analyzed 表** + 三表驗證 | analyzed 表 |
 | 6 | Pipeline Documentation | `output/pipeline_doc.md` |
-| 7 | Next Step 規劃 | `docs/upgrade_plan.md` |
+| 7 | Next Step 規劃 | 填 `pipeline_doc.md` Section 10 |
 | 8 | FastAPI | API `/health` 回 200 |
 
 > ✅ 基礎完成：三表齊全、pipeline_doc.md 存在、FastAPI 跑得起來
@@ -218,7 +218,7 @@ midterm-mvp-template/
 - [ ] Dashboard（Section 9-10）
 - [ ] Push 到你的 GitHub
 - [ ] `pipeline_doc.md` 整理成 repo 的 `README.md`
-- [ ] 填完 [docs/upgrade_plan.md](docs/upgrade_plan.md)
+- [ ] `pipeline_doc.md` 的 Section 10（Next Steps）填完
 
 ---
 

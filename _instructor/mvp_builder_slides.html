@@ -1801,12 +1801,12 @@ details.collapse > summary .collapse-hint {
   var totalSlidesEl = document.getElementById('total-slides');
   var currentIndex = 0;
 
-  totalSlidesEl.textContent = totalSlides;
+  if (totalSlidesEl) totalSlidesEl.textContent = totalSlides;
 
   function updateUI() {
     var pct = ((currentIndex + 1) / totalSlides) * 100;
-    progressBar.style.width = pct + '%';
-    currentSlideEl.textContent = currentIndex + 1;
+    if (progressBar) progressBar.style.width = pct + '%';
+    if (currentSlideEl) currentSlideEl.textContent = currentIndex + 1;
   }
 
   function goToSlide(index) {

@@ -23,7 +23,7 @@ cd midterm-mvp-template
 
 ---
 
-## 實作 1：環境 + 選題（25 min）
+## Step 1：環境 + 選題（25 min）
 
 > 對應簡報 Slide 13 ｜ Notebook Section 0
 
@@ -58,7 +58,7 @@ cd midterm-mvp-template
 
 ---
 
-## 實作 2：ETL Pipeline（45 min）
+## Step 2：ETL Pipeline（45 min）
 
 > 對應簡報 Slide 15 ｜ Notebook Section 1-3
 
@@ -74,7 +74,7 @@ cd midterm-mvp-template
 
 ---
 
-## 實作 3：LLM + Doc + API（30 min）
+## Step 3：LLM + Doc + API（30 min）
 
 > 對應簡報 Slide 20 ｜ Notebook Section 4-8
 
@@ -111,7 +111,7 @@ uvicorn api:app --reload --port 8000
 
 ---
 
-## 課後
+## Step 4：課後
 
 1. **Dashboard**（Section 9-10）：ipywidgets 或 Streamlit，`app.py` 已有 solution
 2. **Push 到你的 GitHub**：把整個 topic 資料夾推到你自己的 repo
@@ -189,7 +189,7 @@ midterm-mvp-template/
 ├── docs/                              ← 📂 參考文件
 │   ├── README_TEMPLATE.md                 Pipeline Documentation 模板
 │   ├── ai_prompts.md                      AI prompt（含 Prompt #7 自動填文件）
-│   ├── upgrade_plan.md                    📝 後續升級計畫（要填！）
+│   ├── upgrade_plan.md                    後續升級計畫（已併入 pipeline_doc Section 10）
 │   ├── topic_catalog.md                   6 題總覽
 │   ├── data_sources.md                    資料來源
 │   ├── pipeline.mmd                       Pipeline 流程圖
@@ -213,7 +213,7 @@ midterm-mvp-template/
 - [ ] FastAPI `/health` 回 200
 - [ ] 每組推派 1 人 Demo 3 分鐘
 
-### 課後
+### Step 4：課後
 
 - [ ] Dashboard（Section 9-10）
 - [ ] Push 到你的 GitHub
@@ -255,7 +255,7 @@ midterm-mvp-template/
 | [START_HERE.md](START_HERE.md) | 現場速查卡 | 活動當天 |
 | [docs/README_TEMPLATE.md](docs/README_TEMPLATE.md) | Pipeline Documentation 模板 | Section 6 + 課後 |
 | [docs/ai_prompts.md](docs/ai_prompts.md) | AI prompt（Prompt #7 自動填文件）| 實作中 + 寫文件 |
-| [docs/upgrade_plan.md](docs/upgrade_plan.md) | 後續升級計畫 | Section 7 |
+| [docs/upgrade_plan.md](docs/upgrade_plan.md) | 後續升級計畫（已併入 pipeline_doc Section 10） | 參考用 |
 | [docs/topic_catalog.md](docs/topic_catalog.md) | 6 題總覽 | 選題時 |
 | [docs/data_sources.md](docs/data_sources.md) | 資料來源 | 想了解資料時 |
 | [docs/pipeline.mmd](docs/pipeline.mmd) | Pipeline 流程圖 | 想看架構時 |

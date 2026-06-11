@@ -1210,6 +1210,30 @@ details.collapse > summary .collapse-hint {
   }
 }
 
+
+/* ========== COUNTDOWN TIMER ========== */
+.countdown-timer {
+  transition: transform 0.1s ease;
+}
+.countdown-timer:hover {
+  transform: scale(1.05);
+}
+.countdown-timer.running {
+  animation: countdownPulse 1s ease-in-out infinite;
+}
+.countdown-timer.done {
+  background: #C62828 !important;
+  animation: countdownDone 0.5s ease-in-out 3;
+}
+@keyframes countdownPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(217,119,6,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(217,119,6,0); }
+}
+@keyframes countdownDone {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
 </style>
 </head>
 <body>
@@ -1493,8 +1517,8 @@ details.collapse > summary .collapse-hint {
     <div class="reveal-up" style="text-align:center;">
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
       <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 1 — 環境 + 選題</div>
-      <div style="font-size:0.7rem; margin-top:0.3rem; color:var(--text-primary); font-weight:500;">📎 Repo README Step 1 ｜ 🚀 START_HERE.md</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 25 分鐘</div>
+      <div style="font-size:0.7rem; margin-top:0.3rem; color:var(--text-primary); font-weight:500;">📎 Repo README Step 1</div>
+      <div class="countdown-timer" data-minutes="25" style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem; cursor:pointer; user-select:none;" title="點擊開始/暫停倒數">⏱ <span class="countdown-display">25:00</span></div>
     </div>
     <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
       <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
@@ -1514,7 +1538,7 @@ details.collapse > summary .collapse-hint {
         </div>
       </div>
     </div>
-    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">交流：每人說選了什麼題、資料裡最有趣的欄位是什麼</p>
+    <p class="reveal-up" style="text-align:center; margin-top:0.4rem; font-size:0.75rem; color:var(--text-muted);">可以先看「🚀 START_HERE.md」了解接下來要做什麼 ｜ 交流：每人說選了什麼題</p>
   </div>
 </section>
 
@@ -1553,7 +1577,7 @@ details.collapse > summary .collapse-hint {
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
       <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 2 — ETL Pipeline</div>
       <div style="font-size:0.7rem; margin-top:0.3rem; color:var(--text-primary); font-weight:500;">📎 Repo README Step 2</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 45 分鐘</div>
+      <div class="countdown-timer" data-minutes="45" style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem; cursor:pointer; user-select:none;" title="點擊開始/暫停倒數">⏱ <span class="countdown-display">45:00</span></div>
     </div>
     <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
       <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
@@ -1669,7 +1693,7 @@ details.collapse > summary .collapse-hint {
       <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
       <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM + Report + API</div>
       <div style="font-size:0.7rem; margin-top:0.3rem; color:var(--text-primary); font-weight:500;">📎 Repo README Step 3</div>
-      <div style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem;">⏱ 30 分鐘</div>
+      <div class="countdown-timer" data-minutes="30" style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem; cursor:pointer; user-select:none;" title="點擊開始/暫停倒數">⏱ <span class="countdown-display">30:00</span></div>
     </div>
     <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
       <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
@@ -1940,6 +1964,60 @@ details.collapse > summary .collapse-hint {
       }
     });
   }
+
+
+
+  // ========== COUNTDOWN TIMERS ==========
+  document.querySelectorAll('.countdown-timer').forEach(function(timer) {
+    var totalSeconds = parseInt(timer.dataset.minutes, 10) * 60;
+    var remaining = totalSeconds;
+    var interval = null;
+    var running = false;
+    var display = timer.querySelector('.countdown-display');
+
+    function formatTime(s) {
+      var m = Math.floor(s / 60);
+      var sec = s % 60;
+      return (m < 10 ? '0' : '') + m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    function tick() {
+      remaining--;
+      display.textContent = formatTime(remaining);
+      if (remaining <= 0) {
+        clearInterval(interval);
+        running = false;
+        timer.classList.remove('running');
+        timer.classList.add('done');
+        display.textContent = "時間到！";
+      } else if (remaining <= 60) {
+        timer.style.background = '#C62828';
+      } else if (remaining <= 300) {
+        timer.style.background = '#E65100';
+      }
+    }
+
+    timer.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (timer.classList.contains('done')) {
+        // Reset
+        remaining = totalSeconds;
+        display.textContent = formatTime(remaining);
+        timer.classList.remove('done');
+        timer.style.background = '';
+        return;
+      }
+      if (running) {
+        clearInterval(interval);
+        running = false;
+        timer.classList.remove('running');
+      } else {
+        interval = setInterval(tick, 1000);
+        running = true;
+        timer.classList.add('running');
+      }
+    });
+  });
 
   // ========== INITIAL STATE ==========
   updateUI();

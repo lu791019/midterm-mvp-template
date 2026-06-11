@@ -26,7 +26,7 @@ try:
     st.dataframe(analyzed.head(20), use_container_width=True)
 except:
     st.info("尚未完成 LLM 分析")
-if os.path.exists("output/report.md"):
+if os.path.exists("output/pipeline_doc.md"):
     st.subheader("報告")
-    with open("output/report.md") as f: st.markdown(f.read())
+    with open("output/pipeline_doc.md") as f: st.markdown(f.read())
 conn.close()

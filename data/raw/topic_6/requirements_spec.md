@@ -53,7 +53,7 @@
 ## 預期產出
 
 - `data/processed/real_estate_stats.csv`：區域 × 型態統計（含坪數、屋齡）
-- `output/report.md`：區域分析建議書 + 買方提醒
+- `output/pipeline_doc.md`：區域分析建議書 + 買方提醒
 
 ## 成功指標
 

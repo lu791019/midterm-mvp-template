@@ -95,5 +95,5 @@
 2. 我的資料從哪裡來？
 3. 我做了哪些清洗與轉換？
 4. LLM 在 pipeline 中做了什麼？
-5. 最後輸出什麼？（pipeline.db + processed CSV + report.md）
+5. 最後輸出什麼？（pipeline.db + processed CSV + pipeline_doc.md）
 6. 下一步要如何用 Docker / Airflow / GCP 升級？

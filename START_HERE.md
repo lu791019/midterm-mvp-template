@@ -16,7 +16,7 @@ CSV → pandas → SQLite (raw/cleaned/analyzed) → SQL → LLM → report → 
 |------|------|------|-------------|
 | **實作 1** | clone + 環境 + 選題 | 25 min | ☐ Notebook 跑通 ☐ 已選題讀需求 |
 | **實作 2** | ETL Pipeline (Section 1-3) | 45 min | ☐ raw+cleaned 表 ☐ 統計 CSV ☐ 有 Demo 數字 |
-| **實作 3** | LLM + Report + API (Section 4-8) | 30 min | ☐ analyzed 表 ☐ report.md ☐ API 跑起來 |
+| **實作 3** | LLM + Pipeline Doc + API (Section 4-8) | 30 min | ☐ analyzed 表 ☐ pipeline_doc.md ☐ API 跑起來 |
 | **回家** | Dashboard (Section 9-10) | 課後 | ☐ ipywidgets 或 Streamlit |
 
 ## 5 步操作

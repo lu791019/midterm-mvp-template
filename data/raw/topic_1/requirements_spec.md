@@ -52,7 +52,7 @@
 
 - `data/processed/sales_stats.csv`：銷售統計摘要
 - `data/processed/orders_analyzed.csv`：每筆訂單 + LLM 品類分類
-- `output/report.md`：銷售分析與庫存建議報告
+- `output/pipeline_doc.md`：銷售分析與庫存建議報告
 
 ## 成功指標
 

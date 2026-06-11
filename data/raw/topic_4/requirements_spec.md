@@ -60,7 +60,7 @@
 ## 預期產出
 
 - `data/processed/traffic_stats.csv`：區域 × 時段統計
-- `output/report.md`：交通模式分析 + 調度建議
+- `output/pipeline_doc.md`：交通模式分析 + 調度建議
 
 ## 成功指標
 

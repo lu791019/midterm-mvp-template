@@ -83,9 +83,9 @@ except Exception:
     st.info("💡 尚未完成 LLM 分析（Notebook Section 4）")
 
 # === 報告 ===
-if os.path.exists("output/report.md"):
+if os.path.exists("output/pipeline_doc.md"):
     st.subheader("📄 顧問報告")
-    with open("output/report.md") as f:
+    with open("output/pipeline_doc.md") as f:
         st.markdown(f.read())
 
 conn.close()

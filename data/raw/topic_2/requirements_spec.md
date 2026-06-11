@@ -49,7 +49,7 @@
 ## 預期產出
 
 - `data/processed/price_comparison.csv`：含價差、異常標記的完整比較表
-- `output/report.md`：競品分析與定價建議報告
+- `output/pipeline_doc.md`：競品分析與定價建議報告
 
 ## 成功指標
 

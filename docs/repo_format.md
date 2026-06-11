@@ -1,6 +1,6 @@
 # Midterm MVP Starter Repo Format
 
-> 目的：讓學員 clone / 下載後，能依照固定步驟完成自己的期中 MVP。期中先求可跑、可展示、可在 後續進階課程回收；GitHub、Docker、正式 package 化會在後續課程細教。
+> 目的：讓學員 clone / 下載後，能依照固定步驟完成自己的期中 MVP。期中先求可跑、可展示、可在 後續課程升級；GitHub、Docker、正式 package 化會在後續課程細教。
 
 ## 使用流程
 
@@ -39,7 +39,7 @@ midterm-mvp-template/
 │   ├── ai_prompts.md             # AI prompt 範本
 │   └── repo_format.md            # 本文件
 ├── output/
-│   └── report.md                 # LLM 分析或顧問報告
+│   └── pipeline_doc.md                 # Pipeline Documentation
 └── src/
     ├── extract.py
     ├── transform.py
@@ -54,7 +54,7 @@ midterm-mvp-template/
 |---|---|
 | `docs/requirements_spec.md` | 題目、使用者、資料來源、MVP scope、成功指標 |
 | `processed/*` | 至少一份處理後資料 |
-| `output/report.md` | LLM 分析結果、摘要、分類或顧問建議 |
+| `output/pipeline_doc.md` | Pipeline Documentation（Data Flow + Schema + Transform Logic + Design Decisions） |
 | `docs/upgrade_plan.md` | 後續如何升級成 GitHub / Docker / Airflow / GCP 版本 |
 | demo 素材 | 截圖、Notebook output、Streamlit 畫面或 1 分鐘口頭 demo |
 
@@ -87,6 +87,6 @@ midterm-mvp-template/
 
 - `docs/requirements_spec.md`
 - `docs/tech_decision.md`
-- `output/report.md`
+- `output/pipeline_doc.md`
 
 可用 prompt 範本見 `docs/ai_prompts.md`。

@@ -54,7 +54,7 @@
 ## 預期產出
 
 - `data/processed/salary_stats.csv`：薪資 × 職稱 × 經驗 × 模式 統計
-- `output/report.md`：薪資分析 + 職涯建議報告
+- `output/pipeline_doc.md`：薪資分析 + 職涯建議報告
 
 ## 成功指標
 

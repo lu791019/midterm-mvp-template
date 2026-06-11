@@ -51,7 +51,7 @@
 ## 預期產出
 
 - `data/processed/music_trends.csv`：清洗後的排行與統計
-- `output/report.md`：趨勢分析 + 推薦歌單文案 + 跨平台洞察
+- `output/pipeline_doc.md`：趨勢分析 + 推薦歌單文案 + 跨平台洞察
 
 ## 成功指標
 

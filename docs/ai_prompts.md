@@ -121,34 +121,85 @@
 }
 ```
 
-## 7. README Prompt
+## 7. Pipeline Documentation Prompt（最重要！）
+
+> 把你的 Notebook 跑完後的資訊貼進去，AI 幫你填完整份 Pipeline Documentation。
 
 ```text
-請幫我把以下 MVP 內容整理成 GitHub README 草稿。
+你是一位資料工程師。請根據我提供的資訊，幫我填寫一份 Pipeline Documentation。
 
-專案名稱：{專案名稱}
-解決問題：{Problem}
-資料來源：{Data Source}
-Pipeline：
-- Extract: {做了什麼}
-- Transform: {做了什麼}
-- LLM Analyze: {做了什麼}
-- Load / Output: {輸出什麼}
+模板在最下方，請照格式輸出完整的 Markdown，把所有 {placeholder} 換成真實內容。
 
-目前限制：
-{限制}
+---
 
-後續升級：
-{升級計畫}
+以下是我的 Pipeline 資訊：
 
-請輸出 Markdown，包含：
-1. 專案簡介
-2. 資料來源
-3. Pipeline 流程
-4. 如何執行
-5. 目前成果
-6. 後續升級計畫
+【題目】
+{貼上你的題目名稱和情境}
+
+【原始資料欄位】（從 df.dtypes 或 df.head() 複製）
+{貼上 df.dtypes 的輸出}
+
+【清洗邏輯】（你在 Section 2 做了什麼）
+{例如：dropna(subset=["description", "customer_id"])、quantity > 0、新增 total_amount}
+
+【清洗前後筆數】
+- raw: {N} 筆
+- cleaned: {N} 筆
+- analyzed: {N} 筆
+
+【SQL 統計】（你在 Section 3 寫的 SQL 或 pandas 查詢）
+{貼上你的 SQL 或 describe}
+
+【LLM 分析】
+- 用了什麼模型：{GPT-4o-mini / fallback}
+- 輸入哪個欄位：{欄位名}
+- 分類標籤：{標籤列表}
+- 新增欄位：category, llm_insight
+
+【API Endpoints】（從 api.py 看）
+{貼上 api.py 的 @app.get 那幾行}
+
+---
+
+請用以下模板格式輸出（不要省略任何 section）：
+
+# {專案名稱} — Pipeline Documentation
+
+## 1. Overview
+（表格：業務情境、Pipeline 目標、使用者、資料來源、資料量）
+
+## 2. Architecture / Data Flow
+（ASCII 流程圖 + 表格：每階段的輸入→處理→輸出）
+
+## 3. Data Dictionary
+（三張表各自的欄位定義，包含型別、說明、範例值）
+
+## 4. Transform Logic
+（表格：每步清洗的程式碼、理由、影響筆數）
+
+## 5. Data Quality
+（完整性、一致性、準確性的檢查結果）
+
+## 6. LLM Integration
+（模型、Prompt 策略、Fallback、處理筆數）
+
+## 7. API Endpoints
+（Method、Path、說明、回傳格式）
+
+## 8. How to Run
+（完整指令，從 cd 到 uvicorn）
+
+## 9. Design Decisions
+（每個技術選擇的理由和 trade-off）
+
+## 10. Known Limitations & Next Steps
+（目前限制 + 升級路線）
+
+請用繁體中文，表格對齊，不要省略。
 ```
+
+> 💡 **懶人版**：如果你不想一個一個貼，直接把整個 Notebook 的輸出截圖或文字複製給 AI，加一句「請根據以上 Notebook 內容，幫我填寫 docs/README_TEMPLATE.md 的所有 section」也行。
 
 ## 8. AI Coding 使用提醒
 

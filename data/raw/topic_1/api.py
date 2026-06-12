@@ -36,6 +36,12 @@ def health():
     return {"status": "ok", "tables": tables["name"].tolist()}
 
 
+@app.get("/stats")
+def stats(limit: int = 20):
+    """商品銷售排行（與 topic_2 ~ topic_6 統一的統計 endpoint）"""
+    return product_stats(limit=limit)
+
+
 @app.get("/stats/products")
 def product_stats(limit: int = 20):
     """商品銷售排行"""

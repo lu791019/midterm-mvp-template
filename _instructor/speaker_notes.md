@@ -48,7 +48,7 @@
 
 ### [Slide 8] 時間表 (30s)
 
-「三段實作：25 分鐘環境選題、45 分鐘 ETL（最多時間）、30 分鐘 LLM 加 API。最後 15 分鐘 Demo。」
+「三段實作：25 分鐘環境選題、45 分鐘 ETL（最多時間）、30 分鐘 LLM 加 API。做完後閃電秀預演 10 分鐘，最後正式 Demo 15 分鐘。」
 
 ---
 
@@ -104,13 +104,13 @@ Section 3 之後有『你還可以分析什麼』提示，做完必要的可以�
 
 ---
 
-## Part 3：LLM + API 講解（15:20-15:25，5 分鐘）
+## Part 3：LLM + API 講解（15:15-15:25，10 分鐘）
 
-### LLM + Prompt + API (5 min)
+### LLM + Prompt + API (10 min)
 
 「LLM 要求回 JSON、給明確標籤選項。沒 API Key 就用 fallback。先 1 筆測試再批次。
 
-報告寫到 output/report.md。FastAPI 的 api.py 已經是 solution，改好路徑就能跑。」
+報告寫到 output/pipeline_doc.md。FastAPI 的 api.py 已經是 solution，改好路徑就能跑。」
 
 ---
 
@@ -118,7 +118,7 @@ Section 3 之後有『你還可以分析什麼』提示，做完必要的可以�
 
 「實作 3，30 分鐘。Section 4 到 8。LLM 分析、報告、FastAPI。
 
-基礎完成：analyzed 表 + report.md + API 跑起來。先 LLM 再報告再 API。
+基礎完成：analyzed 表 + pipeline_doc.md + API 跑起來。先 LLM 再報告再 API。
 
 開始。」
 

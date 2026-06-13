@@ -1701,40 +1701,35 @@ details.collapse > summary .collapse-hint {
   </div>
 </section>
 
-<section class="slide slide-content" id="slide-20" aria-label="實作3">
+<section class="slide slide-dense" id="slide-20" aria-label="實作3">
   <div class="slide-inner">
     <div class="reveal-up" style="text-align:center;">
-      <div style="font-size:clamp(2.5rem,8vw,6rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
-      <div style="font-size:var(--h2-size); font-weight:700; margin-top:0.3rem;">實作 3 — LLM + Report + API</div>
-      <div style="font-size:0.7rem; margin-top:0.3rem; color:var(--text-primary); font-weight:500;">📎 Repo README Step 3</div>
-      <div class="countdown-timer" data-minutes="30" style="display:inline-block; background:var(--neon-purple); color:white; padding:0.3rem 1.5rem; border-radius:2rem; font-size:var(--h3-size); margin-top:0.6rem; cursor:pointer; user-select:none;" title="點擊開始/暫停倒數">⏱ <span class="countdown-display">30:00</span></div>
+      <div style="font-size:clamp(2rem,6vw,4rem); font-weight:900; color:var(--neon-purple);">🔧 實作 Time</div>
+      <div style="font-size:var(--h3-size); font-weight:700; margin-top:0.2rem;">實作 3 — LLM + Report + API</div>
+      <div class="countdown-timer" data-minutes="30" style="display:inline-block; background:var(--neon-purple); color:white; padding:0.2rem 1.2rem; border-radius:2rem; font-size:1.2rem; margin-top:0.4rem; cursor:pointer; user-select:none;" title="點擊開始/暫停倒數">⏱ <span class="countdown-display">30:00</span></div>
     </div>
-    <div class="reveal-up" style="margin-top:0.8rem; max-width:750px; margin-left:auto; margin-right:auto;">
-      <div style="background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; font-size:0.85rem; line-height:1.9; margin-bottom:0.5rem;">
-        ✅ <strong>Section 4</strong>：LLM / fallback 分析 → 存入 <strong>analyzed 表</strong>（Gold）<br>
-        ✅ <strong>Section 5-6</strong>：驗證 + 產出 <code>output/report.md</code><br>
-        ✅ <strong>Section 7</strong>：文件補齊 + Next Step 規劃<br>
-        ⭐ <strong>Section 8</strong>：FastAPI — 把 pipeline.db 包成 API
+    <div class="reveal-up" style="margin-top:0.5rem; max-width:750px; margin-left:auto; margin-right:auto;">
+      <div style="background:var(--deep-purple); padding:0.5rem 1rem; border-radius:0.6rem; font-size:0.8rem; line-height:1.7; margin-bottom:0.4rem;">
+        ✅ <strong>Section 4</strong>：LLM / fallback → <strong>analyzed 表</strong>（Gold） &nbsp;
+        ✅ <strong>Section 5-6</strong>：驗證 + <code>report.md</code> &nbsp;
+        ⭐ <strong>Section 8</strong>：FastAPI
       </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.8rem;">
-        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
-          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem;">✅ 基礎完成</div>
-          <div style="line-height:1.7;">☐ analyzed 表有資料<br>☐ output/report.md 存在<br>☐ FastAPI /health 回 200</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.4rem; font-size:0.75rem;">
+        <div style="background:var(--deep-purple); padding:0.4rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.1rem;">✅ 基礎完成</div>
+          <div style="line-height:1.6;">☐ analyzed 表有資料<br>☐ report.md 存在<br>☐ FastAPI /health 回 200</div>
         </div>
-        <div style="background:var(--deep-purple); padding:0.5rem; border-radius:0.5rem;">
-          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.2rem;">⭐ 進階完成</div>
-          <div style="line-height:1.7;">☐ LLM prompt 有客製化<br>☐ 報告有具體數字<br>☐ 試了多個 API endpoint</div>
+        <div style="background:var(--deep-purple); padding:0.4rem; border-radius:0.5rem;">
+          <div style="font-weight:700; color:var(--neon-purple); margin-bottom:0.1rem;">⭐ 進階完成</div>
+          <div style="line-height:1.6;">☐ LLM prompt 有客製化<br>☐ 報告有具體數字<br>☐ 試了多個 API endpoint</div>
         </div>
       </div>
     </div>
-    <div class="reveal-up" style="margin-top:0.5rem; max-width:750px; margin-left:auto; margin-right:auto; background:var(--deep-purple); padding:0.6rem 1rem; border-radius:0.6rem; border-left:3px solid var(--electric-blue);">
-      <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.3rem; font-size:0.85rem;">💬 閃電秀預演（每組 2~3 人 × 3 min）</div>
-      <div style="font-size:0.8rem; line-height:1.8; text-align:left;">
-        向組員說明你等等要 Demo 的內容：<br>
-        1. 我的題目解決什麼問題？<br>
-        2. 我做了哪些清洗和分析？<br>
-        3. 最有趣的發現是什麼？（用數字說）<br>
-        4. LLM 在 pipeline 中做了什麼？<br>
+    <div class="reveal-up" style="margin-top:0.4rem; max-width:750px; margin-left:auto; margin-right:auto; background:var(--deep-purple); padding:0.5rem 1rem; border-radius:0.6rem; border-left:3px solid var(--electric-blue);">
+      <div style="font-weight:700; color:var(--electric-blue); margin-bottom:0.2rem; font-size:0.8rem;">💬 閃電秀預演（每組 2~3 人 × 3 min）</div>
+      <div style="font-size:0.75rem; line-height:1.7; text-align:left;">
+        1. 我的題目解決什麼問題？ 2. 做了哪些清洗和分析？<br>
+        3. 最有趣的發現？（用數字說） 4. LLM 在 pipeline 做了什麼？<br>
         <span style="color:var(--text-muted);">組員給回饋，幫你精煉正式上台的重點。</span>
       </div>
     </div>
